@@ -3,7 +3,7 @@ name: KPT 회고 이슈 템플릿
 about: "[Task]이슈카드 제목 설정하기"
 title: ''
 labels: Dev Log, Error
-assignees: VRSoda, ghooman, nicesiu, LEEJAESHIN
+assignees: ghooman, LEEJAESHIN, nicesiu, VRSoda
 
 ---
 
