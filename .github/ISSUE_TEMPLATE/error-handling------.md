@@ -2,8 +2,8 @@
 name: Error Handling 카드 양식
 about: Describe this issue template's purpose here.
 title: ''
-labels: bug
-assignees: ''
+labels: Error
+assignees: ghooman, LEEJAESHIN, nicesiu, VRSoda
 
 ---
 

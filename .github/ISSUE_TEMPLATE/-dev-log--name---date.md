@@ -3,7 +3,7 @@ name: "[Dev-Log] name / date"
 about: Dev Log
 title: ''
 labels: Dev Log
-assignees: ghooman, LEEJAESHIN, nicesiu
+assignees: VRSoda, ghooman, nicesiu, LEEJAESHIN
 
 ---
 
