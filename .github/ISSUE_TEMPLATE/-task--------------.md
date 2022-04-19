@@ -3,7 +3,7 @@ name: "[Task] 이슈카드 제목 설정하기"
 about: Task Card
 title: ''
 labels: ''
-assignees: VRSoda, ghooman, nicesiu, LEEJAESHIN
+assignees: ghooman, LEEJAESHIN, nicesiu, VRSoda
 
 ---
 
