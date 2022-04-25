@@ -7,6 +7,9 @@ module.exports = async (req, res) => {
       if(!req.headers.cookie) {
         res.status(401).send({ data: null, message: 'not authorized' }); 
       }
+      if (!isAuthorized(req)) {
+        return; 
+      }
       const accessTokenData =  isAuthorized(req);
       const userInfo = await user.findOne({where: {id:accessTokenData.id}})
       if(accessTokenData) {
