@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <Wrap>
-      <LogoDiv to="/">CodeCooperation</LogoDiv>
+      <LogoDiv>
+        <Logo>CodeCooperation</Logo>
+      </LogoDiv>
       <NavList>
         <Link to="/projectlist">
           <ProjectList>프로젝트 목록</ProjectList>
@@ -38,12 +40,19 @@ const LogoDiv = styled.div`
   /* @media screen and (max-width: 750px) {
     width: 35%;
   } */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: pink;
+`;
+
+const Logo = styled.div`
   font-size: 20px;
   font-weight: 600;
   font-style: italic;
   text-align: center;
   cursor: pointer;
-  background-color: pink;
 `;
 
 const NavList = styled.div`
