@@ -6,6 +6,7 @@ const Footer = () => {
       <LogoDiv>
         <Logo></Logo>
       </LogoDiv>
+      <MenuDiv></MenuDiv>
     </Wrap>
   );
 };
