@@ -22,12 +22,12 @@ const Header = () => {
 };
 
 const Wrap = styled.div`
+  display: flex;
   width: 100vw;
   max-width: 1400px;
   height: 5%;
   margin: auto;
   padding: 20px 0;
-  display: flex;
   justify-content: space-between;
   color: black;
 

@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import axios from "axios";
 import "./App.css";
+import ProjectList from "./pages/ProjectList";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -60,6 +61,7 @@ export default function App() {
         </Route>
         <Route path="/">
           <Header />
+          <ProjectList />
           <Footer />
           {/* {isLogin ? <Redirect to='/mypage' /> : <Redirect to='/login' />} */}
         </Route>
