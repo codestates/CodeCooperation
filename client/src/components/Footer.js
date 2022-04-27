@@ -50,6 +50,7 @@ const Footer = () => {
               이재신
             </Name>
           </ListDiv>
+          <DesignDiv>Designed by Freepik</DesignDiv>
         </TeamMemberDiv>
       </MenuDiv>
     </Wrap>
@@ -131,6 +132,10 @@ const Name = styled.a`
   color: black;
   font-size: 18px;
   font-weight: 300;
+`;
+
+const DesignDiv = styled.div`
+  margin-top: 30px;
 `;
 
 export default Footer;
