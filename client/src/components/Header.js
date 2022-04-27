@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <Wrap>
       <LogoDiv>
-        <Logo>CodeCooperation</Logo>
+        <Logo to="/">CodeCooperation</Logo>
       </LogoDiv>
       <NavList>
         <Link to="/projectlist">
@@ -21,8 +21,7 @@ const Header = () => {
   );
 };
 
-const Wrap = styled(Link)`
-  position: relative;
+const Wrap = styled.div`
   width: 100vw;
   max-width: 1400px;
   height: 5%;
@@ -31,7 +30,7 @@ const Wrap = styled(Link)`
   display: flex;
   justify-content: space-between;
   color: black;
-  text-decoration-line: none;
+
   /* background-color: green; */
 `;
 
@@ -41,17 +40,18 @@ const LogoDiv = styled.div`
     width: 35%;
   } */
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: pink;
+  /* background-color: pink; */
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   font-size: 20px;
   font-weight: 600;
   font-style: italic;
   text-align: center;
+  text-decoration-line: none;
+  color: black;
   cursor: pointer;
 `;
 
@@ -59,7 +59,7 @@ const NavList = styled.div`
   display: flex;
   width: 30%;
   justify-content: space-between;
-  background-color: yellow;
+  /* background-color: yellow; */
 `;
 
 const ProjectList = styled.button`
