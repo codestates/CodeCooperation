@@ -11,7 +11,9 @@ const Footer = () => {
       <MenuDiv>
         <ContactDiv>
           <Title>REFERENCE</Title>
-          <Reference>Designed by Freepik</Reference>
+          <Reference href="https://www.freepik.com/" target="_blank">
+            Designed by Freepik
+          </Reference>
         </ContactDiv>
         <AboutUsDiv>
           <Title>ABOUT US</Title>
@@ -97,6 +99,7 @@ const MenuDiv = styled.div`
 const ContactDiv = styled.div`
   font-weight: 600;
   margin: 20px 0;
+  width: 155px;
   /* background-color: yellow; */
 `;
 const AboutUsDiv = styled(ContactDiv)``;
@@ -107,9 +110,15 @@ const Title = styled.p`
   font-size: 20px;
 `;
 
-const Reference = styled.div`
+const Reference = styled.a`
+  text-decoration-line: none;
+  color: black;
   font-size: 18px;
   font-weight: 300;
+  &:hover {
+    font-weight: 500;
+    transition: 0s ease;
+  }
   cursor: pointer;
 `;
 
@@ -124,6 +133,10 @@ const Repository = styled.a`
   color: black;
   font-size: 18px;
   font-weight: 300;
+  &:hover {
+    font-weight: 500;
+    transition: 0s ease;
+  }
 `;
 const Wiki = styled(Repository)``;
 
@@ -133,6 +146,10 @@ const Name = styled.a`
   color: black;
   font-size: 18px;
   font-weight: 300;
+  &:hover {
+    font-weight: 500;
+    transition: 0s ease;
+  }
 `;
 
 export default Footer;

@@ -55,7 +55,7 @@ const Logo = styled(Link)`
 `;
 
 const NavList = styled.div`
-  margin-right: 85px;
+  margin-right: 95px;
   display: flex;
   width: 20%;
   padding-top: 25px;
@@ -64,9 +64,14 @@ const NavList = styled.div`
 `;
 
 const ProjectList = styled(Link)`
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 300;
   text-decoration-line: none;
   color: black;
+  &:hover {
+    font-weight: 500;
+    transition: 0s ease;
+  }
   cursor: pointer;
 `;
 
@@ -78,13 +83,13 @@ const Login = styled.button`
   background-color: white;
   border-radius: 25px;
   color: lightgray;
-  border: 1px solid black;
+  border: 1px solid #f0f0f0;
   height: 50px;
   width: 120px;
   font-size: 15px;
   font-weight: 600;
   &:hover {
-    background-color: black;
+    background-color: #56d0a0;
     color: white;
     transition: 0.3s ease-out;
   }
