@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
+import Styled from 'styled-components';
 
 axios.defaults.withCredentials = true;
+
 
 export default function Signup () {
   const [userinfo, setuserinfo] = useState({
@@ -29,43 +31,122 @@ export default function Signup () {
   };
   return (
     <div>
-      <center>
-        <h1>Sign Up</h1>
-        <div>모든 항목은 필수입니다</div>
+      <StyledLogo>LogoIcon</StyledLogo>
+      <Styledcenter>
         <form onSubmit={(e) => e.preventDefault()}>
-          <div>
-            <span>이메일</span>
-            <input type='email' onChange={handleInputValue('email')} />
-          </div>
-          <div>
-            <span>비밀번호</span>
-            <input
-              type='password'
-              onChange={handleInputValue('password')}
-            />
-          </div>
-          <div>
-            <span>이름</span>
-            <input type='text' onChange={handleInputValue('username')} />
-          </div>
-          <div>
-            {' '}
-            <span>전화번호</span>{' '}
-            <input type='tel' onChange={handleInputValue('mobile')} />
-          </div>
-          <div>
-            <Link to='/login'>이미 아이디가 있으신가요?</Link>
-          </div>
-          <button
-            className='btn btn-signup'
-            type='submit'
-            onClick={handleSignup}
-          >
-            회원가입
-          </button>
+          <Styledh2>회원가입</Styledh2>
+
+          <Styledbar></Styledbar>
+
+          <Styleddiv>
+            <Styledspan>아이디</Styledspan>
+            <Styledinfo>4글자 이상의 아이디를 입력해주세요.</Styledinfo>
+            <Input type='text' onChange={handleInputValue('email')} placeholder='아이디'/>
+          </Styleddiv>
+
+          <Styleddiv>
+            <Styledspan>비밀번호</Styledspan>
+            <Styledinfo>영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.</Styledinfo>
+            <Input type='password' onChange={handleInputValue('password')} placeholder='비밀번호'/>
+          </Styleddiv>
+
+          <Styleddiv>
+            <Styledspan>비밀번호 확인</Styledspan>
+            <Styledinfo>확인을 위해 비밀번호를 한 번 더 입력해주세요.</Styledinfo>
+            <Input type='password' onChange={handleInputValue('password')} placeholder='비밀번호 확인'/>
+          </Styleddiv>
+
+          <Styleddiv>
+            <Styledspan>닉네임</Styledspan>
+            <Styledinfo>겹치지 않는 닉네임을 입력해주세요.</Styledinfo>
+            <Input type='text' onChange={handleInputValue('username')} placeholder='닉네임'/>
+          </Styleddiv>
+
+          <Styledbutton type='submit' onClick={handleSignup}>회원가입</Styledbutton>
+
+          <Styledspan>이미 아이디가 있으신가요?</Styledspan>
+
+          <StyledLink><Link to='/login'>로그인</Link></StyledLink>
+
           {errorMessage ? <div className='alert-box' >{errorMessage}</div> : null}
         </form>
-      </center>
+      </Styledcenter>
     </div>
   );
 }
+
+
+const StyledLogo = Styled.div`
+width:100%;
+display: flex;
+padding: 20px 0px;
+text-align: left;
+margin-right: -50px;
+padding-left: 50px;
+`;
+const Styledcenter = Styled.div`
+justify-content: center;
+padding: 20px
+height: 100%;
+display: flex;
+`;
+const Styledh2 = Styled.div`
+margin-bottom: 10px;
+text-align: left;
+font-weight: bold;
+font-size: 15pt;
+`;
+
+const Styledbar = Styled.div`
+border-bottom: 1px solid black;
+width: 295px;
+`;
+
+const Styleddiv = Styled.div`
+width: 100px;
+padding-left: 5px
+padding-top: 10px;
+`;
+const Styledspan = Styled.div`
+padding-left: 90px
+padding-top: 10px;
+margin-top: 10px;
+text-align: left;
+font-weight: bold;
+font-size: 10pt;
+display: flex;
+`;
+const Styledinfo = Styled.div`
+width: 300px;
+padding-top: 5px;
+padding-bottom: 5px;
+font-size: 8pt;
+`;
+const Input = Styled.input`
+border: 1px solid gray;
+display: flex;
+height: 35px;
+width: 289px;
+border-radius: 5px;
+font-size: 8pt;
+padding: 2px;
+`;
+const Styledbutton = Styled.div`
+background-color: skyblue;
+color: white;
+height: 40px;
+width: 295px;
+margin-top: 20px;
+border-radius: 5px;
+font-size: 15pt;
+text-align: center;
+padding-top: 5px;
+font-weight: bold;
+`;
+
+const StyledLink = Styled.div`
+font-weight: bold;
+font-size: 10pt;
+`;
+
+

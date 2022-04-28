@@ -15,7 +15,7 @@ const Header = () => {
         <Link to="/project">
           <ProjectAdd>프로젝트 추가</ProjectAdd>
         </Link>
-        <Login>Login</Login>
+        <Login><Link to='/login'>로그인</Link></Login>
       </NavList>
     </Wrap>
   );
