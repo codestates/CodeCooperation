@@ -3,11 +3,10 @@ import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Mypage from "./pages/Mypage";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import axios from "axios";
 import "./App.css";
-import ProjectList from "./pages/ProjectList";
+import Header from "./components/Header";
+import Main from "./pages/Main";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -46,25 +45,26 @@ export default function App() {
 
   return (
     <div>
+      <Header />
       <Switch>
-        <Route path="/login">
+        <Route path="/">
+          <Main />
+        </Route>
+        {/* <Route path="/login">
           <Login
             isLogin={isLogin}
             handleResponseSuccess={handleResponseSuccess}
           />
-        </Route>
-        <Route exact path="/signup">
+        </Route> */}
+        {/* <Route exact path="/signup">
           <Signup isLogin={isLogin} />
-        </Route>
-        <Route exact path="/mypage">
+        </Route> */}
+        {/* <Route exact path="/mypage">
           <Mypage userinfo={userinfo} handleLogout={handleLogout} />
         </Route>
         <Route path="/">
-          <Header />
-          <ProjectList />
-          <Footer />
-          {/* {isLogin ? <Redirect to='/mypage' /> : <Redirect to='/login' />} */}
-        </Route>
+          {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/login" />}
+        </Route> */}
       </Switch>
     </div>
   );
