@@ -29,7 +29,7 @@ const CategoryWrap = styled.div`
   height: 5%;
   margin: auto;
   justify-content: space-around;
-  background-color: tomato;
+  background-color: tomato; 
 `;
 
 const CategoryBtn = styled.button`

@@ -10,8 +10,8 @@ const Footer = () => {
       </LogoDiv>
       <MenuDiv>
         <ContactDiv>
-          <Title>CONTACT</Title>
-          <Contact>Send inquire</Contact>
+          <Title>REFERENCE</Title>
+          <Reference>Designed by Freepik</Reference>
         </ContactDiv>
         <AboutUsDiv>
           <Title>ABOUT US</Title>
@@ -45,12 +45,13 @@ const Footer = () => {
           </ListDiv>
           <ListDiv>✔️Back</ListDiv>
           <ListDiv>
-            <Name>황시우</Name>
+            <Name href="https://github.com/nicesiu" target="_blank">
+              황시우
+            </Name>
             <Name href="https://github.com/LEEJAESHIN" target="_blank">
               이재신
             </Name>
           </ListDiv>
-          <DesignDiv>Designed by Freepik</DesignDiv>
         </TeamMemberDiv>
       </MenuDiv>
     </Wrap>
@@ -106,7 +107,7 @@ const Title = styled.p`
   font-size: 20px;
 `;
 
-const Contact = styled.div`
+const Reference = styled.div`
   font-size: 18px;
   font-weight: 300;
   cursor: pointer;
@@ -132,10 +133,6 @@ const Name = styled.a`
   color: black;
   font-size: 18px;
   font-weight: 300;
-`;
-
-const DesignDiv = styled.div`
-  margin-top: 30px;
 `;
 
 export default Footer;

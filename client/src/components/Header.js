@@ -9,19 +9,18 @@ const Header = () => {
         <Logo to="/">CodeCooperation</Logo>
       </LogoDiv>
       <NavList>
-        <Link to="/projectlist">
-          <ProjectList>프로젝트 목록</ProjectList>
-        </Link>
-        <Link to="/project">
-          <ProjectAdd>프로젝트 추가</ProjectAdd>
-        </Link>
-        <Login>Login</Login>
+        <ProjectList to="/projectlist">프로젝트 목록</ProjectList>
+        <ProjectAdd to="/project">프로젝트 추가</ProjectAdd>
       </NavList>
+      <LoginList>
+        <Login>Login</Login>
+      </LoginList>
     </Wrap>
   );
 };
 
 const Wrap = styled.div`
+  position: relative;
   display: flex;
   width: 100vw;
   max-width: 1400px;
@@ -56,16 +55,30 @@ const Logo = styled(Link)`
 `;
 
 const NavList = styled.div`
+  margin-right: 85px;
   display: flex;
-  width: 30%;
-  justify-content: space-between;
+  width: 20%;
+  padding-top: 25px;
+  justify-content: space-around;
   /* background-color: yellow; */
 `;
 
-const ProjectList = styled.button`
+const ProjectList = styled(Link)`
+  font-weight: 600;
+  text-decoration-line: none;
+  color: black;
+  cursor: pointer;
+`;
+
+const ProjectAdd = styled(ProjectList)``;
+
+const LoginList = styled.div``;
+
+const Login = styled.button`
   background-color: white;
   border-radius: 25px;
-  border: 1px solid #65747f;
+  color: lightgray;
+  border: 1px solid black;
   height: 50px;
   width: 120px;
   font-size: 15px;
@@ -77,9 +90,5 @@ const ProjectList = styled.button`
   }
   cursor: pointer;
 `;
-
-const ProjectAdd = styled(ProjectList)``;
-
-const Login = styled(ProjectList)``;
 
 export default Header;
