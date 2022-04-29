@@ -1,32 +1,28 @@
 {
-  "name": "butcher-shop-server",
+  "name": "server",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
-    "prestart":"npx sequelize-cli db:migrate",
-    "start": "node index.js",
-    "pretest": "npx sequelize-cli db:migrate",
-    "test": "NODE_ENV=test mocha '__tests__/server.test.js' --timeout 5000 --exit",
-    "report": "NODE_ENV=test mocha '__tests__/server.test.js' --timeout 5000 --exit --reporter @mochajs/json-file-reporter"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "cookie-parser": "^1.4.5",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "i": "^0.3.7",
     "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "mysql2": "^2.1.0",
-    "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0"
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.15",
+    "npm": "^8.8.0",
+    "sequelize": "^6.19.0"
   },
   "devDependencies": {
-    "@mochajs/json-file-reporter": "^1.2.1",
-    "chai": "^4.2.0",
-    "mocha": "^8.1.3",
-    "supertest": "^4.0.2"
+    "sequelize-cli": "^6.4.1"
   }
 }
