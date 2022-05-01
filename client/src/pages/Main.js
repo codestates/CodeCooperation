@@ -339,7 +339,7 @@ const Container_2 = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
-  justify-content: center
+  justify-content: center;
   width: 100%;
   height: 50rem;
   margin: 0;
@@ -429,7 +429,7 @@ const Container_4 = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
-  justify-content: center
+  justify-content: center;
   width: 100%;
   height: 50rem;
   margin: 0;
@@ -501,7 +501,7 @@ const Container_5 = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
-  justify-content: center
+  justify-content: center;
   width: 100%;
   height: 40rem;
   margin: 0;
@@ -617,9 +617,9 @@ const Container_6 = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
-  justify-content: center
+  justify-content: center;
   width: 100%;
-  height: 60rem;
+  height: 70rem;
   margin: 0;
 `;
 
@@ -653,12 +653,12 @@ const Content_6_title = styled.div`
   font-weight: 900;
   border: 1px solid lightgray;
   text-align: center;
-  line-height: 3rem;row
+  line-height: 3rem;
 `;
 
 const Content_6_img_box = styled.div`
   width: 100%;
-  height: 80%;
+  height: 70%;
 `;
 
 const Content_6_img = styled.img.attrs({
@@ -669,6 +669,8 @@ const Content_6_img = styled.img.attrs({
 `;
 
 const Content_6_button_box = styled.div`
+  width: 100%;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;

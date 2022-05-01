@@ -8,6 +8,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./pages/Main";
+import DetailPage from "./pages/DetailPage";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -48,8 +49,11 @@ export default function App() {
     <div>
       <Header />
       <Switch>
-        <Route path="/">
+        <Route path="/" exact>
           <Main />
+        </Route>
+        <Route path="/postdetail" exact>
+          <DetailPage />
         </Route>
         {/* <Route path="/login">
           <Login
