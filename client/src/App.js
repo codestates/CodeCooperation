@@ -6,7 +6,13 @@ import Mypage from "./pages/Mypage";
 import axios from "axios";
 import "./App.css";
 import Header from "./components/Header";
+<<<<<<< HEAD
 import Main from "./pages/Main";
+=======
+import Footer from "./components/Footer";
+import Main from "./pages/Main";
+import DetailPage from "./pages/DetailPage";
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -47,9 +53,18 @@ export default function App() {
     <div>
       <Header />
       <Switch>
+<<<<<<< HEAD
         <Route path="/">
           <Main />
         </Route>
+=======
+        <Route path="/" exact>
+          <Main />
+        </Route>
+        <Route path="/postdetail" exact>
+          <DetailPage />
+        </Route>
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
         {/* <Route path="/login">
           <Login
             isLogin={isLogin}
@@ -66,6 +81,7 @@ export default function App() {
           {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/login" />}
         </Route> */}
       </Switch>
+      <Footer />
     </div>
   );
 }

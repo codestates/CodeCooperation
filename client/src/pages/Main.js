@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 import image_2 from "../images/3129481.jpg";
 import image_0 from "../images/content_0_img.png";
 import image_3 from "../images/3.jpg";
 import gif_1 from "../images/11.gif";
 import image_5 from "../images/5.png";
 import image_6 from "../images/6.jpg";
+=======
+import image_1 from "../images/1.png";
+import image_2 from "../images/2.jpg";
+import image_3 from "../images/3.jpg";
+import image_4 from "../images/4.png";
+import image_5 from "../images/5.jpg";
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
 
 function Main() {
   return (
@@ -237,7 +245,11 @@ const Background_img = styled.img.attrs({})`
 `;
 
 const Content_0_img_0 = styled.img.attrs({
+<<<<<<< HEAD
   src: `${image_0}`,
+=======
+  src: `${image_1}`,
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
 })`
   width: 100%;
   height: 100%;
@@ -294,7 +306,11 @@ const Content_0_button_0 = styled.div`
 /*********************************************/
 
 /*************Container_1 부분************/
+<<<<<<< HEAD
 const Container_1 = styled.div`
+=======
+/* const Container_1 = styled.div`
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -306,7 +322,11 @@ const Container_1 = styled.div`
   margin: 0;
 `;
 const Container_1_img = styled.img.attrs({
+<<<<<<< HEAD
   src: `${gif_1}`,
+=======
+  src: ``,
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
 })`
   width: 50%;
   height: 80%;
@@ -329,7 +349,11 @@ const Content_1_p = styled.div`
   font-size: 1.7rem;
   font-family: "paybooc-Light";
   line-height: 3rem;
+<<<<<<< HEAD
 `;
+=======
+`; */
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
 
 /******************************/
 
@@ -340,7 +364,11 @@ const Container_2 = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
+<<<<<<< HEAD
   justify-content: center
+=======
+  justify-content: center;
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
   width: 100%;
   height: 50rem;
   margin: 0;
@@ -430,7 +458,11 @@ const Container_4 = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
+<<<<<<< HEAD
   justify-content: center
+=======
+  justify-content: center;
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
   width: 100%;
   height: 50rem;
   margin: 0;
@@ -502,7 +534,11 @@ const Container_5 = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
+<<<<<<< HEAD
   justify-content: center
+=======
+  justify-content: center;
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
   width: 100%;
   height: 40rem;
   margin: 0;
@@ -571,7 +607,11 @@ const Content_5_review_title_image_box_2 = styled.div`
 `;
 
 const Content_5_review_title_image = styled.img.attrs({
+<<<<<<< HEAD
   src: `${image_5}`,
+=======
+  src: `${image_4}`,
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
 })`
   width: 100%;
   height: 100%;
@@ -618,9 +658,15 @@ const Container_6 = styled.div`
   justify-content: center;
   align-items: center;
   border: 1px solid lightgray;
+<<<<<<< HEAD
   justify-content: center
   width: 100%;
   height: 60rem;
+=======
+  justify-content: center;
+  width: 100%;
+  height: 70rem;
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
   margin: 0;
 `;
 
@@ -654,22 +700,39 @@ const Content_6_title = styled.div`
   font-weight: 900;
   border: 1px solid lightgray;
   text-align: center;
+<<<<<<< HEAD
   line-height: 3rem;row
+=======
+  line-height: 3rem;
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
 `;
 
 const Content_6_img_box = styled.div`
   width: 100%;
+<<<<<<< HEAD
   height: 80%;
 `;
 
 const Content_6_img = styled.img.attrs({
   src: `${image_6}`,
+=======
+  height: 70%;
+`;
+
+const Content_6_img = styled.img.attrs({
+  src: `${image_5}`,
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
 })`
   width: 100%;
   height: 100%;
 `;
 
 const Content_6_button_box = styled.div`
+<<<<<<< HEAD
+=======
+  width: 100%;
+  height: 10%;
+>>>>>>> 981860c415eeef4baf331999bcb12095e5155407
   display: flex;
   justify-content: center;
   align-items: center;
