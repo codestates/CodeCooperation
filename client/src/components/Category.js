@@ -4,20 +4,9 @@ import styled from "styled-components";
 const Category = () => {
   return (
     <CategoryWrap>
-      <CategoryBtn>JavaScript</CategoryBtn>
-      <CategoryBtn>Java</CategoryBtn>
-      <CategoryBtn>Phython</CategoryBtn>
-      <CategoryBtn>Node.js</CategoryBtn>
-      <CategoryBtn>React</CategoryBtn>
-      <CategoryBtn>C++</CategoryBtn>
-      <CategoryBtn>Flask</CategoryBtn>
-      <CategoryBtn>Django</CategoryBtn>
-      <CategoryBtn>Vue</CategoryBtn>
-      <CategoryBtn>Spring</CategoryBtn>
-      <CategoryBtn>php</CategoryBtn>
-      <CategoryBtn>Swift</CategoryBtn>
-      <CategoryBtn>Kotlin</CategoryBtn>
-      <CategoryBtn>TypeScript</CategoryBtn>
+      {CategoryName.map((name, index) => (
+        <CategoryBtn key={index}>{name}</CategoryBtn>
+      ))}
     </CategoryWrap>
   );
 };
@@ -34,6 +23,7 @@ const Category = () => {
 
 const CategoryWrap = styled.div`
   max-width: 1400px;
+  width: 100%;
   position: relative;
   display: flex;
   margin: auto;
@@ -49,8 +39,9 @@ const CategoryBtn = styled.li`
   list-style: none;
   font-weight: 300;
   font-size: 19px;
-  padding: 8px 15px;
+  padding: 8px 10px;
   height: 40px;
+  width: auto;
   color: black;
 
   &:hover {
@@ -59,5 +50,22 @@ const CategoryBtn = styled.li`
   }
   cursor: pointer;
 `;
+
+const CategoryName = [
+  "JavaScript",
+  "Java",
+  "Phython",
+  "Node.js",
+  "React",
+  "C++",
+  "Flask",
+  "Django",
+  "Vue",
+  "Spring",
+  "php",
+  "Swift",
+  "Kotlin",
+  "TypeScript",
+];
 
 export default Category;

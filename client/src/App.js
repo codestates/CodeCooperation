@@ -15,10 +15,12 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./pages/Main";
 import ProjectList from "./pages/ProjectList";
+import { posts } from "./components/posts";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userinfo, setUserinfo] = useState(null);
+  // const [post, setPost] = useState(posts.items);
   const history = useHistory();
   const isAuthenticated = () => {
     axios
