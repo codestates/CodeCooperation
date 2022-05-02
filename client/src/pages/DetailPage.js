@@ -335,8 +335,9 @@ const ContentTitle5 = styled.div`
 
 const ContentTitle5P = styled.div`
   font-size: 1.15rem;
-  font-weight: 300;
+  font-weight: 400;
   font-family: "Noto Sans KR";
+  line-height: 2rem;
 `;
 
 const ContentTitle6Box = styled.div`

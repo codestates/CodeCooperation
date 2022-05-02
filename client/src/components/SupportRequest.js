@@ -6,7 +6,7 @@ function SupportRequest({ clickRequest }) {
       <BackDrop>
         <PopUp>
           <CancelButtonBox>
-            <CancelButton onClick={clickRequest}>X</CancelButton>
+            <CancelButton onClick={clickRequest}>✖</CancelButton>
           </CancelButtonBox>
           <H1Box>
             <H1Text>지원 하기</H1Text>
@@ -81,7 +81,7 @@ const RequestButton = styled.button`
 
 const CancelButton = styled.button`
   float: right;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin: 5px 10px 0 0;
   border: 0;
   outline: 0;
