@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, useHistory, Redirect } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  useHistory,
+  Redirect,
+} from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Mypage from "./pages/Mypage";
@@ -8,10 +14,13 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./pages/Main";
+import ProjectList from "./pages/ProjectList";
+import { posts } from "./components/posts";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userinfo, setUserinfo] = useState(null);
+  // const [post, setPost] = useState(posts.items);
   const history = useHistory();
   const isAuthenticated = () => {
     axios
@@ -45,11 +54,14 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <BrowserRouter>
       <Header />
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Main />
+        </Route>
+        <Route path="/projectlist">
+          <ProjectList />
         </Route>
         {/* <Route path="/login">
           <Login
@@ -68,6 +80,6 @@ export default function App() {
         </Route> */}
       </Switch>
       <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
