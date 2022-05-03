@@ -14,6 +14,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./pages/Main";
+import ProjectAdd from "./pages/ProjectAdd";
 import ProjectList from "./pages/ProjectList";
 import { posts } from "./components/posts";
 
@@ -62,6 +63,9 @@ export default function App() {
         </Route>
         <Route path="/projectlist">
           <ProjectList />
+        </Route>
+        <Route path="/projectadd">
+          <ProjectAdd />
         </Route>
         {/* <Route path="/login">
           <Login

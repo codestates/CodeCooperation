@@ -10,7 +10,7 @@ const Header = () => {
       </LogoDiv>
       <NavList>
         <ProjectList to="/projectlist">프로젝트 목록</ProjectList>
-        <ProjectAdd to="/project">프로젝트 추가</ProjectAdd>
+        <ProjectAdd to="/projectadd">프로젝트 추가</ProjectAdd>
       </NavList>
       <LoginList>
         <Login>Login</Login>
@@ -33,6 +33,7 @@ const Wrap = styled.div`
   /* background-color: green; */
 `;
 
+// 로고
 const LogoDiv = styled.div`
   width: 15%;
   /* @media screen and (max-width: 750px) {
@@ -54,6 +55,7 @@ const Logo = styled(Link)`
   cursor: pointer;
 `;
 
+// 목록
 const NavList = styled.div`
   margin-right: 95px;
   display: flex;
@@ -77,13 +79,14 @@ const ProjectList = styled(Link)`
 
 const ProjectAdd = styled(ProjectList)``;
 
+// 로그인
 const LoginList = styled.div``;
 
 const Login = styled.button`
   background-color: white;
   border-radius: 25px;
   color: lightgray;
-  border: 1px solid #f0f0f0;
+  border: 1px solid rgb(196 196 196);
   height: 50px;
   width: 120px;
   font-size: 15px;
