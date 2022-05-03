@@ -5,17 +5,16 @@ const logger = require('morgan');
 const express = require('express');
 const app = express();
 
-// 미들웨어
 // 시퀄라이즈 모델 테스트
 const models = require('./models/index');
 models.sequelize.sync().then(() => {
-    console.log(' DB연결');
+    console.log('DB연결');
 })
 .catch(err => {
     console.log('DB연결 실패');
     console.log(err)
 });
-
+// 미들웨어
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:false})); // qs라이브러리 사용하지 않음
@@ -29,7 +28,7 @@ app.use(cors({
 // 서버 실행
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), () => {
-    console.log(`🧶서버가 ${app.get('port')}포트로 열렸습니다`)
+    console.log(`🧶서버가 ${app.get('port')} 포트로 열렸습니다!`)
 })
 
 module.exports = app;
