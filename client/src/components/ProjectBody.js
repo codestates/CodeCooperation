@@ -45,7 +45,8 @@ const ProjectDiv = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 30px;
-  border: 3px solid lightgray;
+  border: 1px solid rgb(196 196 196);
+  box-shadow: rgb(221 221 221) 0px 0px 10px;
   cursor: pointer;
 `;
 
@@ -53,8 +54,8 @@ const Top = styled.div`
   display: flex;
   flex-direction: column;
   height: 30%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   background-color: #56d0a0;
   z-index: -1;
 `;
