@@ -619,7 +619,7 @@ const Container_6 = styled.div`
   border: 1px solid lightgray;
   justify-content: center;
   width: 100%;
-  height: 60rem;
+  height: 70rem;
   margin: 0;
 `;
 
@@ -658,7 +658,7 @@ const Content_6_title = styled.div`
 
 const Content_6_img_box = styled.div`
   width: 100%;
-  height: 80%;
+  height: 70%;
 `;
 
 const Content_6_img = styled.img.attrs({
@@ -669,6 +669,8 @@ const Content_6_img = styled.img.attrs({
 `;
 
 const Content_6_button_box = styled.div`
+  width: 100%;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;

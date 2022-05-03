@@ -16,6 +16,7 @@ import Footer from "./components/Footer";
 import Main from "./pages/Main";
 import ProjectList from "./pages/ProjectList";
 import { posts } from "./components/posts";
+import DetailPage from "./pages/DetailPage";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -57,11 +58,19 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Switch>
+
+        <Route path="/" exact>
+          <Main />
+        </Route>
+        <Route path="/postdetail" exact>
+          <DetailPage />
+
         <Route exact path="/">
           <Main />
         </Route>
         <Route path="/projectlist">
           <ProjectList />
+
         </Route>
         {/* <Route path="/login">
           <Login
