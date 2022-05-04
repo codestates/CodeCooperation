@@ -1,51 +1,73 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import styled from "styled-components";
+import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { RiKakaoTalkFill } from "react-icons/ri";
 
 axios.defaults.withCredentials = true;
 
-export default function Login ({ handleResponseSuccess }) {
+export default function Login({ handleResponseSuccess }) {
   const [loginInfo, setLoginInfo] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
   const handleLogin = () => {
-    if(!loginInfo.email || !loginInfo.password) {
-      setErrorMessage('이메일과 비밀번호를 입력하세요')
+    if (!loginInfo.email || !loginInfo.password) {
+      setErrorMessage("아이디와 비밀번호를 입력하세요");
       return;
+    } else {
+      setErrorMessage("");
     }
-    else {
-      setErrorMessage('')
-    }
-    return axios.post('https://localhost:4000/signin',loginInfo).then((data)=>handleResponseSuccess())
+    return axios
+      .post("https://localhost:4000/signin", loginInfo)
+      .then((data) => handleResponseSuccess());
   };
   return (
     <div>
       <center>
-        <h1>Sign In</h1>
+        <h1>로그인</h1>
         <form onSubmit={(e) => e.preventDefault()}>
           <div>
-            <span>이메일</span>
-            <input type='email' onChange={handleInputValue('email')} />
-          </div>
-          <div>
-            <span>비밀번호</span>
+            <FaUserAlt />
             <input
-              type='password'
-              onChange={handleInputValue('password')}
+              type="text"
+              onChange={handleInputValue("email")}
+              placeholder="아이디를 입력해 주세요."
             />
           </div>
+
           <div>
-            <Link to='/signup'>아직 아이디가 없으신가요?</Link>
+            <FaLock />
+            <input
+              type="password"
+              onChange={handleInputValue("password")}
+              placeholder="패스워드를 입력해 주세요."
+            />
           </div>
-          <button className='btn btn-login' type='submit' onClick={handleLogin}>
+
+          <div>
+            <span>비회원이신가요?</span>
+            <Link to="/signup">회원가입?</Link>
+          </div>
+
+          <button className="btn btn-login" type="submit" onClick={handleLogin}>
             로그인
           </button>
-          {errorMessage ? <div className='alert-box'>{errorMessage}</div> : null}
+          <FcGoogle />
+          <button>Google</button>
+
+          <RiKakaoTalkFill />
+          <button>KaKao</button>
+
+          {errorMessage ? (
+            <div className="alert-box">{errorMessage}</div>
+          ) : null}
         </form>
       </center>
     </div>
