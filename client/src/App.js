@@ -65,7 +65,7 @@ export default function App() {
         </Route>
         <Route path="/postdetail" exact>
           <DetailPage />
-
+        </Route>
         <Route exact path="/">
           <Main />
         </Route>
