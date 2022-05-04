@@ -10,8 +10,10 @@ const Footer = () => {
       </LogoDiv>
       <MenuDiv>
         <ContactDiv>
-          <Title>CONTACT</Title>
-          <Contact>Send inquire</Contact>
+          <Title>REFERENCE</Title>
+          <Reference href="https://www.freepik.com/" target="_blank">
+            Designed by Freepik
+          </Reference>
         </ContactDiv>
         <AboutUsDiv>
           <Title>ABOUT US</Title>
@@ -45,12 +47,13 @@ const Footer = () => {
           </ListDiv>
           <ListDiv>✔️Back</ListDiv>
           <ListDiv>
-            <Name>황시우</Name>
+            <Name href="https://github.com/nicesiu" target="_blank">
+              황시우
+            </Name>
             <Name href="https://github.com/LEEJAESHIN" target="_blank">
               이재신
             </Name>
           </ListDiv>
-          <DesignDiv>Designed by Freepik</DesignDiv>
         </TeamMemberDiv>
       </MenuDiv>
     </Wrap>
@@ -96,6 +99,7 @@ const MenuDiv = styled.div`
 const ContactDiv = styled.div`
   font-weight: 600;
   margin: 20px 0;
+  width: 155px;
   /* background-color: yellow; */
 `;
 const AboutUsDiv = styled(ContactDiv)``;
@@ -106,9 +110,15 @@ const Title = styled.p`
   font-size: 20px;
 `;
 
-const Contact = styled.div`
+const Reference = styled.a`
+  text-decoration-line: none;
+  color: black;
   font-size: 18px;
   font-weight: 300;
+  &:hover {
+    font-weight: 500;
+    transition: 0s ease;
+  }
   cursor: pointer;
 `;
 
@@ -123,6 +133,10 @@ const Repository = styled.a`
   color: black;
   font-size: 18px;
   font-weight: 300;
+  &:hover {
+    font-weight: 500;
+    transition: 0s ease;
+  }
 `;
 const Wiki = styled(Repository)``;
 
@@ -132,10 +146,10 @@ const Name = styled.a`
   color: black;
   font-size: 18px;
   font-weight: 300;
-`;
-
-const DesignDiv = styled.div`
-  margin-top: 30px;
+  &:hover {
+    font-weight: 500;
+    transition: 0s ease;
+  }
 `;
 
 export default Footer;

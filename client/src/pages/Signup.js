@@ -31,9 +31,8 @@ export default function Signup () {
   };
   return (
     <div>
-      <StyledLogo>LogoIcon</StyledLogo>
       <Styledcenter>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <Styledform onSubmit={(e) => e.preventDefault()}>
           <Styledh2>회원가입</Styledh2>
 
           <Styledbar></Styledbar>
@@ -69,43 +68,43 @@ export default function Signup () {
           <StyledLink><Link to='/login'>로그인</Link></StyledLink>
 
           {errorMessage ? <div className='alert-box' >{errorMessage}</div> : null}
-        </form>
+        </Styledform>
       </Styledcenter>
     </div>
   );
 }
 
+const Styledform = Styled.form`
+padding-top: 100px;
+padding-left: 200px;
+width: 600px;
+height: 800px;
 
-const StyledLogo = Styled.div`
-width:100%;
-display: flex;
-padding: 20px 0px;
-text-align: left;
-margin-right: -50px;
-padding-left: 50px;
+
 `;
+
 const Styledcenter = Styled.div`
 justify-content: center;
-padding: 20px
-height: 100%;
+height: 150%;
 display: flex;
 `;
 const Styledh2 = Styled.div`
 margin-bottom: 10px;
 text-align: left;
 font-weight: bold;
-font-size: 15pt;
+font-size: 24pt;
 `;
 
 const Styledbar = Styled.div`
 border-bottom: 1px solid black;
-width: 295px;
+width: 350px;
 `;
 
 const Styleddiv = Styled.div`
 width: 100px;
 padding-left: 5px
 padding-top: 10px;
+padding-bottom: 20px;
 `;
 const Styledspan = Styled.div`
 padding-left: 90px
@@ -113,23 +112,24 @@ padding-top: 10px;
 margin-top: 10px;
 text-align: left;
 font-weight: bold;
-font-size: 10pt;
+font-size: 15pt;
+width: 500px;
 display: flex;
 `;
 const Styledinfo = Styled.div`
-width: 300px;
+width: 500px;
 padding-top: 5px;
 padding-bottom: 5px;
-font-size: 8pt;
+font-size: 10pt;
 `;
 const Input = Styled.input`
 border: 1px solid gray;
 display: flex;
 height: 35px;
-width: 289px;
+width: 342px;
 border-radius: 5px;
-font-size: 8pt;
-padding: 2px;
+font-size: 10pt;
+
 `;
 const Styledbutton = Styled.div`
 background-color: skyblue;
@@ -146,7 +146,7 @@ font-weight: bold;
 
 const StyledLink = Styled.div`
 font-weight: bold;
-font-size: 10pt;
+font-size: 13pt;
 `;
 
 
