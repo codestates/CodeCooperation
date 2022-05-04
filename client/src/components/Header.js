@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from 'react';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from 'axios';
@@ -6,8 +6,9 @@ import { FaUserAlt, FaLock } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc'
 import { RiKakaoTalkFill } from 'react-icons/ri'
 
-const Header = () => {
+const Header = ({ handleResponseSuccess }) => {
   const [isLogin, setIsLogin] = useState(false);
+  const ModalOFf = useRef();
 
   /*Modal*/
   let [modal, modalChange] = useState(false);
@@ -16,35 +17,33 @@ const Header = () => {
     return(
       <Modaldiv>
         <Modalcenter>
-          <Modlah1>로그인</Modlah1>
+          <Modalh1>로그인</Modalh1>
           <Modalform onSubmit={(e) => e.preventDefault()}>
 
             <Modalinfo>
               <ModalName>아이디</ModalName>
               <FaUserAlt />
-              <Modalinput type='text' onChange={handleInputValue('email')} placeholder='아이디를 입력해 주세요.'/>
+              <Modalinput type='text' placeholder='아이디를 입력해 주세요.'/>
             </Modalinfo>
 
             <Modalinfo>
               <ModalName>패스워드</ModalName>
               <FaLock />
-              <Modalinput type='password' onChange={handleInputValue('password')} placeholder='패스워드를 입력해 주세요.'/>
+              <Modalinput type='password' placeholder='패스워드를 입력해 주세요.'/>
             </Modalinfo>
 
             <Modalbutton className='btn btn-login' type='submit' onClick={handleLogin}>로그인</Modalbutton>
 
             <ModalAcount>
-              <span>비회원이신가요?</span>
-              <Link to='/signup'>회원가입?</Link>
+              비회원이신가요?&nbsp;  
+              <Link to='/signup'>회원가입</Link>
             </ModalAcount>
 
-            <FcGoogle />
-            <ModalSocial>Google</ModalSocial>
-          
-            <RiKakaoTalkFill />
-            <ModalSocial>KaKao</ModalSocial>
-          
-            {errorMessage ? <div className='alert-box'>{errorMessage}</div> : null}
+            <SosialLogo>
+              <Google></Google>
+              <Kakao></Kakao>
+            </SosialLogo>
+            {errorMessage ? alert('등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다.') : null}
         </Modalform>
       </Modalcenter>
     </Modaldiv>
@@ -83,7 +82,7 @@ const Header = () => {
       </NavList>
       <LoginList>
         <Login onClick={ () => {modalChange(true)}}>로그인</Login>
-        { modal === true ? <Modal/> : null} 
+        { modal === true ? <Modal/> : null}
       </LoginList>
     </Wrap>
   );
@@ -190,10 +189,10 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
 `;
-const Modlah1 = styled.h1`
+const Modalh1 = styled.h1`
 `;
 const Modalform = styled.div`
-border: 0px solid;
+border: 0px solid ;
 `;
 const ModalName = styled.div`
 font-size: 15pt;
@@ -204,20 +203,58 @@ width: 400px;
 height: 60px;
 margin-top: 10px;
 `;
-const ModalAcount = styled.div`
-border: 1px solid red;
-`;
+
 const Modalbutton = styled.div`
-border: 1px solid red;
-margin-top: 20px;
+border: 1px solid gray;
+margin-top: 10px;
+text-align: center;
+width: 100px;
+height: 40px;
+margin-left: 120px;
+font-size: 24px;
+border-radius: 20px;
+background-color: gray;
+`;
+
+const ModalAcount = styled.div`
+width: 170px;
+height: 22px;
+font-size: 15px;
+margin-left: 180px;
+margin-top: 5px;
+a { text-decoration: none; color: black; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
 `;
 
 const Modalinput = styled.input`
-width: 350px;
+width: 300px;
+margin-left: 10px;
+margin-top: -3px;
 height: 30px;
 `;
-const ModalSocial = styled.div`
-border: 1px solid red;
-`;
 
+const SosialLogo = styled.div`
+width: 200px;
+height: 300px;
+margin-left: 80px;
+margin-top: 10px;
+`;
+const Google = styled.div`
+width: 190px;
+height: 43px;
+background-size : initial;
+background-image: url('https://cdn.discordapp.com/attachments/965889268411166780/971266453724602378/GoogleLogin.png');
+margin-bottom: 10px;
+margin-left: -5px;
+`;
+const Kakao = styled.div`
+width: 180px;
+height: 45px;
+background-size : initial;
+background-image: url('https://cdn.discordapp.com/attachments/965889268411166780/971261801666846740/KakaoLogin.png');
+`;
 export default Header;
