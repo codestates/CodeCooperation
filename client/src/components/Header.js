@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Login from "../pages/Login";
 
 const Header = () => {
+  const [isLogin, setIsLogin] = useState(false);
+
+  const handleLogin = () => {
+    setIsLogin(!isLogin);
+  };
   return (
     <Wrap>
+      {isLogin ? <Login /> : null}
       <LogoDiv>
         <Logo to="/">CodeCooperation</Logo>
       </LogoDiv>
@@ -13,7 +20,7 @@ const Header = () => {
         <ProjectAdd to="/project">프로젝트 추가</ProjectAdd>
       </NavList>
       <LoginList>
-        <Login>Login</Login>
+        <LoginButton onClick={handleLogin}>Login</LoginButton>
       </LoginList>
     </Wrap>
   );
@@ -79,7 +86,7 @@ const ProjectAdd = styled(ProjectList)``;
 
 const LoginList = styled.div``;
 
-const Login = styled.button`
+const LoginButton = styled.button`
   background-color: white;
   border-radius: 25px;
   color: lightgray;

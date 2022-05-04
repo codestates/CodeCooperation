@@ -58,19 +58,17 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Switch>
-
         <Route path="/" exact>
           <Main />
         </Route>
         <Route path="/postdetail" exact>
           <DetailPage />
-
+        </Route>
         <Route exact path="/">
           <Main />
         </Route>
         <Route path="/projectlist">
           <ProjectList />
-
         </Route>
         {/* <Route path="/login">
           <Login
