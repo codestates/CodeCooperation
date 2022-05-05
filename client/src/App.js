@@ -22,7 +22,7 @@ import DetailPage from "./pages/DetailPage";
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userinfo, setUserinfo] = useState(null);
-  // const [post, setPost] = useState(posts.items);
+  const [post, setPost] = useState(posts.items);
   const history = useHistory();
   const isAuthenticated = () => {
     axios
@@ -59,17 +59,14 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Switch>
-        <Route path="/" exact>
+        <Route exact path="/">
           <Main />
         </Route>
         <Route path="/postdetail">
           <DetailPage />
         </Route>
-        <Route exact path="/">
-          <Main />
-        </Route>
         <Route path="/projectlist">
-          <ProjectList />
+          <ProjectList post={post} history={history} />
         </Route>
         <Route path="/projectadd">
           <ProjectAdd />
@@ -80,13 +77,13 @@ export default function App() {
             handleResponseSuccess={handleResponseSuccess}
           />
         </Route> */}
-        {/* <Route exact path="/signup">
+        <Route path="/signup">
           <Signup isLogin={isLogin} />
-        </Route> */}
-        {/* <Route exact path="/mypage">
+        </Route>
+        <Route path="/mypage">
           <Mypage userinfo={userinfo} handleLogout={handleLogout} />
         </Route>
-        <Route path="/">
+        {/* <Route path="/">
           {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/login" />}
         </Route> */}
       </Switch>

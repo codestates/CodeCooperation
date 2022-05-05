@@ -1,29 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import JavaScriptImg from "../images/javascript.png";
+import ReactImg from "../images/react.png";
 
-const ProjectBody = () => {
+const ProjectBody = ({ post, history }) => {
   return (
     <Wrap>
-      <ProjectDiv>
+      <ProjectDiv
+        onClick={() => {
+          history.push("/postdetail");
+        }}
+      >
         <Top>
-          <State>모집중</State>
-          <Title>[ToyProject] 프론트 개발자 구해요!</Title>
-          <ByWho>by. 지후</ByWho>
+          <State>{post.state}</State>
+          <Title>{post.title}</Title>
+          <ByWho>by. {post.who}</ByWho>
         </Top>
         <Body>
-          <Detail>
-            로그인, 회원가입, 글쓰기 등 구현하실 개발자 두 분 구합니다.
-          </Detail>
+          <Detail>{post.detail}</Detail>
         </Body>
         <Bottom>
           <ImgDiv>
-            <Img></Img>
-            <Img></Img>
+            <Img src={JavaScriptImg}></Img>
+            <Img src={ReactImg}></Img>
           </ImgDiv>
           <BottomBottom>
-            <Term>2022-04-30 ~ 2022-05-05</Term>
-            <HeadCount>2/4명 참여중</HeadCount>
+            <Term>
+              {post.termStart} ~ {post.termEnd}
+            </Term>
+            <HeadCount>
+              {post.count}명/{post.totalCount}명 참여중
+            </HeadCount>
           </BottomBottom>
         </Bottom>
       </ProjectDiv>
@@ -100,9 +107,7 @@ const ImgDiv = styled.div`
   height: 50%;
 `;
 
-const Img = styled.img.attrs({
-  src: `${JavaScriptImg}`,
-})`
+const Img = styled.img`
   border-radius: 70%;
   margin-right: 20px;
   width: 100%;
