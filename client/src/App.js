@@ -18,6 +18,7 @@ import ProjectAdd from "./pages/ProjectAdd";
 import ProjectList from "./pages/ProjectList";
 import { posts } from "./components/posts";
 import DetailPage from "./pages/DetailPage";
+import Kakaohandler from "./pages/Kakaohandler";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -80,9 +81,12 @@ export default function App() {
             handleResponseSuccess={handleResponseSuccess}
           />
         </Route> */}
-        {/* <Route exact path="/signup">
+        <Route path="/oauth/callback/kakao" exact>
+          <Kakaohandler />
+        </Route>
+        <Route exact path="/signup">
           <Signup isLogin={isLogin} />
-        </Route> */}
+        </Route>
         {/* <Route exact path="/mypage">
           <Mypage userinfo={userinfo} handleLogout={handleLogout} />
         </Route>
