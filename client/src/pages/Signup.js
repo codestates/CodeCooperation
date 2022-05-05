@@ -110,8 +110,6 @@ padding-top: 100px;
 padding-left: 200px;
 width: 600px;
 height: 800px;
-
-
 `;
 
 const Styledcenter = Styled.div`
@@ -160,7 +158,6 @@ height: 35px;
 width: 342px;
 border-radius: 5px;
 font-size: 10pt;
-
 `;
 const Styledbutton = Styled.div`
 background-color: skyblue;

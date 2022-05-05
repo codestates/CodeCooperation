@@ -5,6 +5,16 @@ import axios from "axios";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
+const CLIENT_ID = "64fe86c46742a2a3e00351691147e584";
+const REDIRECT_URI = "http://localhost:3000/oauth/callback/kakao";
+
+// 프런트엔드 리다이랙트 URI 예시
+// const REDIRECT_URI =  "http://localhost:3000/oauth/callback/kakao";
+
+// 백엔드 리다이랙트 URI 예시
+// const REDIRECT_URI =  "http://localhost:5000/kakao/code";
+
+export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
 const Header = ({ handleResponseSuccess }) => {
   const [isLogin, setIsLogin] = useState(false);
@@ -49,7 +59,9 @@ const Header = ({ handleResponseSuccess }) => {
 
             <SosialLogo>
               <Google></Google>
-              <Kakao></Kakao>
+              <a href={KAKAO_AUTH_URL}>
+                <Kakao></Kakao>
+              </a>
             </SosialLogo>
             {errorMessage
               ? alert(
@@ -117,7 +129,6 @@ const Wrap = styled.div`
   padding: 20px 0;
   justify-content: space-between;
   color: black;
-
   /* background-color: green; */
 `;
 
@@ -170,7 +181,7 @@ const ProjectAdd = styled(ProjectList)``;
 // 로그인
 const LoginList = styled.div``;
 
-const LoginButton = styled.button`
+const Login = styled.button`
   background-color: white;
   border-radius: 25px;
   color: lightgray;
