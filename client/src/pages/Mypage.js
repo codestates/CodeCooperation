@@ -1,34 +1,39 @@
-import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import axios from 'axios';
-import Styled from 'styled-components';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { useHistory, Link } from "react-router-dom";
+import axios from "axios";
+import Styled from "styled-components";
+import styled from "styled-components";
 
 axios.defaults.withCredentials = true;
 
-
-export default function Signup () {
+export default function Signup() {
   const [userinfo, setuserinfo] = useState({
-    email: '',
-    password: '',
-    username: '',
-    mobile: ''
+    email: "",
+    password: "",
+    username: "",
+    mobile: "",
   });
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
   const handleInputValue = (key) => (e) => {
     setuserinfo({ ...userinfo, [key]: e.target.value });
   };
   const handleSignup = () => {
-    if(!userinfo.email || !userinfo.password || !userinfo.username || !userinfo.mobile) {
-      setErrorMessage('모든 항목은 필수입니다');
-      console.log(errorMessage)
+    if (
+      !userinfo.email ||
+      !userinfo.password ||
+      !userinfo.username ||
+      !userinfo.mobile
+    ) {
+      setErrorMessage("모든 항목은 필수입니다");
+      console.log(errorMessage);
       return;
+    } else {
+      setErrorMessage("");
     }
-    else {
-      setErrorMessage('');
-    }
-    return axios.post("https://localhost:4000/signup",userinfo).then((res)=> history.push('/'))
+    return axios
+      .post("https://localhost:4000/signup", userinfo)
+      .then((res) => history.push("/"));
   };
   return (
     <div>
@@ -36,7 +41,7 @@ export default function Signup () {
         <StyledImg></StyledImg>
       </StyledBackground>
 
-      <Styledcenter>        
+      <Styledcenter>
         <StyledProfile>
           <StyledPicture></StyledPicture>
 
@@ -44,10 +49,10 @@ export default function Signup () {
 
           <Styledbar></Styledbar>
 
-          <StyledInfo>기술 스택
+          <StyledInfo>
+            기술 스택
             <StyledMyInfo>JavaScript</StyledMyInfo>
           </StyledInfo>
-
 
           <StyledAcountInfo>회원정보 수정</StyledAcountInfo>
         </StyledProfile>
@@ -144,7 +149,7 @@ display: flex;
 justify-content: space-between;
 justify-content: center;
 border-bottom: 3px solid white;
-`; 
+`;
 const NavItems = Styled.div`
 align-items: center;
 text-align: center;
@@ -162,4 +167,3 @@ color: white;
   border-bottom: 5px solid black;
 }
 `;
-

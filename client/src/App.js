@@ -59,7 +59,6 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Switch>
-
         <Route path="/" exact>
           <Main />
         </Route>
@@ -71,7 +70,6 @@ export default function App() {
         </Route>
         <Route path="/projectlist">
           <ProjectList />
-
         </Route>
         <Route path="/projectadd">
           <ProjectAdd />
