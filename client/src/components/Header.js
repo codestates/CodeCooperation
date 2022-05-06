@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -18,60 +18,50 @@ export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id
 
 const Header = ({ handleResponseSuccess }) => {
   const [isLogin, setIsLogin] = useState(false);
-  const ModalOFf = useRef();
+  const [showModal, setShowModal] = useState(false);
+  const openModal = () => {
+    setShowModal(true);
+  }
+  const closeModal = () => {
+    setShowModal(false);
+  }
 
-  /*Modal*/
-  let [modal, modalChange] = useState(false);
-
-  function Modal() {
-    return (
+  function Modal(){
+    return(
       <Modaldiv>
         <Modalcenter>
+          <ModalCancel onClick={closeModal} ></ModalCancel>
           <Modalh1>로그인</Modalh1>
           <Modalform onSubmit={(e) => e.preventDefault()}>
+
             <Modalinfo>
               <ModalName>아이디</ModalName>
               <FaUserAlt />
-              <Modalinput type="text" placeholder="아이디를 입력해 주세요." />
+              <Modalinput type='text' placeholder='아이디를 입력해 주세요.'/>
             </Modalinfo>
 
             <Modalinfo>
               <ModalName>패스워드</ModalName>
               <FaLock />
-              <Modalinput
-                type="password"
-                placeholder="패스워드를 입력해 주세요."
-              />
+              <Modalinput type='password' placeholder='패스워드를 입력해 주세요.'/>
             </Modalinfo>
 
-            <Modalbutton
-              className="btn btn-login"
-              type="submit"
-              onClick={handleLogin}
-            >
-              로그인
-            </Modalbutton>
+            <Modalbutton className='btn btn-login' type='submit' onClick={handleLogin}>로그인</Modalbutton>
 
             <ModalAcount>
-              비회원이신가요?&nbsp;
-              <Link to="/signup">회원가입</Link>
+              비회원이신가요?&nbsp;  
+              <Link to='/signup' onClick={closeModal}>회원가입</Link>
             </ModalAcount>
 
             <SosialLogo>
               <Google></Google>
-              <a href={KAKAO_AUTH_URL}>
-                <Kakao></Kakao>
-              </a>
+              <Kakao></Kakao>
             </SosialLogo>
-            {errorMessage
-              ? alert(
-                  "등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다."
-                )
-              : null}
-          </Modalform>
-        </Modalcenter>
-      </Modaldiv>
-    );
+            {errorMessage ? alert('등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다.') : null}
+        </Modalform>
+      </Modalcenter>
+    </Modaldiv>
+    )
   }
 
   /*Login*/
@@ -106,14 +96,8 @@ const Header = ({ handleResponseSuccess }) => {
         <ProjectAdd to="/project">프로젝트 추가</ProjectAdd>
       </NavList>
       <LoginList>
-        <Login
-          onClick={() => {
-            modalChange(true);
-          }}
-        >
-          로그인
-        </Login>
-        {modal === true ? <Modal /> : null}
+        <Login onClick={openModal}>로그인</Login>
+        {showModal === true ? <Modal /> : null}
       </LoginList>
     </Wrap>
   );
@@ -296,5 +280,12 @@ const Kakao = styled.div`
   height: 45px;
   background-size: initial;
   background-image: url("https://cdn.discordapp.com/attachments/965889268411166780/971261801666846740/KakaoLogin.png");
+`;
+const ModalCancel = styled.div`
+margin-left: 340px;
+width: 30px;
+height: 30px;
+background-size : initial;
+background-image: url('https://cdn.discordapp.com/attachments/965889268411166780/972017707761414184/icons8-close-30.png');
 `;
 export default Header;

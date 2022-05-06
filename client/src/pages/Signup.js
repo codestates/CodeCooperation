@@ -90,12 +90,6 @@ export default function Signup() {
             회원가입
           </Styledbutton>
 
-          <Styledspan>이미 아이디가 있으신가요?</Styledspan>
-
-          <StyledLink>
-            <Link to="/login">로그인</Link>
-          </StyledLink>
-
           {errorMessage ? (
             <div className="alert-box">{errorMessage}</div>
           ) : null}
