@@ -5,6 +5,7 @@ const logger = require('morgan');
 const express = require('express');
 const app = express();
 
+
 // 시퀄라이즈 모델 테스트
 const models = require('./models/index');
 models.sequelize.sync().then(() => {
@@ -14,6 +15,11 @@ models.sequelize.sync().then(() => {
     console.log('DB연결 실패');
     console.log(err)
 });
+// test
+app.get('/',(req, res) => {
+    res.send("테스트")
+})
+
 // 미들웨어
 app.use(logger('dev'));
 app.use(express.json());
@@ -24,6 +30,9 @@ app.use(cors({
     credentials: true,
     methods: ['GET','POST','OPTION','PUT','DELETE']
 }))
+
+// 라우팅
+
 
 // 서버 실행
 app.set('port', process.env.PORT || 3000);
