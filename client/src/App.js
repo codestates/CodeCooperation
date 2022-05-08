@@ -52,9 +52,9 @@ export default function App() {
     });
   };
 
-  useEffect(() => {
-    isAuthenticated();
-  }, []);
+  // useEffect(() => {
+  //   isAuthenticated();
+  // }, []);
 
   return (
     <BrowserRouter>
@@ -87,12 +87,15 @@ export default function App() {
         <Route exact path="/signup">
           <Signup isLogin={isLogin} />
         </Route>
-        {/* <Route exact path="/mypage">
+        <Route exact path="/mypage">
           <Mypage userinfo={userinfo} handleLogout={handleLogout} />
         </Route>
         <Route path="/">
           {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/login" />}
-        </Route> */}
+        </Route>
+        <Route path="/oauth/callback/kakao">
+          <Kakaohandler />
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

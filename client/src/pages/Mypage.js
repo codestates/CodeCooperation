@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import Styled from "styled-components";
-import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 axios.defaults.withCredentials = true;
 
 export default function Signup() {
+  let user = useSelector((state) => state.userInfo.userInfo);
+
   const [userinfo, setuserinfo] = useState({
     email: "",
     password: "",
@@ -45,7 +47,7 @@ export default function Signup() {
         <StyledProfile>
           <StyledPicture></StyledPicture>
 
-          <StyledMyInfo>Sodanen</StyledMyInfo>
+          <StyledMyInfo>{user.nickname}</StyledMyInfo>
 
           <Styledbar></Styledbar>
 
