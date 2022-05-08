@@ -9,12 +9,21 @@ const ProjectList = ({ post, history }) => {
     <MainDiv>
       <Category />
       <SearchBar />
-      {post.map((el) => (
-        <ProjectBody post={el} history={history} />
-      ))}
+      <Wrap>
+        {post.map((el) => (
+          <ProjectBody posts={el} history={history} />
+        ))}
+      </Wrap>
     </MainDiv>
   );
 };
+
+const Wrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-between;
+`;
 
 const MainDiv = styled.div`
   position: relative;

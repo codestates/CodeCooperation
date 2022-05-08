@@ -1,4 +1,4 @@
-const posts = {
+export const posts = {
   items: [
     {
       id: 1,
@@ -46,5 +46,3 @@ const posts = {
     },
   ],
 };
-
-export default posts;

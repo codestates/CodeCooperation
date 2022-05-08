@@ -2,50 +2,40 @@ import React from "react";
 import styled from "styled-components";
 import JavaScriptImg from "../images/javascript.png";
 import ReactImg from "../images/react.png";
+import { Link } from "react-router-dom";
 
-const ProjectBody = ({ post, history }) => {
+const ProjectBody = ({ posts, history }) => {
   return (
-    <Wrap>
-      <ProjectDiv
-        onClick={() => {
-          history.push("/postdetail");
-        }}
-      >
-        <Top>
-          <State>{post.state}</State>
-          <Title>{post.title}</Title>
-          <ByWho>by. {post.who}</ByWho>
-        </Top>
-        <Body>
-          <Detail>{post.detail}</Detail>
-        </Body>
-        <Bottom>
-          <ImgDiv>
-            <Img src={JavaScriptImg}></Img>
-            <Img src={ReactImg}></Img>
-          </ImgDiv>
-          <BottomBottom>
-            <Term>
-              {post.termStart} ~ {post.termEnd}
-            </Term>
-            <HeadCount>
-              {post.count}명/{post.totalCount}명 참여중
-            </HeadCount>
-          </BottomBottom>
-        </Bottom>
-      </ProjectDiv>
-    </Wrap>
+    <ProjectDiv to="/postdetail">
+      <Top>
+        <State>{posts.state}</State>
+        <Title>{posts.title}</Title>
+        <ByWho>by. {posts.who}</ByWho>
+      </Top>
+      <Body>
+        <Detail>{posts.detail}</Detail>
+      </Body>
+      <Bottom>
+        <ImgDiv>
+          <Img src={JavaScriptImg}></Img>
+          <Img src={ReactImg}></Img>
+        </ImgDiv>
+        <BottomBottom>
+          <Term>
+            {posts.termStart} ~ {posts.termEnd}
+          </Term>
+          <HeadCount>
+            {posts.count}명/{posts.totalCount}명 참여중
+          </HeadCount>
+        </BottomBottom>
+      </Bottom>
+    </ProjectDiv>
   );
 };
 
-const Wrap = styled.div`
-  margin-top: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-`;
-
-const ProjectDiv = styled.div`
+const ProjectDiv = styled(Link)`
+  color: black;
+  text-decoration-line: none;
   height: 330px;
   width: 350px;
   margin: 20px 30px;
