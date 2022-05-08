@@ -13,7 +13,14 @@ export const userInfoReducer = createSlice({
       localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
       localStorage.setItem("isLogin", JSON.stringify(true));
     },
+    LOG_OUT: (state) => {
+      state.userInfo = { id: "", email: "", nickname: "", password: "" };
+      state.isLogin = false;
+
+      localStorage.removeItem("userInfo");
+      localStorage.removeItem("isLogin");
+    },
   },
 });
-export const { LOG_IN } = userInfoReducer.actions;
+export const { LOG_IN, LOG_OUT } = userInfoReducer.actions;
 export default userInfoReducer.reducer;

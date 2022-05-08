@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { LOG_OUT } from "../reducer/userInfoReducer";
 const CLIENT_ID = "64fe86c46742a2a3e00351691147e584";
 const REDIRECT_URI = "http://localhost:3000/oauth/callback/kakao";
 
-// 프런트엔드 리다이랙트 URI 예시
-// const REDIRECT_URI =  "http://localhost:3000/oauth/callback/kakao";
+const GOGLE_ID =
+  "78567862441-tcldhai7ojkrf0uouf9anhh7fscmha0f.apps.googleusercontent.com";
+const GOGLE_URL = "http://localhost:3000/oauth/callback/google";
 
-// 백엔드 리다이랙트 URI 예시
-// const REDIRECT_URI =  "http://localhost:5000/kakao/code";
-
+export const GOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/auth?client_id=${GOGLE_ID}&access_type=offline&redirect_uri=${GOGLE_URL}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
 const Header = ({ handleResponseSuccess }) => {
@@ -64,7 +64,9 @@ const Header = ({ handleResponseSuccess }) => {
             </ModalAcount>
 
             <SosialLogo>
-              <Google />
+              <a href={GOGLE_AUTH_URL}>
+                <Google />
+              </a>
               <a href={KAKAO_AUTH_URL}>
                 <Kakao />
               </a>
@@ -82,6 +84,14 @@ const Header = ({ handleResponseSuccess }) => {
 
   /*Login*/
   let isLogin = useSelector((state) => state.userInfo.isLogin);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    history.push("/");
+    dispatch(LOG_OUT());
+  };
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
@@ -112,8 +122,11 @@ const Header = ({ handleResponseSuccess }) => {
         <ProjectAdd to="/project">프로젝트 추가</ProjectAdd>
       </NavList>
       <LoginList>
+        {isLogin ? <Login onClick={handleLogout}>로그아웃</Login> : null}
         {isLogin ? (
-          <Link to="/mypage">마이페이지</Link>
+          <Link to="/mypage">
+            <Login>마이페이지</Login>
+          </Link>
         ) : (
           <Login onClick={openModal}>로그인</Login>
         )}
