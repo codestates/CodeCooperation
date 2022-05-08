@@ -26,7 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false})); // qs라이브러리 사용하지 않음
 app.use(cookieParser(process.env.COOKIE_SECRET)); // 쿠키 암호 나중에 설정
 app.use(cors({
-    origin: ['https://localhost:3000'],
+    origin: ['https://localhost:3000',
+            "https://codescooperation.com"],
     credentials: true,
     methods: ['GET','POST','OPTION','PUT','DELETE']
 }))
