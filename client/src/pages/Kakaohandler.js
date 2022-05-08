@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-const qs = require("qs");
+import { useDispatch, useSelector } from "react-redux";
+import { LOG_IN } from "../reducer/userInfoReducer";
+
 function Kakaohandler() {
   const [accessToken, setAccessToken] = useState();
   const [userInfo, setUserInfo] = useState();
   const [refreshToken, setRefreshToken] = useState();
 
   const history = useHistory();
-
-  /*   let grant_type = "authorization_code";
-  let client_id = "64fe86c46742a2a3e00351691147e584";
-  let clientSecret = "CJ8l34h8aIMizgiTo80a40Pf2ggJX9Qk";
-  let redirect_uri = "http://localhost:3000/oauth/callback/kakao"; */
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let code = new URL(window.location.href).searchParams.get("code");
@@ -26,7 +24,7 @@ function Kakaohandler() {
   const getAccessToken = (code) => {
     axios({
       method: "post",
-      url: `http://localhost:5000/post/kakao-login/token`,
+      url: `http://localhost:5000/kakao-login/token`,
       data: {
         code,
       },
@@ -41,7 +39,29 @@ function Kakaohandler() {
       .catch((error) => {
         console.log(error);
       });
-    history.push("/");
+  };
+
+  useEffect(() => {
+    getUserInfo(accessToken);
+    return () => {};
+  }, [accessToken]);
+
+  const getUserInfo = (accessToken) => {
+    axios({
+      method: "get",
+      url: `http://localhost:5000/kakao-login/userinfo?accessToken=${accessToken}`,
+    })
+      .then((res) => {
+        console.log(res.data, "서버에서 받은 데이터");
+        const { id, email, nickname, password } = res.data.user;
+        dispatch(LOG_IN({ id, email, nickname, password }));
+        // setUserInfo(res.data);
+        // handleResponseSuccess();
+        history.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return <div></div>;
