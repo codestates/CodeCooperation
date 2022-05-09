@@ -1,6 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
+import LoginPopup from "../components/LoginPopup";
+import Modal from "../components/Header";
 import image_1 from "../images/1.png";
 import image_2 from "../images/2.jpg";
 import image_3 from "../images/3.jpg";
@@ -8,8 +11,22 @@ import image_4 from "../images/4.png";
 import image_5 from "../images/5.jpg";
 
 function Main() {
+  const [isLogin2, setIsLogin2] = useState(false);
+  let isLogin = useSelector((state) => state.userInfo.isLogin);
+  const history = useHistory();
+  const startButton = () => {
+    if (isLogin == true) {
+      history.push("/projectadd");
+    } else {
+      setIsLogin2(true);
+    }
+  };
+  const handleClose = () => {
+    setIsLogin2(false);
+  };
   return (
     <div>
+      {isLogin2 ? <LoginPopup handleClose={handleClose} /> : null}
       <Container_0>
         <Background_img_box>
           <Background_img src="https://user-images.githubusercontent.com/87626152/165377408-e7a13c11-2a21-4ad1-b98d-aa66149814a8.jpg" />
@@ -25,7 +42,9 @@ function Main() {
             <br /> 지금 CodeCooperation 에서 시작해보세요!
           </Content_0_p>
           <Content_0_button_box_0>
-            <Content_0_button_0>시작하기</Content_0_button_0>
+            <Content_0_button_0 onClick={startButton}>
+              시작하기
+            </Content_0_button_0>
           </Content_0_button_box_0>
         </Container_0_box>
         <Container_0_box>
@@ -192,7 +211,9 @@ function Main() {
             <Content_6_img></Content_6_img>
           </Content_6_img_box>
           <Content_6_button_box>
-            <Content_6_button>시작하기</Content_6_button>
+            <Link to="/projectlist">
+              <Content_6_button>시작하기</Content_6_button>
+            </Link>
           </Content_6_button_box>
         </Content_6_box>
       </Container_6>
@@ -294,6 +315,7 @@ const Content_0_button_0 = styled.div`
   height: 3rem;
   text-align: center;
   line-height: 3rem;
+  cursor: pointer;
 `;
 /*********************************************/
 

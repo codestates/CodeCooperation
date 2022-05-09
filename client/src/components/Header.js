@@ -57,6 +57,7 @@ const Header = ({ handleResponseSuccess }) => {
             </Modalbutton>
 
             <ModalAcount>
+              {/* {errorMessage ? { errorMessage } : null} */}
               비회원이신가요?&nbsp;
               <Link to="/signup" onClick={closeModal}>
                 회원가입
@@ -71,11 +72,6 @@ const Header = ({ handleResponseSuccess }) => {
                 <Kakao />
               </a>
             </SosialLogo>
-            {errorMessage
-              ? alert(
-                  "등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다."
-                )
-              : null}
           </Modalform>
         </Modalcenter>
       </Modaldiv>
@@ -100,16 +96,27 @@ const Header = ({ handleResponseSuccess }) => {
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
+  const axios_Login = (userEmail, userPassword) => {
+    return axios.post(
+      `http://localhost:5000/signin`,
+      {
+        email: userEmail,
+        password: userPassword,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  };
+
   const handleLogin = () => {
     if (!loginInfo.email || !loginInfo.password) {
       setErrorMessage("아이디와 비밀번호를 입력하세요");
       return;
     } else {
-      setErrorMessage("");
+      // setErrorMessage("");
+      axios_Login(loginInfo.email, loginInfo.password);
     }
-    return axios
-      .post("https://localhost:4000/signin", loginInfo)
-      .then((data) => handleResponseSuccess());
   };
 
   return (

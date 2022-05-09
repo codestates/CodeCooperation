@@ -1,38 +1,82 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Styled from "styled-components";
+import { LOG_IN } from "../reducer/userInfoReducer";
 
 axios.defaults.withCredentials = true;
 
 export default function Signup() {
   const [userinfo, setuserinfo] = useState({
     email: "",
+    nickname: "",
     password: "",
-    username: "",
-    mobile: "",
   });
+
   const [errorMessage, setErrorMessage] = useState("");
+
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const handleInputValue = (key) => (e) => {
     setuserinfo({ ...userinfo, [key]: e.target.value });
   };
+
+  const axios_Login = (userEmail, userPassword) => {
+    return axios.post(
+      `http://localhost:5000/signin`,
+      {
+        email: userEmail,
+        password: userPassword,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  };
+
+  const axios_Signup = (userEmail, userNickname, userPassword) => {
+    return axios.post(`http://localhost:5000/signup`, {
+      email: userEmail,
+      nickname: userNickname,
+      password: userPassword,
+    });
+  };
+
   const handleSignup = () => {
-    if (
-      !userinfo.email ||
-      !userinfo.password ||
-      !userinfo.username ||
-      !userinfo.mobile
-    ) {
+    if (!userinfo.email || !userinfo.password || !userinfo.nickname) {
       setErrorMessage("모든 항목은 필수입니다");
       console.log(errorMessage);
       return;
     } else {
       setErrorMessage("");
     }
-    return axios
-      .post("https://localhost:4000/signup", userinfo)
-      .then((res) => history.push("/"));
+    return axios_Signup(
+      userinfo.email,
+      userinfo.nickname,
+      userinfo.password
+    ).then(() => {
+      axios_Login(userinfo.email, userinfo.password)
+        .then((res) => {
+          console.log("받은데이터유저", res);
+          const { id, nickname, loginType } = res.data.user;
+          const accessToken = res.data.accessToken;
+          dispatch(
+            LOG_IN({
+              id,
+              nickname,
+              accessToken,
+              loginType,
+            })
+          );
+          history.push("/");
+        })
+        .catch(() => {
+          // alert("중복된 이메일이 있습니다");
+          setErrorMessage("중복된 이메일이 있습니다");
+        });
+    });
   };
   return (
     <div>
@@ -81,7 +125,7 @@ export default function Signup() {
             <Styledinfo>겹치지 않는 닉네임을 입력해주세요.</Styledinfo>
             <Input
               type="text"
-              onChange={handleInputValue("username")}
+              onChange={handleInputValue("nickname")}
               placeholder="닉네임"
             />
           </Styleddiv>

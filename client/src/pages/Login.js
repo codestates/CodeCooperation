@@ -17,6 +17,20 @@ export default function Login({ handleResponseSuccess }) {
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
+
+  const axios_Login = (userEmail, userPassword) => {
+    return axios.post(
+      `http://localhost:5000/signin`,
+      {
+        email: userEmail,
+        password: userPassword,
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  };
+
   const handleLogin = () => {
     if (!loginInfo.email || !loginInfo.password) {
       setErrorMessage("아이디와 비밀번호를 입력하세요");
@@ -24,9 +38,7 @@ export default function Login({ handleResponseSuccess }) {
     } else {
       setErrorMessage("");
     }
-    return axios
-      .post("https://localhost:4000/signin", loginInfo)
-      .then((data) => handleResponseSuccess());
+    return axios_Login(loginInfo.email, loginInfo.password);
   };
   return (
     <div>
