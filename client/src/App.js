@@ -6,7 +6,6 @@ import {
   useHistory,
   Redirect,
 } from "react-router-dom";
-import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Mypage from "./pages/Mypage";
 import axios from "axios";

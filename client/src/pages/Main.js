@@ -26,7 +26,9 @@ function Main() {
   };
   return (
     <div>
-      {isLogin2 ? <LoginPopup handleClose={handleClose} /> : null}
+      {isLogin2 ? (
+        <LoginPopup handleClose={handleClose} setIsLogin2={setIsLogin2} />
+      ) : null}
       <Container_0>
         <Background_img_box>
           <Background_img src="https://user-images.githubusercontent.com/87626152/165377408-e7a13c11-2a21-4ad1-b98d-aa66149814a8.jpg" />
@@ -100,9 +102,9 @@ function Main() {
               직접 프로젝트를 생성해 팀을 모집해 보세요!
             </Content_4_p>
             <Content_4_button_box>
-              <Link to="/projectadd">
-                <Content_4_button>프로젝트 시작</Content_4_button>
-              </Link>
+              <Content_4_button onClick={startButton}>
+                프로젝트 시작
+              </Content_4_button>
             </Content_4_button_box>
           </Content_4_box>
           <Content_4_img_box>

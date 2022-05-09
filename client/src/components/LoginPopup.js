@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import LoginModal from "./LoginModal";
 function LoginPopup({ handleClose }) {
   return (
     <div>
-      <BackDrop>
+      <BackDrop onClick={handleClose}>
         <PopUp>
           <H1Box>
             <H1Text>로그인 후 CodeCooperation 이용하세요!</H1Text>
           </H1Box>
           <ButtonBox>
-            <LoginButtonBox>
-              <LoginButton>로그인</LoginButton>
-            </LoginButtonBox>
+            {/* <LoginButtonBox>
+              <LoginButton onClick={handleLoginModal}>로그인</LoginButton>
+            </LoginButtonBox> */}
             <CloseButtonBox>
               <CloseButton onClick={handleClose}>나가기</CloseButton>
             </CloseButtonBox>
@@ -97,12 +98,12 @@ const CloseButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
   height: 100%;
   /* border: 1px solid lightgray; */
 `;
 const CloseButton = styled.button`
-  width: 60%;
+  width: 40%;
   height: 50%;
   border: 0;
   outline: 0;
