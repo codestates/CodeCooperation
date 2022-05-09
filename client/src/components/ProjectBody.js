@@ -4,7 +4,7 @@ import JavaScriptImg from "../images/javascript.png";
 import ReactImg from "../images/react.png";
 import { Link } from "react-router-dom";
 
-const ProjectBody = ({ posts, history }) => {
+const ProjectBody = ({ posts }) => {
   return (
     <ProjectDiv to="/postdetail">
       <Top>

@@ -66,7 +66,7 @@ export default function App() {
           <DetailPage />
         </Route>
         <Route path="/projectlist">
-          <ProjectList post={post} history={history} />
+          <ProjectList post={post} />
         </Route>
         <Route path="/projectadd">
           <ProjectAdd />
