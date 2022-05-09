@@ -17,7 +17,14 @@ import { AxiosRequestConfig } from "axios";
 // };
 
 export const initialState = {
-  userInfo: { id: "", email: "", nickname: "", password: "" },
+  userInfo: {
+    id: "",
+    email: "",
+    nickname: "",
+    password: "",
+    accessToken: "",
+    loginType: "",
+  },
   isLogin: false,
   //   shareRecord: null,
   //   shareRecordId: "",
