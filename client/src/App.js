@@ -19,6 +19,7 @@ import { posts } from "./components/posts";
 import DetailPage from "./pages/DetailPage";
 import Kakaohandler from "./pages/KakaoHandler";
 import GoogleHandler from "./pages/GoogleHandler";
+import ScrollButton from "./components/SrollButton";
 
 export default function App() {
   return (
@@ -65,6 +66,7 @@ export default function App() {
           <GoogleHandler />
         </Route>
       </Switch>
+      <ScrollButton />
       <Footer />
     </BrowserRouter>
   );
