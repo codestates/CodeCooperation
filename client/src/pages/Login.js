@@ -25,7 +25,7 @@ export default function Login ({ handleResponseSuccess }) {
     else {
       setErrorMessage('')
     }
-    return axios.post('https://localhost:4000/signin',loginInfo).then((data)=>handleResponseSuccess())
+    return axios.post('ec2-3-34-91-64.ap-northeast-2.compute.amazonaws.com/signin',loginInfo).then((data)=>handleResponseSuccess())
   };
   return (
     <div>
