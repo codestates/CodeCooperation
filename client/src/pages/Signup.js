@@ -82,61 +82,63 @@ export default function Signup() {
     <div>
       <Styledcenter>
         <Styledform onSubmit={(e) => e.preventDefault()}>
-          <Styledh2>회원가입</Styledh2>
+          <SignupBox>
+            <Styledh2>회원가입</Styledh2>
 
-          <Styledbar></Styledbar>
+            <Styledbar></Styledbar>
 
-          <Styleddiv>
-            <Styledspan>아이디</Styledspan>
-            <Styledinfo>4글자 이상의 아이디를 입력해주세요.</Styledinfo>
-            <Input
-              type="text"
-              onChange={handleInputValue("email")}
-              placeholder="아이디"
-            />
-          </Styleddiv>
+            <Styleddiv>
+              <Styledspan>아이디</Styledspan>
+              <Styledinfo>4글자 이상의 아이디를 입력해주세요.</Styledinfo>
+              <Input
+                type="text"
+                onChange={handleInputValue("email")}
+                placeholder="아이디"
+              />
+            </Styleddiv>
 
-          <Styleddiv>
-            <Styledspan>비밀번호</Styledspan>
-            <Styledinfo>
-              영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.
-            </Styledinfo>
-            <Input
-              type="password"
-              onChange={handleInputValue("password")}
-              placeholder="비밀번호"
-            />
-          </Styleddiv>
+            <Styleddiv>
+              <Styledspan>비밀번호</Styledspan>
+              <Styledinfo>
+                영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.
+              </Styledinfo>
+              <Input
+                type="password"
+                onChange={handleInputValue("password")}
+                placeholder="비밀번호"
+              />
+            </Styleddiv>
 
-          <Styleddiv>
-            <Styledspan>비밀번호 확인</Styledspan>
-            <Styledinfo>
-              확인을 위해 비밀번호를 한 번 더 입력해주세요.
-            </Styledinfo>
-            <Input
-              type="password"
-              onChange={handleInputValue("password")}
-              placeholder="비밀번호 확인"
-            />
-          </Styleddiv>
+            <Styleddiv>
+              <Styledspan>비밀번호 확인</Styledspan>
+              <Styledinfo>
+                확인을 위해 비밀번호를 한 번 더 입력해주세요.
+              </Styledinfo>
+              <Input
+                type="password"
+                onChange={handleInputValue("password")}
+                placeholder="비밀번호 확인"
+              />
+            </Styleddiv>
 
-          <Styleddiv>
-            <Styledspan>닉네임</Styledspan>
-            <Styledinfo>겹치지 않는 닉네임을 입력해주세요.</Styledinfo>
-            <Input
-              type="text"
-              onChange={handleInputValue("nickname")}
-              placeholder="닉네임"
-            />
-          </Styleddiv>
+            <Styleddiv>
+              <Styledspan>닉네임</Styledspan>
+              <Styledinfo>겹치지 않는 닉네임을 입력해주세요.</Styledinfo>
+              <Input
+                type="text"
+                onChange={handleInputValue("nickname")}
+                placeholder="닉네임"
+              />
+            </Styleddiv>
 
-          <Styledbutton type="submit" onClick={handleSignup}>
-            회원가입
-          </Styledbutton>
+            <Styledbutton type="submit" onClick={handleSignup}>
+              회원가입
+            </Styledbutton>
 
-          {errorMessage ? (
-            <div className="alert-box">{errorMessage}</div>
-          ) : null}
+            {errorMessage ? (
+              <div className="alert-box">{errorMessage}</div>
+            ) : null}
+          </SignupBox>
         </Styledform>
       </Styledcenter>
     </div>
@@ -144,16 +146,19 @@ export default function Signup() {
 }
 
 const Styledform = Styled.form`
-padding-top: 100px;
-padding-left: 200px;
-width: 600px;
-height: 800px;
+padding-top: 5%;
+/* padding-left: 200px; */
+width: 19%;
+height: 850px;
+/* border: 1px solid lightgray; */
 `;
 
 const Styledcenter = Styled.div`
-justify-content: center;
-height: 150%;
 display: flex;
+align-items: center;
+flex-direction: column;
+height: 100%;
+/* border: 1px solid lightgray; */
 `;
 const Styledh2 = Styled.div`
 margin-bottom: 10px;
@@ -201,16 +206,23 @@ const Styledbutton = Styled.div`
 background-color: skyblue;
 color: white;
 height: 40px;
-width: 295px;
+width: 100%;
 margin-top: 20px;
 border-radius: 5px;
 font-size: 15pt;
 text-align: center;
 padding-top: 5px;
 font-weight: bold;
+cursor: pointer;
 `;
 
 const StyledLink = Styled.div`
 font-weight: bold;
 font-size: 13pt;
+`;
+
+const SignupBox = Styled.div`
+  width: 100%;
+  /* border: 1px solid lightgray; */
+  
 `;
