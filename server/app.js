@@ -17,7 +17,7 @@ models.sequelize.sync().then(() => {
 });
 // test
 app.get('/',(req, res) => {
-    res.send("테스트")
+    res.status(200).send("테스트")
 })
 
 // 미들웨어
