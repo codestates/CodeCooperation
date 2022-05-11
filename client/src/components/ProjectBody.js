@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import javascriptImg from "../images/javascript.png";
-import reactImg from "../images/react.png";
+
 import { Link } from "react-router-dom";
 
 const ProjectBody = ({ posts, handleClick }) => {
