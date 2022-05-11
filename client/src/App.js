@@ -18,11 +18,14 @@ import ProjectAdd from "./pages/ProjectAdd";
 import ProjectList from "./pages/ProjectList";
 import { posts } from "./components/posts";
 import DetailPage from "./pages/DetailPage";
+import Kakaohandler from "./pages/KakaoHandler";
+import GoogleHandler from "./pages/GoogleHandler";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [userinfo, setUserinfo] = useState(null);
   const [post, setPost] = useState(posts.items);
+  const [selectedFeed, setSelectedFeed] = useState(null);
   const history = useHistory();
   const isAuthenticated = () => {
     axios
@@ -51,22 +54,26 @@ export default function App() {
     });
   };
 
-  useEffect(() => {
-    isAuthenticated();
-  }, []);
+  // useEffect(() => {
+  //   isAuthenticated();
+  // }, []);
+
+  const select = (el) => {
+    setSelectedFeed(el);
+  };
 
   return (
     <BrowserRouter>
       <Header />
       <Switch>
-        <Route exact path="/">
+        <Route path="/" exact>
           <Main />
         </Route>
         <Route path="/postdetail">
-          <DetailPage />
+          <DetailPage selectedFeed={selectedFeed} />
         </Route>
         <Route path="/projectlist">
-          <ProjectList post={post} />
+          <ProjectList post={post} handleClick={select} />
         </Route>
         <Route path="/projectadd">
           <ProjectAdd />
@@ -77,15 +84,24 @@ export default function App() {
             handleResponseSuccess={handleResponseSuccess}
           />
         </Route> */}
-        <Route path="/signup">
+        <Route path="/oauth/callback/kakao" exact>
+          <Kakaohandler />
+        </Route>
+        <Route exact path="/signup">
           <Signup isLogin={isLogin} />
         </Route>
-        <Route path="/mypage">
+        <Route exact path="/mypage">
           <Mypage userinfo={userinfo} handleLogout={handleLogout} />
         </Route>
-        {/* <Route path="/">
+        {/* <Route path="/" exact>
           {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/login" />}
         </Route> */}
+        <Route path="/oauth/callback/kakao" exact>
+          <Kakaohandler />
+        </Route>
+        <Route path="/oauth/callback/google" exact>
+          <GoogleHandler />
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

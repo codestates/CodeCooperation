@@ -1,22 +1,36 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { LOG_OUT } from "../reducer/userInfoReducer";
+const CLIENT_ID = "64fe86c46742a2a3e00351691147e584";
+const REDIRECT_URI = "http://localhost:3000/oauth/callback/kakao";
+
+const GOGLE_ID =
+  "78567862441-tcldhai7ojkrf0uouf9anhh7fscmha0f.apps.googleusercontent.com";
+const GOGLE_URL = "http://localhost:3000/oauth/callback/google";
+
+export const GOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/auth?client_id=${GOGLE_ID}&access_type=offline&redirect_uri=${GOGLE_URL}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
+export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
 const Header = ({ handleResponseSuccess }) => {
-  const [isLogin, setIsLogin] = useState(false);
-  const ModalOFf = useRef();
-
-  /*Modal*/
-  let [modal, modalChange] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   function Modal() {
     return (
       <Modaldiv>
         <Modalcenter>
+          <ModalCancel onClick={closeModal}></ModalCancel>
           <Modalh1>로그인</Modalh1>
           <Modalform onSubmit={(e) => e.preventDefault()}>
             <Modalinfo>
@@ -44,12 +58,18 @@ const Header = ({ handleResponseSuccess }) => {
 
             <ModalAcount>
               비회원이신가요?&nbsp;
-              <Link to="/signup">회원가입</Link>
+              <Link to="/signup" onClick={closeModal}>
+                회원가입
+              </Link>
             </ModalAcount>
 
             <SosialLogo>
-              <Google></Google>
-              <Kakao></Kakao>
+              <a href={GOGLE_AUTH_URL}>
+                <Google />
+              </a>
+              <a href={KAKAO_AUTH_URL}>
+                <Kakao />
+              </a>
             </SosialLogo>
             {errorMessage
               ? alert(
@@ -63,6 +83,15 @@ const Header = ({ handleResponseSuccess }) => {
   }
 
   /*Login*/
+  let isLogin = useSelector((state) => state.userInfo.isLogin);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    history.push("/");
+    dispatch(LOG_OUT());
+  };
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
@@ -85,7 +114,6 @@ const Header = ({ handleResponseSuccess }) => {
 
   return (
     <Wrap>
-      {isLogin ? <Login /> : null}
       <LogoDiv>
         <Logo to="/">CodeCooperation</Logo>
       </LogoDiv>
@@ -94,14 +122,15 @@ const Header = ({ handleResponseSuccess }) => {
         <ProjectAdd to="/projectadd">프로젝트 추가</ProjectAdd>
       </NavList>
       <LoginList>
-        <Login
-          onClick={() => {
-            modalChange(true);
-          }}
-        >
-          로그인
-        </Login>
-        {modal === true ? <Modal /> : null}
+        {isLogin ? <Login onClick={handleLogout}>로그아웃</Login> : null}
+        {isLogin ? (
+          <Link to="/mypage">
+            <Login>마이페이지</Login>
+          </Link>
+        ) : (
+          <Login onClick={openModal}>로그인</Login>
+        )}
+        {showModal === true ? <Modal /> : null}
       </LoginList>
     </Wrap>
   );
@@ -117,7 +146,6 @@ const Wrap = styled.div`
   padding: 20px 0;
   justify-content: space-between;
   color: black;
-
   /* background-color: green; */
 `;
 
@@ -285,5 +313,12 @@ const Kakao = styled.div`
   height: 45px;
   background-size: initial;
   background-image: url("https://cdn.discordapp.com/attachments/965889268411166780/971261801666846740/KakaoLogin.png");
+`;
+const ModalCancel = styled.div`
+  margin-left: 340px;
+  width: 30px;
+  height: 30px;
+  background-size: initial;
+  background-image: url("https://cdn.discordapp.com/attachments/965889268411166780/972017707761414184/icons8-close-30.png");
 `;
 export default Header;

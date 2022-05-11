@@ -4,14 +4,14 @@ import Category from "../components/Category";
 import ProjectBody from "../components/ProjectBody";
 import SearchBar from "../components/SearchBar";
 
-const ProjectList = ({ post, history }) => {
+const ProjectList = ({ post, handleClick }) => {
   return (
     <MainDiv>
       <Category />
       <SearchBar />
       <Wrap>
         {post.map((el) => (
-          <ProjectBody posts={el} history={history} />
+          <ProjectBody posts={el} handleClick={handleClick} />
         ))}
       </Wrap>
     </MainDiv>

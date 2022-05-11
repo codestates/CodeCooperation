@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import image_1 from "../images/1.png";
 import image_2 from "../images/2.jpg";
@@ -58,7 +59,9 @@ function Main() {
               프로젝트를 모집하고있어요 마음에 맞는 팀에 지원해보세요
             </Content_2_p>
             <Content_2_button_box>
-              <Content_2_button>게시판 둘러보기</Content_2_button>
+              <Link to="/projectlist">
+                <Content_2_button>게시판 둘러보기</Content_2_button>
+              </Link>
             </Content_2_button_box>
           </Content_2_box>
         </Container_2_2>
@@ -78,7 +81,9 @@ function Main() {
               직접 프로젝트를 생성해 팀을 모집해 보세요!
             </Content_4_p>
             <Content_4_button_box>
-              <Content_4_button>프로젝트 시작</Content_4_button>
+              <Link to="/projectadd">
+                <Content_4_button>프로젝트 시작</Content_4_button>
+              </Link>
             </Content_4_button_box>
           </Content_4_box>
           <Content_4_img_box>
@@ -203,14 +208,14 @@ const Container_0 = styled.div`
   margin: 0;
   align-items: center;
   justify-content: space-around;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   width: 100%;
   height: 30rem;
   margin: 0;
 `;
 
 const Container_0_box = styled.div`
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   height: 100%;
   flex: 1;
 `;
@@ -338,7 +343,7 @@ const Container_2 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   justify-content: center;
   width: 100%;
   height: 50rem;
@@ -350,7 +355,7 @@ const Container_2_2 = styled.div`
   width: 100%;
   max-width: 1024px;
   height: 88%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_2_img_box = styled.div`
@@ -368,7 +373,7 @@ const Cotent_2_img = styled.img.attrs({
 `;
 const Content_2_box = styled.div`
   width: 30%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   height: 100%;
 `;
 
@@ -400,6 +405,7 @@ const Content_2_button = styled.button`
   height: 3rem;
   text-align: center;
   line-height: 3rem;
+  cursor: pointer;
 `;
 
 /*********************************/
@@ -409,7 +415,7 @@ const Content_2_button = styled.button`
 const Container_3 = styled.div`
   width: 100%;
   height: 20rem;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_3_0 = styled.div`
@@ -428,7 +434,7 @@ const Container_4 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   justify-content: center;
   width: 100%;
   height: 50rem;
@@ -440,7 +446,7 @@ const Container_4_2 = styled.div`
   width: 100%;
   max-width: 1024px;
   height: 88%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_4_img_box = styled.div`
@@ -458,7 +464,7 @@ const Cotent_4_img = styled.img.attrs({
 `;
 const Content_4_box = styled.div`
   width: 30%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   height: 100%;
 `;
 
@@ -491,6 +497,7 @@ const Content_4_button = styled.button`
   height: 3rem;
   text-align: center;
   line-height: 3rem;
+  cursor: pointer;
 `;
 
 /***********리뷰 사용자 CSS *********/
@@ -500,7 +507,7 @@ const Container_5 = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   justify-content: center;
   width: 100%;
   height: 40rem;
@@ -512,13 +519,13 @@ const Container_5_2 = styled.div`
   flex-direction: column;
   width: 1024px;
   height: 100%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_5_title_box = styled.div`
   width: 100%;
   height: 10rem;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 const Content_5_title = styled.div`
   font-size: 2rem;
@@ -530,7 +537,7 @@ const Content_5_title = styled.div`
 
 const Content_5_review_box = styled.div`
   display: flex;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   width: 100%;
   height: 100%;
 `;
@@ -539,7 +546,7 @@ const Content_5_review_box_1 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   flex: 1;
 `;
 
@@ -555,18 +562,18 @@ const Content_5_review_title_box = styled.div`
   display: flex;
   width: 100%;
   height: 25%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_5_review_title_image_box = styled.div`
   width: 30%;
   height: 100%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 const Content_5_review_title_image_box_2 = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_5_review_title_image = styled.img.attrs({
@@ -595,7 +602,7 @@ const Content_5_review_title_p = styled.div`
 const Content_5_review_p_box = styled.div`
   width: 100%;
   height: 75%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_5_review_p = styled.div`
@@ -616,7 +623,7 @@ const Container_6 = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   justify-content: center;
   width: 100%;
   height: 70rem;
@@ -628,14 +635,14 @@ const Content_6_box = styled.div`
   flex-direction: column;
   width: 1024px;
   height: 100%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_6_title_box = styled.div`
   display: flex;
   width: 100%;
   height: 20%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   justify-content: center;
   align-items: center;
 `;
@@ -643,7 +650,7 @@ const Content_6_title_box = styled.div`
 const Content_6_title_box_2 = styled.div`
   width: 100%;
   height: 50%;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
 `;
 
 const Content_6_title = styled.div`
@@ -651,7 +658,7 @@ const Content_6_title = styled.div`
   font-family: "Noto Sans KR";
   font-size: 1.5rem;
   font-weight: 900;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   text-align: center;
   line-height: 3rem;
 `;
