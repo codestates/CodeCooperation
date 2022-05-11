@@ -19,13 +19,17 @@ import { posts } from "./components/posts";
 import DetailPage from "./pages/DetailPage";
 import Kakaohandler from "./pages/KakaoHandler";
 import GoogleHandler from "./pages/GoogleHandler";
-import ScrollButton from "./components/SrollButton";
+import ScrollButton from "./components/ScrollButton";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   const [post, setPost] = useState(posts.items);
   const [selectedFeed, setSelectedFeed] = useState(null);
+
+  const select = (el) => setSelectedFeed(el);
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
       <Switch>
         <Route path="/" exact>
