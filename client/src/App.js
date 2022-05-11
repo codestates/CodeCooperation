@@ -6,7 +6,6 @@ import {
   useHistory,
   Redirect,
 } from "react-router-dom";
-import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Mypage from "./pages/Mypage";
 import axios from "axios";
@@ -20,48 +19,11 @@ import { posts } from "./components/posts";
 import DetailPage from "./pages/DetailPage";
 import Kakaohandler from "./pages/KakaoHandler";
 import GoogleHandler from "./pages/GoogleHandler";
+import ScrollButton from "./components/SrollButton";
 
 export default function App() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [userinfo, setUserinfo] = useState(null);
   const [post, setPost] = useState(posts.items);
   const [selectedFeed, setSelectedFeed] = useState(null);
-  const history = useHistory();
-  const isAuthenticated = () => {
-    axios
-      .get("https://localhost:4000/auth")
-      .then((data) => {
-        setUserinfo(data.data);
-        console.log(userinfo);
-        setIsLogin(true);
-        history.push("/");
-      })
-      .catch((err) => {
-        if (err.response.status === 401) {
-          setIsLogin(false);
-          history.push("/");
-        }
-      });
-  };
-  const handleResponseSuccess = () => {
-    isAuthenticated();
-  };
-  const handleLogout = () => {
-    axios.post("https://localhost:4000/signout").then((res) => {
-      setUserinfo(null);
-      setIsLogin(false);
-      history.push("/");
-    });
-  };
-
-  // useEffect(() => {
-  //   isAuthenticated();
-  // }, []);
-
-  const select = (el) => {
-    setSelectedFeed(el);
-  };
-
   return (
     <BrowserRouter>
       <Header />
@@ -88,10 +50,10 @@ export default function App() {
           <Kakaohandler />
         </Route>
         <Route exact path="/signup">
-          <Signup isLogin={isLogin} />
+          <Signup />
         </Route>
         <Route exact path="/mypage">
-          <Mypage userinfo={userinfo} handleLogout={handleLogout} />
+          <Mypage />
         </Route>
         {/* <Route path="/" exact>
           {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/login" />}
@@ -103,6 +65,7 @@ export default function App() {
           <GoogleHandler />
         </Route>
       </Switch>
+      <ScrollButton />
       <Footer />
     </BrowserRouter>
   );
