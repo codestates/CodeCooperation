@@ -3,7 +3,7 @@ import SupportRequest from "../components/SupportRequest";
 import styled from "styled-components";
 import image1 from "../images/4.png";
 
-function DetailPage() {
+function DetailPage({ selectedFeed }) {
   const [support, setSupport] = useState(false);
 
   const clickRequest = () => {
@@ -17,13 +17,11 @@ function DetailPage() {
         <Container0BigBox>
           <Container0Box1>
             <ContentTitleBox1>
-              <ContentTitle1>모집중</ContentTitle1>
+              <ContentTitle1>{selectedFeed.state}</ContentTitle1>
             </ContentTitleBox1>
 
             <ContentTitle2Box>
-              <ContentTitle2>
-                React , JS 프론트엔드 개발자 구합니다.
-              </ContentTitle2>
+              <ContentTitle2>{selectedFeed.title}</ContentTitle2>
             </ContentTitle2Box>
             <ContentTitle9Box>
               <ContentTitle9>기간</ContentTitle9>
@@ -35,7 +33,7 @@ function DetailPage() {
                 </ContentTitle3ImgBox>
 
                 <ContentTitle3>응애나개발자</ContentTitle3> */}
-                2022-04-27 ~ 2022-05-05
+                {selectedFeed.termStart} ~ {selectedFeed.termEnd}
               </ContentTitle3Box2>
               <ContentTitle3Box3>
                 <ContentTitle3date></ContentTitle3date>
@@ -51,21 +49,7 @@ function DetailPage() {
               <ContentTitle6>프로젝트 설명</ContentTitle6>
             </ContentTitle6Box>
             <ContentTitle5>
-              <ContentTitle5P>
-                소비자들의 소비 수준이 올라가면서 국내 술뿐만 아니라 해외의 각종
-                술들을 많이 찾고 즐기고 있으며 국내에서도 점점 더 다양한 종류,
-                맛, 디자인을 가진 술들이 출시되고 있습니다. 이러한 정보를 서로
-                나누고 함께 즐기고자 술 관련 커뮤니티 제작을 목표로 삼고
-                있씁니다. 음주가 가능한 모든 연령대의 사람들을 대상으로 하고
-                있으며 주요 타켓은 외부 활동을 상대적으로 많이 하는 20-40대를
-                생각하고 있습니다. 소비자들의 소비 수준이 올라가면서 국내 술뿐만
-                아니라 해외의 각종 술들을 많이 찾고 즐기고 있으며 국내에서도
-                점점 더 다양한 종류, 맛, 디자인을 가진 술들이 출시되고 있습니다.
-                이러한 정보를 서로 나누고 함께 즐기고자 술 관련 커뮤니티 제작을
-                목표로 삼고 있씁니다. 음주가 가능한 모든 연령대의 사람들을
-                대상으로 하고 있으며 주요 타켓은 외부 활동을 상대적으로 많이
-                하는 20-40대를 생각하고 있습니다.
-              </ContentTitle5P>
+              <ContentTitle5P>{selectedFeed.detail}</ContentTitle5P>
             </ContentTitle5>
           </Container0Box1>
 
@@ -78,7 +62,7 @@ function DetailPage() {
                 <Content7UserBox>
                   <Content7User>
                     작성자 <br />
-                    응애나개발자
+                    {selectedFeed.who}
                   </Content7User>
                 </Content7UserBox>
               </Container0Box4>

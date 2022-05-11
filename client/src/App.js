@@ -22,6 +22,8 @@ import GoogleHandler from "./pages/GoogleHandler";
 import ScrollButton from "./components/SrollButton";
 
 export default function App() {
+  const [post, setPost] = useState(posts.items);
+  const [selectedFeed, setSelectedFeed] = useState(null);
   return (
     <BrowserRouter>
       <Header />
@@ -29,14 +31,11 @@ export default function App() {
         <Route path="/" exact>
           <Main />
         </Route>
-        <Route path="/postdetail" exact>
-          <DetailPage />
-        </Route>
-        <Route exact path="/">
-          <Main />
+        <Route path="/postdetail">
+          <DetailPage selectedFeed={selectedFeed} />
         </Route>
         <Route path="/projectlist">
-          <ProjectList />
+          <ProjectList post={post} handleClick={select} />
         </Route>
         <Route path="/projectadd">
           <ProjectAdd />

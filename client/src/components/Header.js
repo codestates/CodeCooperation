@@ -40,7 +40,7 @@ const Header = ({ handleResponseSuccess }) => {
       </LogoDiv>
       <NavList>
         <ProjectList to="/projectlist">프로젝트 목록</ProjectList>
-        <ProjectAdd to="/project">프로젝트 추가</ProjectAdd>
+        <ProjectAdd to="/projectadd">프로젝트 추가</ProjectAdd>
       </NavList>
       <LoginList>
         {isLogin ? <Login onClick={handleLogout}>로그아웃</Login> : null}

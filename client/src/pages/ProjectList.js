@@ -4,15 +4,26 @@ import Category from "../components/Category";
 import ProjectBody from "../components/ProjectBody";
 import SearchBar from "../components/SearchBar";
 
-const ProjectList = () => {
+const ProjectList = ({ post, handleClick }) => {
   return (
     <MainDiv>
       <Category />
       <SearchBar />
-      <ProjectBody />
+      <Wrap>
+        {post.map((el) => (
+          <ProjectBody posts={el} handleClick={handleClick} />
+        ))}
+      </Wrap>
     </MainDiv>
   );
 };
+
+const Wrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-between;
+`;
 
 const MainDiv = styled.div`
   position: relative;
