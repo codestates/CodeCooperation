@@ -106,6 +106,7 @@ const ProjectList = styled(Link)`
   font-weight: 300;
   text-decoration-line: none;
   color: black;
+
   &:hover {
     font-weight: 500;
     transition: 0s ease;
