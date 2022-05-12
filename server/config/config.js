@@ -3,11 +3,11 @@ dotenv.config();
 
 const config = {
   development: {
-    username: "root",
-    password: "1028317",
-    database: "test1",
-    host: "127.0.0.1",
-    dialect: "mysql",
+    username: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORS,
+    database: process.env.DATABASE_NAME,
+    host: process.env.DATABASE_HOST,
+    dialect: process.env.DATABASE_DIALECT,
   },
   test: {
     username: process.env.DATABASE_USER_TEST,
