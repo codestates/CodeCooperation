@@ -13,7 +13,7 @@ function ScrollButton() {
     <div>
       <Container>
         <TopButton onClick={handleTop}>
-          <i class="fa-solid fa-arrow-up"></i>
+          <i className="fa-solid fa-arrow-up"></i>
         </TopButton>
       </Container>
     </div>

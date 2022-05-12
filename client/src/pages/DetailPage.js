@@ -69,7 +69,7 @@ function DetailPage({ selectedFeed }) {
               <ContentButtonBox>
                 <ContentButton onClick={clickRequest}>지원하기</ContentButton>
                 <ContentButton2>
-                  <i class="fas fa-solid fa-bookmark"></i> 북마크
+                  <i className="fas fa-solid fa-bookmark"></i> 북마크
                 </ContentButton2>
               </ContentButtonBox>
             </Container0Box3>
