@@ -134,7 +134,7 @@ text-align:center;
 font-weight:bold;
 `;
 const StyledAcountInfo = Styled.div`
-background-color: skyblue;
+background-color: #56d0a0;
 border-radius: 5px;
 margin-top: 120px;
 margin-left: 20px;

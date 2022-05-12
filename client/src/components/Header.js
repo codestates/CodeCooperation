@@ -66,6 +66,7 @@ const Wrap = styled.div`
   padding: 20px 0;
   justify-content: space-between;
   color: black;
+
   /* background-color: green; */
 `;
 
@@ -106,6 +107,7 @@ const ProjectList = styled(Link)`
   font-weight: 300;
   text-decoration-line: none;
   color: black;
+
   &:hover {
     font-weight: 500;
     transition: 0s ease;

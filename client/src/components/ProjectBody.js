@@ -111,7 +111,7 @@ const Img = styled.img`
   margin-right: 20px;
   width: 60px;
   height: 60px;
-  border: none;
+  border: 0px;
 `;
 
 const BottomBottom = styled.div`
