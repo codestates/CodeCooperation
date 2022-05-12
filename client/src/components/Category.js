@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Category = () => {
+const Category = ({ handleStack }) => {
   return (
     <CategoryWrap>
       {CategoryName.map((name, index) => (
-        <CategoryBtn key={index}>{name}</CategoryBtn>
+        <CategoryBtn key={index} onClick={() => handleStack(name)}>
+          {name}
+        </CategoryBtn>
       ))}
     </CategoryWrap>
   );
@@ -52,6 +54,7 @@ const CategoryBtn = styled.li`
 `;
 
 const CategoryName = [
+  "전체",
   "JavaScript",
   "Java",
   "Phython",

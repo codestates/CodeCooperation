@@ -66,7 +66,6 @@ const Wrap = styled.div`
   padding: 20px 0;
   justify-content: space-between;
   color: black;
-
   /* background-color: green; */
 `;
 
