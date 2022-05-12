@@ -24,7 +24,7 @@ function Kakaohandler() {
   const getAccessToken = (code) => {
     axios({
       method: "post",
-      url: `http://localhost:5000/kakao-login/token`,
+      url: `${process.env.SERVER_URL}/kakao-login/token`,
       data: {
         code,
       },
@@ -49,7 +49,7 @@ function Kakaohandler() {
   const getUserInfo = (accessToken) => {
     axios({
       method: "get",
-      url: `http://localhost:5000/kakao-login/userinfo?accessToken=${accessToken}`,
+      url: `${process.env.SERVER_URL}/kakao-login/userinfo?accessToken=${accessToken}`,
     })
       .then((res) => {
         console.log(res.data, "서버에서 받은 데이터");
