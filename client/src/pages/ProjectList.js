@@ -34,7 +34,7 @@ const ProjectList = ({ post, handleClick }) => {
         {/* {post.map((el, i) => (
           <ProjectBody key={i} posts={el} handleClick={handleClick} />
         ))} */}
-
+        {""}
         {showPosts &&
           showPosts.map((el, i) => (
             <ProjectBody key={i} posts={el} handleClick={handleClick} />
