@@ -9,15 +9,14 @@ import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import GoogleImg from "../images/Googleimg.png";
 import KakaoImg from "../images/Kakaoimg.png";
-const CLIENT_ID = "64fe86c46742a2a3e00351691147e584";
-const REDIRECT_URI = "http://localhost:3000/oauth/callback/kakao";
+const KAKAO_ID = `${process.env.KAKAO_ID}`;
+const REDIRECT_URI = `${process.env.BASIC_URL}/oauth/callback/kakao`;
 
-const GOGLE_ID =
-  "78567862441-tcldhai7ojkrf0uouf9anhh7fscmha0f.apps.googleusercontent.com";
-const GOGLE_URL = "http://localhost:3000/oauth/callback/google";
+const GOGLE_ID = `${process.env.GOOGLE_ID}`;
+const GOGLE_URL = `${process.env.BASIC_URL}/oauth/callback/google`;
 
 export const GOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/auth?client_id=${GOGLE_ID}&access_type=offline&redirect_uri=${GOGLE_URL}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
-export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
 function LoginModal({ handleLoginModal, setShowModal }) {
   const [loginInfo, setLoginInfo] = useState({
@@ -35,7 +34,7 @@ function LoginModal({ handleLoginModal, setShowModal }) {
   };
   const axios_Login = (userEmail, userPassword) => {
     return axios.post(
-      `http://localhost:5000/signin`,
+      `${process.env.SERVER.URL}/signin`,
       {
         email: userEmail,
         password: userPassword,
