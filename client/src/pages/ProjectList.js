@@ -14,7 +14,7 @@ const ProjectList = ({ post, handleClick }) => {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/posts`).then((res) => {
+    axios.get(`${process.env.SERVER_URL}/posts`).then((res) => {
       console.log(res.data.data);
       if (stackClick == "전체") {
         setShowPosts(res.data.data);
