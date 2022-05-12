@@ -1,44 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import JavaScriptImg from "../images/javascript.png";
+import javascriptImg from "../images/javascript.png";
+import reactImg from "../images/react.png";
+import { Link } from "react-router-dom";
 
-const ProjectBody = () => {
+const ProjectBody = ({ posts, handleClick }) => {
   return (
-    <Wrap>
-      <ProjectDiv>
-        <Top>
-          <State>모집중</State>
-          <Title>[ToyProject] 프론트 개발자 구해요!</Title>
-          <ByWho>by. 지후</ByWho>
-        </Top>
-        <Body>
-          <Detail>
-            로그인, 회원가입, 글쓰기 등 구현하실 개발자 두 분 구합니다.
-          </Detail>
-        </Body>
-        <Bottom>
-          <ImgDiv>
-            <Img></Img>
-            <Img></Img>
-          </ImgDiv>
-          <BottomBottom>
-            <Term>2022-04-30 ~ 2022-05-05</Term>
-            <HeadCount>2/4명 참여중</HeadCount>
-          </BottomBottom>
-        </Bottom>
-      </ProjectDiv>
-    </Wrap>
+    <ProjectDiv to="/postdetail" onClick={() => handleClick(posts)}>
+      <Top>
+        <State>{posts.state}</State>
+        <Title>{posts.title}</Title>
+        <ByWho>by. {posts.who}</ByWho>
+      </Top>
+      <Body>
+        <Detail>{posts.detail}</Detail>
+      </Body>
+      <Bottom>
+        <ImgDiv>
+          {/* <Img src={posts.img1}></Img>
+          <Img src={posts.img2}></Img>
+          <Img src={posts.img3}></Img>
+          <Img src={posts.img4}></Img> */}
+        </ImgDiv>
+        <BottomBottom>
+          <Term>{/* {posts.termStart} ~ {posts.termEnd} */}</Term>
+          <HeadCount>
+            {/* {posts.count}명/{posts.totalCount}명 참여중 */}
+          </HeadCount>
+        </BottomBottom>
+      </Bottom>
+    </ProjectDiv>
   );
 };
 
-const Wrap = styled.div`
-  margin-top: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-`;
-
-const ProjectDiv = styled.div`
+const ProjectDiv = styled(Link)`
+  color: black;
+  text-decoration-line: none;
   height: 330px;
   width: 350px;
   margin: 20px 30px;
@@ -83,6 +80,11 @@ const Body = styled.div`
 
 const Detail = styled.p`
   margin: 30px 20px 30px 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  width: 308px;
+  height: 38px;
 `;
 
 const Bottom = styled.div`
@@ -90,23 +92,25 @@ const Bottom = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 40%;
+  width: 350px;
 `;
 
 const ImgDiv = styled.div`
   display: flex;
   margin-left: 20px;
   /* border: 1px solid black; */
-  width: 50%;
-  height: 50%;
+  height: 65px;
+  width: 350px;
 `;
 
-const Img = styled.img.attrs({
-  src: `${JavaScriptImg}`,
-})`
+const Img = styled.img`
+  display: inline-block;
+  content: "";
   border-radius: 70%;
   margin-right: 20px;
-  width: 100%;
-  height: 100%;
+  width: 60px;
+  height: 60px;
+  border: none;
 `;
 
 const BottomBottom = styled.div`

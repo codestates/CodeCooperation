@@ -6,7 +6,7 @@ const SearchBar = () => {
     <SearchBox>
       <Search placeholder="검색어를 입력해주세요."></Search>
       <SearchBtn>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i className="fa-solid fa-magnifying-glass"></i>
       </SearchBtn>
     </SearchBox>
   );
