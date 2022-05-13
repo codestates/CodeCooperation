@@ -1,27 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const kakao = require("./user/kakao");
-const google = require("./user/google");
-const signup = require("./user/signup");
-const signin = require("./user/signin");
-const signout = require("./user/signout")
-const auth = require("./user/auth");
+const kakao = require("./users/kakao");
+const google = require("./users/google");
+const signup = require("./users/signup");
+const signin = require("./users/signin");
 const posts = require("./post/posts");
 
-// oauth
 router.get("/", kakao.get);
 router.post("/kakao-login/token", kakao.getToken);
 router.get("/kakao-login/userInfo?", kakao.getUserInfo);
 router.post("/google-login/token", google.getToken);
 router.get("/google-login/userInfo?", google.getUserInfo);
 
-// user
-router.post("/signup", signup.userSignUp);
-router.post("/signin", signin.userSignIn);
-router.post("/signout", signout);
-router.get("/auth", auth);
+router.post("/signup", signup.generalSignUp);
+router.post("/signin", signin.generalSignIn);
 
-// post
 router.get("/posts", posts.getAllPost);
+router.post("/posting", posts.sendPost);
 
 module.exports = router;

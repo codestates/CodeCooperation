@@ -1,47 +1,46 @@
 const axios = require("axios");
 const { user } = require("../../models");
+
 module.exports = {
-  getToken: (req, res) => {
-    console.log(req.body.code, "서버쪽에서받은 코드");
+  getToken: async (req, res) => {
+    console.log(req.body.code, "클라이언트에서받은 코드");
     const code = req.body.code;
-
-    const client_id = `${process.env.KAKAO_ID}`;
-    const redirect_uri = `${process.env.BASIC.URL}/oauth/callback/kakao`;
+    const client_id = `78567862441-tcldhai7ojkrf0uouf9anhh7fscmha0f.apps.googleusercontent.com`;
+    const redirect_uri = `http://localhost:3000/oauth/callback/google`;
+    const client_secret = `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`;
     const grant_type = "authorization_code";
+    const URL = `https://www.googleapis.com/oauth2/v4/token`;
 
-    axios({
-      method: "post",
-      url: `https://kauth.kakao.com/oauth/token?grant_type=${grant_type}&client_id=${client_id}&redirect_uri=${redirect_uri}&code=${code}`,
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+    const token = await axios.post(
+      URL,
+      {
+        code,
+        client_id,
+        client_secret,
+        redirect_uri,
+        grant_type,
       },
-    })
-      .then((response) => {
-        res.send(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      {
+        "content-type": "application/x-www-form-urlencoded",
+      }
+    );
+
+    res.send(token.data);
   },
   getUserInfo: async (req, res) => {
-    console.log(req.query.accessToken, "클라이언트에서 받은 토큰");
     try {
-      const userInfo = await axios({
-        method: "get",
-        url: `https://kapi.kakao.com/v2/user/me?access_token=${req.query.accessToken}`,
+      console.log(req.query.accessToken, "클라이언트에서 받은 토큰");
+      const googleInfoURL = `https://www.googleapis.com/oauth2/v2/userinfo`;
+      const accessToken = req.query.accessToken;
+      const userInfo = await axios.get(googleInfoURL, {
         headers: {
-          "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+          authorization: `Bearer ${accessToken}`,
         },
       });
-      const nickname = userInfo.data.kakao_account.profile.nickname;
+      console.log(userInfo.data, "userInfo입니다.");
+
+      const nickname = userInfo.data.name;
       let password = userInfo.data.id + nickname;
-      console.log("result 유저정보", userInfo.data);
-      // console.log("userEmail :", userInfo.data.kakao_account.email);
-      // console.log(
-      //   "usernickname :",
-      //   userInfo.data.kakao_account.profile.nickname
-      // );
-      // console.log("userimg :", userInfo.data.kakao_account.profile_image_url);
 
       const result = await user.findOne({
         where: {
@@ -51,7 +50,7 @@ module.exports = {
       if (result) {
         const userData = {
           id: userInfo.data.id,
-          email: userInfo.data.kakao_account.email || nickname,
+          email: userInfo.data.email || nickname,
           nickname: nickname || userInfo.data.kakao_account.email,
           password: password,
         };
@@ -73,7 +72,7 @@ module.exports = {
         // 최초 로그인 시 회원가입 진행
         const usersignupInfo = {
           id: userInfo.data.id,
-          email: userInfo.data.kakao_account.email || nickname,
+          email: userInfo.data.email || nickname,
           nickname: nickname || userInfo.data.kakao_account.email,
           password: password,
         };
@@ -95,10 +94,7 @@ module.exports = {
         );
       }
     } catch (error) {
-      console.log(error);
+      console.log(error, "에러입니다.");
     }
-  },
-  get: async (req, res) => {
-    res.status(200).send("HELLO WORLD");
   },
 };
