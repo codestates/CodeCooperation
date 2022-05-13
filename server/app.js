@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: false })); // qs라이브러리 사용하
 app.use(cookieParser(process.env.COOKIE_SECRET)); // 쿠키 암호 나중에 설정
 app.use(
   cors({
-    origin: ["https://codescooperation.com", "https://localhost:3000"],
+    origin: ["http://localhost:3000", "https://localhost:3000"],
     credentials: true,
     methods: ["GET", "POST", "OPTION", "PUT", "DELETE"],
   })
@@ -33,7 +33,7 @@ app.use(
 app.use("/", indexRouter);
 
 // 서버 실행
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 5000);
 app.listen(app.get("port"), () => {
   console.log(`🧶서버가 ${app.get("port")} 포트로 열렸습니다!`);
 });

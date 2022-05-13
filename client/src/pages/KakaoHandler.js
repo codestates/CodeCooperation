@@ -24,7 +24,7 @@ function Kakaohandler() {
   const getAccessToken = (code) => {
     axios({
       method: "post",
-      url: `https://server.codescooperation.com/kakao-login/token`,
+      url: `http://localhost:5000/kakao-login/token`,
       data: {
         code,
       },

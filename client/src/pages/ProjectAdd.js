@@ -2,6 +2,9 @@ import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProjectAdd = () => {
   const [postInfo, setPostInfo] = useState({
@@ -10,22 +13,19 @@ const ProjectAdd = () => {
     startDate: "",
     endDate: "",
     totalMember: "",
+    openURL: "",
     postStack: [],
   });
   const [teckStack, setTeckStack] = useState([]);
   const [techStackList, setTechStackList] = useState();
-  console.log(techStackList, "포스트스택");
-  console.log(teckStack, "스택상태");
+  const history = useHistory();
+  let user = useSelector((state) => state.userInfo.userInfo);
+  let accessToken = user.accessToken;
+  // console.log(accessToken, "토큰입니다");
+  // console.log(techStackList, "포스트스택");
+  // console.log(teckStack, "스택상태");
   console.log(postInfo, "포스트정보");
-  const handleInputValue = (key) => (e) => {
-    setPostInfo({
-      ...postInfo,
-      [key]: e.target.value,
-    });
-  };
-  const handleStackValue = () => {
-    setTeckStack();
-  };
+
   const animatedComponents = makeAnimated();
   const stackSelect = [
     { value: "React", label: "React" },
@@ -43,9 +43,27 @@ const ProjectAdd = () => {
     { value: "Kotlin", label: "Kotlin" },
     { value: "TypeScript", label: "TypeScript" },
   ];
+  const memberCount = [
+    { value: 1, label: 1 },
+    { value: 2, label: 2 },
+    { value: 3, label: 3 },
+    { value: 4, label: 4 },
+    { value: 5, label: 5 },
+    { value: 6, label: 6 },
+    { value: 7, label: 7 },
+    { value: 8, label: 8 },
+  ];
+
+  const handleInputValue = (key) => (e) => {
+    setPostInfo({
+      ...postInfo,
+      [key]: e.target.value,
+    });
+  };
+
   const handleChange = useCallback(
     (inputValue, { action, removedValue }) => {
-      console.log(inputValue);
+      // console.log(inputValue);
       if (teckStack.length < 4) {
         setTeckStack(inputValue);
       } else {
@@ -61,6 +79,56 @@ const ProjectAdd = () => {
     },
     [stackSelect]
   );
+  const {
+    postTitle,
+    content,
+    startDate,
+    endDate,
+    totalMember,
+    openURL,
+    postStack,
+  } = postInfo;
+  const createPostHandle = () => {
+    if (
+      postTitle === "" ||
+      content === "" ||
+      startDate === "" ||
+      endDate === null ||
+      totalMember === null ||
+      openURL === "" ||
+      postStack.length === 0
+    ) {
+      window.alert("항목을 모두 입력해주세요!🙏");
+    } else {
+      console.log("*********************", accessToken);
+      axios
+        .post(
+          "http://localhost:5000/posting",
+          {
+            userId: user.id,
+            postTitle: postTitle,
+            content: content,
+            startDate: startDate,
+            endDate: endDate, //url
+            totalMember: totalMember, //url
+            openURL: openURL,
+            postStack: JSON.stringify(postStack), //배열이니까 JSON?
+          },
+          {
+            headers: {
+              authorization: accessToken,
+            },
+            "Content-Type": "application/json",
+          }
+        )
+        .then((res) => {
+          history.push("/");
+        })
+        .catch((error) => {
+          window.alert(error);
+        });
+    }
+  };
   const formatTech = () => {
     let tamarray = [];
     let i;
@@ -105,13 +173,23 @@ const ProjectAdd = () => {
         </TermDiv>
         <CountDiv>
           <TextDiv>프로젝트 인원</TextDiv>
-          <Count onChange={handleInputValue("totalMember")}>
+          {/* <Count onChange={handleInputValue("totalMember")}>
             {CountHead.map((name, index) => (
               <option value={index} key={index}>
                 {name}
               </option>
             ))}
-          </Count>
+          </Count> */}
+          <Select
+            placeholder="인원을 선택해주세요"
+            styles={styles}
+            options={memberCount}
+            onChange={(e) => {
+              let b;
+              b = e["label"];
+              setPostInfo({ ...postInfo, totalMember: e["label"] });
+            }}
+          />
         </CountDiv>
         <StackDiv>
           <TextDiv>사용하는 스택</TextDiv>
@@ -134,7 +212,10 @@ const ProjectAdd = () => {
         </StackDiv>
         <ChatDiv>
           <TextDiv>오픈채팅 URL</TextDiv>
-          <ChatAddress placeholder="오픈채팅방 URL을 입력해주세요."></ChatAddress>
+          <ChatAddress
+            placeholder="오픈채팅방 URL을 입력해주세요."
+            onChange={handleInputValue("openURL")}
+          ></ChatAddress>
         </ChatDiv>
         <DetailDiv>
           <TextDiv>프로젝트 소개</TextDiv>
@@ -144,7 +225,7 @@ const ProjectAdd = () => {
           ></Detail>
         </DetailDiv>
         <BtnDiv>
-          <Btn>완료</Btn>
+          <Btn onClick={createPostHandle}>완료</Btn>
         </BtnDiv>
       </ProjectAddDiv>
     </Wrap>

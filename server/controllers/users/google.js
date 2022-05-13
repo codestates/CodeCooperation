@@ -5,9 +5,9 @@ module.exports = {
   getToken: async (req, res) => {
     console.log(req.body.code, "클라이언트에서받은 코드");
     const code = req.body.code;
-    const client_id = `${process.env.GOOGLE_ID}`;
-    const redirect_uri = `${process.env.BASIC.URL}/oauth/callback/google`;
-    const client_secret = `${process.env.GOOGLE_SECRET_ID}`;
+    const client_id = `78567862441-tcldhai7ojkrf0uouf9anhh7fscmha0f.apps.googleusercontent.com`;
+    const redirect_uri = `http://localhost:3000/oauth/callback/google`;
+    const client_secret = `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`;
     const grant_type = "authorization_code";
     const URL = `https://www.googleapis.com/oauth2/v4/token`;
 

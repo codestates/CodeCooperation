@@ -5,8 +5,8 @@ module.exports = {
     console.log(req.body.code, "서버쪽에서받은 코드");
     const code = req.body.code;
 
-    const client_id = `${process.env.KAKAO_ID}`;
-    const redirect_uri = `${process.env.BASIC.URL}/oauth/callback/kakao`;
+    const client_id = "64fe86c46742a2a3e00351691147e584";
+    const redirect_uri = "http://localhost:3000/oauth/callback/kakao";
     const grant_type = "authorization_code";
 
     axios({

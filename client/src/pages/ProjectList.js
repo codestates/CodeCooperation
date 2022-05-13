@@ -14,7 +14,7 @@ const ProjectList = ({ post, handleClick }) => {
   };
 
   useEffect(() => {
-    axios.get(`${process.env.SERVER_URL}/posts`).then((res) => {
+    axios.get(`http://localhost:5000/posts`).then((res) => {
       console.log(res.data.data);
       if (stackClick == "전체") {
         setShowPosts(res.data.data);
@@ -48,10 +48,7 @@ const Wrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: 1232px;
-  margin: auto;
-  justify-content: flex-start;
-  border: 1px solid pink;
+  justify-content: space-between;
 `;
 
 const MainDiv = styled.div`

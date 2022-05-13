@@ -16,5 +16,6 @@ router.post("/signup", signup.generalSignUp);
 router.post("/signin", signin.generalSignIn);
 
 router.get("/posts", posts.getAllPost);
+router.post("/posting", posts.sendPost);
 
 module.exports = router;

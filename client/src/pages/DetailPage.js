@@ -17,7 +17,9 @@ function DetailPage({ selectedFeed }) {
         <Container0BigBox>
           <Container0Box1>
             <ContentTitleBox1>
-              <ContentTitle1>{selectedFeed.state}</ContentTitle1>
+              <ContentTitle1>
+                {selectedFeed.state ? "모집중" : "진행중"}
+              </ContentTitle1>
             </ContentTitleBox1>
 
             <ContentTitle2Box>
@@ -33,7 +35,7 @@ function DetailPage({ selectedFeed }) {
                 </ContentTitle3ImgBox>
 
                 <ContentTitle3>응애나개발자</ContentTitle3> */}
-                {selectedFeed.termStart} ~ {selectedFeed.termEnd}
+                {selectedFeed.start_date} ~ {selectedFeed.end_date}
               </ContentTitle3Box2>
               <ContentTitle3Box3>
                 <ContentTitle3date></ContentTitle3date>
@@ -43,13 +45,17 @@ function DetailPage({ selectedFeed }) {
               <ContentTitle8>사용스택</ContentTitle8>
             </ContentTitle8Box>
             <ContentTitle4>
-              <ContentTitle4Stack>React Javascript node.js</ContentTitle4Stack>
+              <ContentTitle4Stack>
+                {JSON.parse(selectedFeed.stack).map((el) => {
+                  return <span>{el} </span>;
+                })}
+              </ContentTitle4Stack>
             </ContentTitle4>
             <ContentTitle6Box>
               <ContentTitle6>프로젝트 설명</ContentTitle6>
             </ContentTitle6Box>
             <ContentTitle5>
-              <ContentTitle5P>{selectedFeed.detail}</ContentTitle5P>
+              <ContentTitle5P>{selectedFeed.content}</ContentTitle5P>
             </ContentTitle5>
           </Container0Box1>
 
