@@ -37,7 +37,7 @@ export default function Signup() {
   };
 
   const axios_Signup = (userEmail, userNickname, userPassword) => {
-    return axios.post(`https://server.codescooperation.com/signup`, {
+    return axios.post(`http://localhost:3000`, {
       email: userEmail,
       password: userPassword,
       nickname: userNickname,
