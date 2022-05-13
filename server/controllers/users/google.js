@@ -7,7 +7,7 @@ module.exports = {
     const code = req.body.code;
     const client_id = `${process.env.GOOGLE_ID}`;
     const redirect_uri = `${process.env.BASIC.URL}/oauth/callback/google`;
-    const client_secret = `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`;
+    const client_secret = `${process.env.GOOGLE_SECRET_ID}`;
     const grant_type = "authorization_code";
     const URL = `https://www.googleapis.com/oauth2/v4/token`;
 

@@ -9,10 +9,10 @@ const ProjectBody = ({ posts, handleClick }) => {
       <Top>
         <State>{posts.state}</State>
         <Title>{posts.title}</Title>
-        <ByWho>by. {posts.who}</ByWho>
+        <ByWho>by. {posts.user.nickname}</ByWho>
       </Top>
       <Body>
-        <Detail>{posts.detail}</Detail>
+        <Detail>{posts.content}</Detail>
       </Body>
       <Bottom>
         <ImgDiv>
@@ -23,10 +23,10 @@ const ProjectBody = ({ posts, handleClick }) => {
         </ImgDiv>
         <BottomBottom>
           <Term>
-            {posts.termStart} ~ {posts.termEnd}
+            {posts.start_date} ~ {posts.end_date}
           </Term>
           <HeadCount>
-            {posts.count}명/{posts.totalCount}명 참여중
+            {posts.current_member}명/{posts.total_member}명 참여중
           </HeadCount>
         </BottomBottom>
       </Bottom>
