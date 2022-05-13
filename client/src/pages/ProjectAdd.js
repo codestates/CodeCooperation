@@ -1,7 +1,79 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 const ProjectAdd = () => {
+  const [postInfo, setPostInfo] = useState({
+    postTitle: "",
+    content: "",
+    startDate: "",
+    endDate: "",
+    totalMember: "",
+    postStack: [],
+  });
+  const [teckStack, setTeckStack] = useState([]);
+  const [techStackList, setTechStackList] = useState();
+  console.log(techStackList, "포스트스택");
+  console.log(teckStack, "스택상태");
+  console.log(postInfo, "포스트정보");
+  const handleInputValue = (key) => (e) => {
+    setPostInfo({
+      ...postInfo,
+      [key]: e.target.value,
+    });
+  };
+  const handleStackValue = () => {
+    setTeckStack();
+  };
+  const animatedComponents = makeAnimated();
+  const stackSelect = [
+    { value: "React", label: "React" },
+    { value: "Java", label: "Java" },
+    { value: "JavaScript", label: "JavaScript" },
+    { value: "Python", label: "Python" },
+    { value: "Node", label: "Node" },
+    { value: "Flask", label: "Flask" },
+    { value: "C++", label: "C++" },
+    { value: "Django", label: "Django" },
+    { value: "php", label: "php" },
+    { value: "Vue", label: "Vue" },
+    { value: "Spring", label: "Spring" },
+    { value: "Swift", label: "Swift" },
+    { value: "Kotlin", label: "Kotlin" },
+    { value: "TypeScript", label: "TypeScript" },
+  ];
+  const handleChange = useCallback(
+    (inputValue, { action, removedValue }) => {
+      console.log(inputValue);
+      if (teckStack.length < 4) {
+        setTeckStack(inputValue);
+      } else {
+        if (removedValue !== undefined) {
+          let temp = teckStack.filter(
+            (item) => item["value"] !== removedValue["value"]
+          );
+          setTeckStack(temp);
+        } else {
+          window.alert("최대 4가지만 선택 가능합니다.");
+        }
+      }
+    },
+    [stackSelect]
+  );
+  const formatTech = () => {
+    let tamarray = [];
+    let i;
+    for (i = 0; i < teckStack.length; i++) {
+      tamarray.push(teckStack[i]["label"]);
+    }
+    setPostInfo({ ...postInfo, postStack: tamarray });
+    setTechStackList(tamarray);
+  };
+
+  useEffect(() => {
+    formatTech();
+  }, [teckStack]);
   return (
     <Wrap>
       <ProjectAddDiv>
@@ -10,33 +82,55 @@ const ProjectAdd = () => {
         </Header>
         <PostDiv>
           <TextDiv>제목</TextDiv>
-          <TitleDetail placeholder="제목을 입력해주세요."></TitleDetail>
+          <TitleDetail
+            placeholder="제목을 입력해주세요."
+            onChange={handleInputValue("postTitle")}
+          ></TitleDetail>
         </PostDiv>
         <TermDiv>
           <TermLeft>
             <TextDiv>프로젝트 시작일</TextDiv>
-            <TermStart type="date"></TermStart>
+            <TermStart
+              type="date"
+              onChange={handleInputValue("startDate")}
+            ></TermStart>
           </TermLeft>
           <TermRight>
             <TextDiv>프로젝트 종료일</TextDiv>
-            <TermEnd type="date"></TermEnd>
+            <TermEnd
+              type="date"
+              onChange={handleInputValue("endDate")}
+            ></TermEnd>
           </TermRight>
         </TermDiv>
         <CountDiv>
           <TextDiv>프로젝트 인원</TextDiv>
-          <Count>
+          <Count onChange={handleInputValue("totalMember")}>
             {CountHead.map((name, index) => (
-              <option value={index}>{name}</option>
+              <option value={index} key={index}>
+                {name}
+              </option>
             ))}
           </Count>
         </CountDiv>
         <StackDiv>
           <TextDiv>사용하는 스택</TextDiv>
-          <StackSelect>
+          <Select
+            isMulti
+            placeholder="기술 스택을 선택해주세요"
+            styles={styles}
+            components={animatedComponents}
+            value={teckStack}
+            options={stackSelect}
+            onChange={handleChange}
+          />
+          {/* <StackSelect onChange={handleInputValue("postStack")}>
             {CategoryName.map((name, index) => (
-              <option value={index}>{name}</option>
+              <option value={teckStack} key={index} onChange={handleStackValue}>
+                {name}
+              </option>
             ))}
-          </StackSelect>
+          </StackSelect> */}
         </StackDiv>
         <ChatDiv>
           <TextDiv>오픈채팅 URL</TextDiv>
@@ -44,7 +138,10 @@ const ProjectAdd = () => {
         </ChatDiv>
         <DetailDiv>
           <TextDiv>프로젝트 소개</TextDiv>
-          <Detail placeholder="프로젝트 내용을 적어주세요."></Detail>
+          <Detail
+            placeholder="프로젝트 내용을 적어주세요."
+            onChange={handleInputValue("content")}
+          ></Detail>
         </DetailDiv>
         <BtnDiv>
           <Btn>완료</Btn>
@@ -54,6 +151,22 @@ const ProjectAdd = () => {
   );
 };
 
+const styles = {
+  control: (base, state) => ({
+    ...base,
+    boxShadow: state.isFocused ? 0 : 0,
+    borderWidth: 1,
+    borderRadius: 10,
+    fontSize: 14,
+    marginTop: 4,
+    minHeight: 40,
+    boxShadow: "0px 0px 10px #ddd",
+    borderColor: state.isFocused ? "#C4C4C4" : base.borderColor,
+    "&:hover": {
+      borderColor: state.isFocused ? "#C4C4C4" : base.borderColor,
+    },
+  }),
+};
 const Wrap = styled.div`
   width: 100%;
   height: 100%;
