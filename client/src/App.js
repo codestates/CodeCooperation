@@ -21,6 +21,7 @@ import Kakaohandler from "./pages/KakaoHandler";
 import GoogleHandler from "./pages/GoogleHandler";
 import ScrollButton from "./components/ScrollButton";
 import ScrollToTop from "./components/ScrollToTop";
+import UserInfo from "./pages/UserInfo";
 
 export default function App() {
   const [post, setPost] = useState(posts.items);
@@ -67,6 +68,10 @@ export default function App() {
         </Route>
         <Route path="/oauth/callback/google" exact>
           <GoogleHandler />
+        </Route>
+
+        <Route exact path="/userinfo">
+          <UserInfo />
         </Route>
       </Switch>
       <ScrollButton />
