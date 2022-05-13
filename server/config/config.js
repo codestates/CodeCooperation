@@ -7,7 +7,7 @@ const config = {
     password: process.env.DATABASE_PASSWORS,
     database: process.env.DATABASE_NAME,
     host: process.env.DATABASE_HOST,
-    dialect: process.env.DATABASE_DIALECT
+    dialect: process.env.DATABASE_DIALECT,
   },
   test: {
     username: process.env.DATABASE_USER_TEST,

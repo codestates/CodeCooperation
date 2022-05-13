@@ -59,7 +59,7 @@ export default function Signup() {
         </ProfileMiddle>
 
         <ProfileBottom>
-          <AcountInfoBtn>회원정보 수정</AcountInfoBtn>
+          <AcountInfoBtn to="/userinfo">회원정보 수정</AcountInfoBtn>
         </ProfileBottom>
       </ProfileDiv>
 
@@ -128,6 +128,7 @@ const Nickname = styled.div`
   font-weight: bold;
 `;
 
+// 구분선
 const Bar = styled.div`
   width: 200px;
   margin-top: 20px;
@@ -167,16 +168,17 @@ const ProfileBottom = styled.div`
   margin-top: 10px;
 `;
 
-const AcountInfoBtn = styled.button`
-  background-color: skyblue;
+const AcountInfoBtn = styled(Link)`
   border-radius: 20px;
   width: 150px;
   height: 60px;
   font-size: 20px;
   text-align: center;
   background-color: #56d0a0;
-  border: 1px solid rgb(196 196 196);
+  border: none;
   color: white;
+  padding-top: 20px;
+  text-decoration-line: none;
   cursor: pointer;
 `;
 
