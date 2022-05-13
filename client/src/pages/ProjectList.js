@@ -48,7 +48,10 @@ const Wrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  justify-content: space-between;
+  width: 1232px;
+  margin: auto;
+  justify-content: flex-start;
+  border: 1px solid pink;
 `;
 
 const MainDiv = styled.div`

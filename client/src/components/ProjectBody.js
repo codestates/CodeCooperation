@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import javascriptImg from "../images/javascript.png";
-import reactImg from "../images/react.png";
+
 import { Link } from "react-router-dom";
 
 const ProjectBody = ({ posts, handleClick }) => {
@@ -17,17 +16,24 @@ const ProjectBody = ({ posts, handleClick }) => {
       </Body>
       <Bottom>
         <ImgDiv>
-          {/* <Img src={posts.img1}></Img>
+          <Img src={posts.img1}></Img>
           <Img src={posts.img2}></Img>
           <Img src={posts.img3}></Img>
-          <Img src={posts.img4}></Img> */}
+          <Img src={posts.img4}></Img>
         </ImgDiv>
         <BottomBottom>
           <Term>
+<<<<<<< HEAD
             {posts.start_date} ~ {posts.end_date}
           </Term>
           <HeadCount>
             {posts.current_member}명/{posts.total_member}명 참여중
+=======
+            {posts.termStart} ~ {posts.termEnd}
+          </Term>
+          <HeadCount>
+            {posts.count}명/{posts.totalCount}명 참여중
+>>>>>>> c2ba5b60d1014e0d1387f9ddf2060af29bdc7df0
           </HeadCount>
         </BottomBottom>
       </Bottom>
@@ -112,7 +118,7 @@ const Img = styled.img`
   margin-right: 20px;
   width: 60px;
   height: 60px;
-  border: none;
+  border: 0px;
 `;
 
 const BottomBottom = styled.div`
