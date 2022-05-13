@@ -23,17 +23,10 @@ const ProjectBody = ({ posts, handleClick }) => {
         </ImgDiv>
         <BottomBottom>
           <Term>
-<<<<<<< HEAD
             {posts.start_date} ~ {posts.end_date}
           </Term>
           <HeadCount>
             {posts.current_member}명/{posts.total_member}명 참여중
-=======
-            {posts.termStart} ~ {posts.termEnd}
-          </Term>
-          <HeadCount>
-            {posts.count}명/{posts.totalCount}명 참여중
->>>>>>> c2ba5b60d1014e0d1387f9ddf2060af29bdc7df0
           </HeadCount>
         </BottomBottom>
       </Bottom>
