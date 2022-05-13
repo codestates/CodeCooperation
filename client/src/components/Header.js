@@ -66,19 +66,17 @@ const Wrap = styled.div`
   padding: 20px 0;
   justify-content: space-between;
   color: black;
-  /* background-color: green; */
+  /* @media screen and (max-width: 600px) {
+    background-color: lightblue;
+  } */
 `;
 
 // 로고
 const LogoDiv = styled.div`
-  width: 15%;
-  /* @media screen and (max-width: 750px) {
-    width: 35%;
-  } */
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: pink; */
 `;
 
 const Logo = styled(Link)`
@@ -93,9 +91,10 @@ const Logo = styled(Link)`
 
 // 목록
 const NavList = styled.div`
+  position: relative;
   margin-right: 95px;
   display: flex;
-  width: 20%;
+  width: 400px;
   padding-top: 25px;
   justify-content: space-around;
   /* background-color: yellow; */
@@ -117,7 +116,9 @@ const ProjectList = styled(Link)`
 const ProjectAdd = styled(ProjectList)``;
 
 // 로그인
-const LoginList = styled.div``;
+const LoginList = styled.div`
+  position: relative;
+`;
 
 const Login = styled.button`
   background-color: white;

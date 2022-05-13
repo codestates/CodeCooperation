@@ -1,7 +1,53 @@
-import React from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 const UserInfo = () => {
+  const [teckStack, setTeckStack] = useState([]);
+  const [techStackList, setTechStackList] = useState();
+  console.log(techStackList, "포스트스택");
+  console.log(teckStack, "스택상태");
+
+  const handleStackValue = () => {
+    setTeckStack();
+  };
+  const animatedComponents = makeAnimated();
+  const stackSelect = [
+    { value: "React", label: "React" },
+    { value: "Java", label: "Java" },
+    { value: "JavaScript", label: "JavaScript" },
+    { value: "Python", label: "Python" },
+    { value: "Node", label: "Node" },
+    { value: "Flask", label: "Flask" },
+    { value: "C++", label: "C++" },
+    { value: "Django", label: "Django" },
+    { value: "php", label: "php" },
+    { value: "Vue", label: "Vue" },
+    { value: "Spring", label: "Spring" },
+    { value: "Swift", label: "Swift" },
+    { value: "Kotlin", label: "Kotlin" },
+    { value: "TypeScript", label: "TypeScript" },
+  ];
+  const handleChange = useCallback(
+    (inputValue, { action, removedValue }) => {
+      console.log(inputValue);
+      if (teckStack.length < 4) {
+        setTeckStack(inputValue);
+      } else {
+        if (removedValue !== undefined) {
+          let temp = teckStack.filter(
+            (item) => item["value"] !== removedValue["value"]
+          );
+          setTeckStack(temp);
+        } else {
+          window.alert("최대 4가지만 선택 가능합니다.");
+        }
+      }
+    },
+    [stackSelect]
+  );
+
   return (
     <Wrap>
       <Header>
@@ -18,8 +64,8 @@ const UserInfo = () => {
           <UserInfoLeft>
             <Title>이메일</Title>
             <Title>닉네임</Title>
-            <Title>사용 스택</Title>
             <Title>비밀번호</Title>
+            <Title>사용 스택</Title>
           </UserInfoLeft>
 
           <UserInfoRight>
@@ -28,17 +74,21 @@ const UserInfo = () => {
               <Nickname>지후</Nickname>
               <Button>변경</Button>
             </NicknameDiv>
-            <StackDiv>
-              <Stack>
-                {CategoryName.map((name, index) => (
-                  <option value={index}>{name}</option>
-                ))}
-              </Stack>
-            </StackDiv>
             <PasswordDiv>
               <Password></Password>
               <Button>변경</Button>
             </PasswordDiv>
+            <StackDiv>
+              <Select
+                isMulti
+                placeholder="기술 스택을 선택해주세요"
+                styles={styles}
+                components={animatedComponents}
+                value={teckStack}
+                options={stackSelect}
+                onChange={handleChange}
+              />
+            </StackDiv>
           </UserInfoRight>
         </UserInfoDiv>
       </UpdateBox>
@@ -49,6 +99,24 @@ const UserInfo = () => {
       </BottomBtnDiv>
     </Wrap>
   );
+};
+
+const styles = {
+  control: (base, state) => ({
+    ...base,
+    boxShadow: state.isFocused ? 0 : 0,
+    borderWidth: 1,
+    borderRadius: 10,
+    fontSize: 14,
+    margintop: -10,
+    minHeight: 40,
+    width: 250,
+    boxShadow: "0px 0px 10px #ddd",
+    borderColor: state.isFocused ? "#C4C4C4" : base.borderColor,
+    "&:hover": {
+      borderColor: state.isFocused ? "#C4C4C4" : base.borderColor,
+    },
+  }),
 };
 
 const Wrap = styled.div`
@@ -140,8 +208,12 @@ const Email = styled.span`
 const NicknameDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
 `;
-const Nickname = styled(Email)``;
+const Nickname = styled.span`
+  font-size: 18px;
+  font-weight: 300;
+`;
 const Button = styled.button`
   border-radius: 20px;
   font-size: 15px;
@@ -155,21 +227,26 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+// 비밀번호
+const PasswordDiv = styled(NicknameDiv)`
+  margin-bottom: 35px;
+`;
+const Password = styled(Nickname)``;
+
 // 사용 스택
-const StackDiv = styled(NicknameDiv)``;
-const Stack = styled.select`
-  font-size: 15px;
-  margin-bottom: 50px;
-  outline: none;
-  width: 250px;
-  border-radius: 10px;
-  border: 1px solid rgb(196 196 196);
-  box-shadow: rgb(221 221 221) 0px 0px 10px;
+const StackDiv = styled.div`
+  margin-bottom: 35px;
 `;
 
-// 비밀번호
-const PasswordDiv = styled(NicknameDiv)``;
-const Password = styled(Nickname)``;
+// const Stack = styled.select`
+//   font-size: 15px;
+//   margin-bottom: 50px;
+//   outline: none;
+//   width: 250px;
+//   border-radius: 10px;
+//   border: 1px solid rgb(196 196 196);
+//   box-shadow: rgb(221 221 221) 0px 0px 10px;
+// `;
 
 // 수정, 취소 버튼
 const BottomBtnDiv = styled.div`
@@ -194,22 +271,22 @@ const AmendBtn = styled.button`
 
 const CancelBtn = styled(AmendBtn)``;
 
-const CategoryName = [
-  "선택하세요.",
-  "JavaScript",
-  "Java",
-  "Phython",
-  "Node.js",
-  "React",
-  "C++",
-  "Flask",
-  "Django",
-  "Vue",
-  "Spring",
-  "php",
-  "Swift",
-  "Kotlin",
-  "TypeScript",
-];
+// const CategoryName = [
+//   "선택하세요.",
+//   "JavaScript",
+//   "Java",
+//   "Phython",
+//   "Node.js",
+//   "React",
+//   "C++",
+//   "Flask",
+//   "Django",
+//   "Vue",
+//   "Spring",
+//   "php",
+//   "Swift",
+//   "Kotlin",
+//   "TypeScript",
+// ];
 
 export default UserInfo;
