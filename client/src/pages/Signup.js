@@ -25,7 +25,7 @@ export default function Signup() {
 
   const axios_Login = (userEmail, userPassword) => {
     return axios.post(
-      `${process.env.SERVER_URL}/signin`,
+      `https://server.codescooperation.com/signin`,
       {
         email: userEmail,
         password: userPassword,
@@ -37,7 +37,7 @@ export default function Signup() {
   };
 
   const axios_Signup = (userEmail, userNickname, userPassword) => {
-    return axios.post(`${process.env.SERVER_URL}/signup`, {
+    return axios.post(`https://server.codescooperation.com/signup`, {
       email: userEmail,
       nickname: userNickname,
       password: userPassword,
