@@ -1,5 +1,8 @@
 const axios = require("axios");
 const { user } = require("../../models");
+const { generateAccessToken } = require("../../jwt/generateAccessToken");
+const { generateRefreshToken } = require("../../jwt/generateRefreshToken");
+
 module.exports = {
   getToken: (req, res) => {
     console.log(req.body.code, "서버쪽에서받은 코드");
@@ -33,27 +36,25 @@ module.exports = {
           "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
         },
       });
-      const nickname = userInfo.data.kakao_account.profile.nickname;
+      let nickname = userInfo.data.kakao_account.profile.nickname;
+      let email = userInfo.data.kakao_account.email;
       let password = userInfo.data.id + nickname;
+      let accessToken = req.query.accessToken;
       console.log("result 유저정보", userInfo.data);
-      // console.log("userEmail :", userInfo.data.kakao_account.email);
-      // console.log(
-      //   "usernickname :",
-      //   userInfo.data.kakao_account.profile.nickname
-      // );
-      // console.log("userimg :", userInfo.data.kakao_account.profile_image_url);
 
       const result = await user.findOne({
         where: {
-          id: userInfo.data.id,
+          email,
+          password,
         },
       });
       if (result) {
         const userData = {
-          id: userInfo.data.id,
-          email: userInfo.data.kakao_account.email || nickname,
-          nickname: nickname || userInfo.data.kakao_account.email,
+          id: result.id,
+          email: email,
+          nickname: nickname,
           password: password,
+          accessToken: accessToken,
         };
         // delete result.dataValues.password;
         // const accessToken = generateAccessToken(result.dataValues);
@@ -71,11 +72,23 @@ module.exports = {
           .json({ user: userData });
       } else {
         // 최초 로그인 시 회원가입 진행
-        const usersignupInfo = {
-          id: userInfo.data.id,
-          email: userInfo.data.kakao_account.email || nickname,
-          nickname: nickname || userInfo.data.kakao_account.email,
+
+        user.create({
+          email: userInfo.data.kakao_account.email,
           password: password,
+          nickname: nickname,
+        });
+
+        const findUser = await user.findOne({
+          where: { email, password },
+        });
+
+        const usersignupInfo = {
+          id: findUser.id,
+          email: findUser.email,
+          nickname: findUser.nickname,
+          password: findUser.password,
+          accessToken: accessToken,
         };
         // const data = (await user.create(usersignupInfo)).dataValues;
         // await signUpCaching(data);

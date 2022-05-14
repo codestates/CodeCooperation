@@ -28,12 +28,12 @@ function GoogleHandler() {
   const getUserInfo = async (accessToken) => {
     axios
       .get(
-        `https://server.codescooperation.com/google-login/userinfo?accessToken=${accessToken}`
+        `http://localhost:5000/google-login/userinfo?accessToken=${accessToken}`
       )
       .then((res) => {
         console.log(res.data, "클라이언트에서받은데이터");
-        const { id, email, nickname, password } = res.data.user;
-        dispatch(LOG_IN({ id, email, nickname, password }));
+        const { id, email, nickname, password, accessToken } = res.data.user;
+        dispatch(LOG_IN({ id, email, nickname, password, accessToken }));
         // setUserInfo(res.data);
         // handleResponseSuccess();
         history.push("/");
@@ -43,7 +43,7 @@ function GoogleHandler() {
   const getAccessToken = async (code) => {
     axios({
       method: "post",
-      url: `https://server.codescooperation.com/google-login/token`,
+      url: `http://localhost:5000/google-login/token`,
       data: {
         code,
       },

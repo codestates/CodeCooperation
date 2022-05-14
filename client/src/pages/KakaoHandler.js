@@ -49,12 +49,12 @@ function Kakaohandler() {
   const getUserInfo = (accessToken) => {
     axios({
       method: "get",
-      url: `https://server.codescooperation.com/kakao-login/userinfo?accessToken=${accessToken}`,
+      url: `http://localhost:5000/kakao-login/userinfo?accessToken=${accessToken}`,
     })
       .then((res) => {
         console.log(res.data, "서버에서 받은 데이터");
-        const { id, email, nickname, password } = res.data.user;
-        dispatch(LOG_IN({ id, email, nickname, password }));
+        const { id, email, nickname, password, accessToken } = res.data.user;
+        dispatch(LOG_IN({ id, email, nickname, password, accessToken }));
         // setUserInfo(res.data);
         // handleResponseSuccess();
         history.push("/");
