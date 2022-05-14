@@ -41,17 +41,14 @@ const Footer = () => {
             <Name href="https://github.com/ghooman" target="_blank">
               박지후
             </Name>
-            <Name href="https://github.com/VRSoda" target="_blank">
-              전용남
+            <Name href="https://github.com/LEEJAESHIN" target="_blank">
+              이재신
             </Name>
           </ListDiv>
           <ListDiv>✔️Back</ListDiv>
           <ListDiv>
             <Name href="https://github.com/nicesiu" target="_blank">
               황시우
-            </Name>
-            <Name href="https://github.com/LEEJAESHIN" target="_blank">
-              이재신
             </Name>
           </ListDiv>
         </TeamMemberDiv>
@@ -72,13 +69,13 @@ const Wrap = styled.div`
 
 const LogoDiv = styled.div`
   width: 20%;
-  /* @media screen and (max-width: 750px) {
-    width: 35%;
-  } */
   display: flex;
   align-items: center;
   justify-content: center;
   /* background-color: pink; */
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
 `;
 
 const Logo = styled.div`
@@ -94,6 +91,11 @@ const MenuDiv = styled.div`
   display: flex;
   width: 70%;
   justify-content: space-around;
+  @media screen and (max-width: 750px) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 `;
 
 const ContactDiv = styled.div`

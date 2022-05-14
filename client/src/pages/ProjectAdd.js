@@ -264,6 +264,9 @@ const ProjectAddDiv = styled.div`
   margin: 30px 0px;
   height: 800px;
   width: 750px;
+  @media screen and (max-width: 800px) {
+    width: auto;
+  }
 `;
 
 const Header = styled.div`

@@ -270,12 +270,16 @@ const Content_0_img_0 = styled.img.attrs({
   height: 100%;
   transform: translateZ(0);
   backface-visibility: hidden;
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const Content_0_box_1 = styled.div`
   padding: 10rem 0 0 0;
   display: inline-block;
   line-height: 3rem;
+
   /* border: 1px solid red; */
 `;
 const Content_0_title_0 = styled.div`
@@ -372,6 +376,9 @@ const Container_2 = styled.div`
   width: 100%;
   height: 50rem;
   margin: 0;
+  @media screen and (max-width: 1000px) {
+    height: auto;
+  }
 `;
 
 const Container_2_2 = styled.div`
@@ -379,6 +386,10 @@ const Container_2_2 = styled.div`
   width: 100%;
   max-width: 1024px;
   height: 88%;
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+  }
   /* border: 1px solid lightgray; */
 `;
 
@@ -399,6 +410,14 @@ const Content_2_box = styled.div`
   width: 30%;
   /* border: 1px solid lightgray; */
   height: 100%;
+  @media screen and (max-width: 1000px) {
+    margin-top: 0;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+  }
 `;
 
 const Content_2_title = styled.div`
@@ -406,6 +425,9 @@ const Content_2_title = styled.div`
   font-weight: 900;
   font-family: "Noto Sans KR";
   margin: 12rem 0 0 0;
+  @media screen and (max-width: 1000px) {
+    margin-top: 0;
+  }
 `;
 
 const Content_2_p = styled.div`
@@ -413,6 +435,9 @@ const Content_2_p = styled.div`
   font-size: 1rem;
   font-family: "Noto Sans KR";
   color: rgb(134, 142, 150);
+  @media screen and (max-width: 1000px) {
+    width: 300px;
+  }
 `;
 
 const Content_2_button_box = styled.div`
@@ -430,6 +455,9 @@ const Content_2_button = styled.button`
   text-align: center;
   line-height: 3rem;
   cursor: pointer;
+  @media screen and (max-width: 800px) {
+    width: 110px;
+  }
 `;
 
 /*********************************/
@@ -463,6 +491,9 @@ const Container_4 = styled.div`
   width: 100%;
   height: 50rem;
   margin: 0;
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 200px;
+  }
 `;
 
 const Container_4_2 = styled.div`
@@ -471,6 +502,13 @@ const Container_4_2 = styled.div`
   max-width: 1024px;
   height: 88%;
   /* border: 1px solid lightgray; */
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Content_4_img_box = styled.div`
@@ -490,6 +528,12 @@ const Content_4_box = styled.div`
   width: 30%;
   /* border: 1px solid lightgray; */
   height: 100%;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Content_4_title = styled.div`
@@ -522,6 +566,9 @@ const Content_4_button = styled.button`
   text-align: center;
   line-height: 3rem;
   cursor: pointer;
+  @media screen and (max-width: 800px) {
+    width: 110px;
+  }
 `;
 
 /***********리뷰 사용자 CSS *********/
@@ -551,19 +598,30 @@ const Content_5_title_box = styled.div`
   height: 10rem;
   /* border: 1px solid lightgray; */
 `;
-const Content_5_title = styled.div`
+const Content_5_title = styled.p`
   font-size: 2rem;
-  line-height: 10rem;
+  /* line-height: 10rem; */
   text-align: center;
   font-weight: 900;
   font-family: "Noto Sans KR";
+  @media screen and (max-width: 800px) {
+    width: auto;
+    height: 100px;
+    font-weight: 600;
+    font-size: 30px;
+  }
 `;
 
 const Content_5_review_box = styled.div`
   display: flex;
   /* border: 1px solid lightgray; */
   width: 100%;
-  height: 100%;
+  height: 50%;
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 `;
 
 const Content_5_review_box_1 = styled.div`
@@ -580,6 +638,9 @@ const Content_5_review_box_2 = styled.div`
   border-radius: 10px;
   box-shadow: 0 0px 23px rgba(50, 50, 93, 0.2);
   line-height: 100%;
+  @media screen and (max-width: 800px) {
+    height: 150px;
+  }
 `;
 
 const Content_5_review_title_box = styled.div`
@@ -592,6 +653,9 @@ const Content_5_review_title_box = styled.div`
 const Content_5_review_title_image_box = styled.div`
   width: 30%;
   height: 100%;
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
   /* border: 1px solid lightgray; */
 `;
 const Content_5_review_title_image_box_2 = styled.div`
@@ -621,6 +685,11 @@ const Content_5_review_title_p = styled.div`
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.4rem;
+  @media screen and (max-width: 800px) {
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0;
+  }
 `;
 
 const Content_5_review_p_box = styled.div`
@@ -648,23 +717,28 @@ const Container_6 = styled.div`
   justify-content: center;
   align-items: center;
   /* border: 1px solid lightgray; */
-  justify-content: center;
   width: 100%;
   height: 70rem;
-  margin: 0;
+  margin: auto;
+  @media screen and (max-width: 1000px) {
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 `;
 
 const Content_6_box = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1024px;
+  width: auto;
   height: 100%;
+
   /* border: 1px solid lightgray; */
 `;
 
 const Content_6_title_box = styled.div`
   display: flex;
-  width: 100%;
+  width: auto;
   height: 20%;
   /* border: 1px solid lightgray; */
   justify-content: center;
@@ -688,8 +762,10 @@ const Content_6_title = styled.div`
 `;
 
 const Content_6_img_box = styled.div`
-  width: 100%;
+  position: relative;
+  max-width: 100%;
   height: 70%;
+  margin: auto;
 `;
 
 const Content_6_img = styled.img.attrs({
@@ -697,6 +773,7 @@ const Content_6_img = styled.img.attrs({
 })`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 const Content_6_button_box = styled.div`
