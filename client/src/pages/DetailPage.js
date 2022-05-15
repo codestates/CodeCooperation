@@ -1,15 +1,42 @@
 import React, { useState } from "react";
 import SupportRequest from "../components/SupportRequest";
+import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
 import image1 from "../images/4.png";
 import { useDispatch, useSelector } from "react-redux";
+import { POST_ID } from "../reducer/userInfoReducer";
+import axios from "axios";
 
 function DetailPage({ selectedFeed }) {
   const [support, setSupport] = useState(false);
   let user = useSelector((state) => state.userInfo.userInfo);
-
+  const history = useHistory();
   const clickRequest = () => {
     setSupport(!support);
+  };
+  const dispatch = useDispatch();
+
+  let postId = selectedFeed.id;
+  dispatch(POST_ID(postId));
+  console.log();
+  // const deletePost = () => {
+  //   return axios.delete(`http:localhost:3000/post-delete`, {
+  //     withCredentials: true,
+  //   });
+  // };
+  const deletePost = () => {
+    return axios.delete(
+      `https://server.codescooperation.com/post-delete/${postId}`,
+      {
+        withCredentials: true,
+      }
+    );
+  };
+
+  const handleLogin = () => {
+    return deletePost().then(() => {
+      history.push("/projectlist");
+    });
   };
 
   return (
@@ -32,11 +59,6 @@ function DetailPage({ selectedFeed }) {
             </ContentTitle9Box>
             <ContentTitle3Box>
               <ContentTitle3Box2>
-                {/* <ContentTitle3ImgBox>
-                  <ContentTitle3Img></ContentTitle3Img>
-                </ContentTitle3ImgBox>
-
-                <ContentTitle3>응애나개발자</ContentTitle3> */}
                 {selectedFeed.start_date} ~ {selectedFeed.end_date}
               </ContentTitle3Box2>
               <ContentTitle3Box3>
@@ -75,12 +97,25 @@ function DetailPage({ selectedFeed }) {
                 </Content7UserBox>
               </Container0Box4>
               <ContentButtonBox>
-                <ContentButton onClick={clickRequest}>지원하기</ContentButton>
+                {/* <ContentButton onClick={clickRequest}>지원하기</ContentButton> */}
                 <ContentButton2>
                   <i className="fas fa-solid fa-bookmark"></i> 북마크
                 </ContentButton2>
                 {selectedFeed.user.id == user.id ? (
-                  <ContentButton3>삭제하기</ContentButton3>
+                  <ContentButton3 onClick={handleLogin}>
+                    삭제하기
+                  </ContentButton3>
+                ) : null}
+                {selectedFeed.user.id == user.id ? (
+                  <ContentButton4>
+                    <Link
+                      to={{
+                        pathname: `/projectmodifiy/${postId}`,
+                      }}
+                    >
+                      수정하기
+                    </Link>
+                  </ContentButton4>
                 ) : null}
               </ContentButtonBox>
             </Container0Box3>
@@ -127,7 +162,7 @@ const Container0Box3 = styled.div`
 
   flex-direction: column;
   width: 100%;
-  height: 30%;
+  height: 40%;
   margin: 10rem 0 0 0;
   border: 3px solid #e1e8ec;
   border-radius: 1rem;
@@ -139,7 +174,7 @@ const Container0Box4 = styled.div`
   width: 100%;
   height: 30%;
   /* border: 1px solid lightgray; */
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const Content7ImgBox = styled.div`
@@ -161,6 +196,7 @@ const Content7Img = styled.img.attrs({
 const Content7UserBox = styled.div`
   width: 100%;
   height: 100%;
+  margin-bottom: 20px;
   /* border: 1px solid lightgray; */
 
   /* height: 100%; */
@@ -169,10 +205,10 @@ const Content7User = styled.div`
   width: 100%;
   /* line-height: 5rem; */
   /* height: 100%; */
-  padding: 10px 0 0 0;
+  padding: 20px 0px 0px 5px;
   font-weight: 500;
   font-family: Noto Sans KR;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #4c5175;
 `;
 
@@ -237,6 +273,7 @@ const ContentButton3 = styled.button`
   font-weight: 500;
   font-family: Noto Sans KR;
   border-radius: 1.5rem;
+  margin: 0 0 20px 0;
   cursor: pointer;
   /* background-color: #8ce7d9;
   color: white; */
@@ -247,6 +284,44 @@ const ContentButton3 = styled.button`
     background-color: #4c5175;
     color: white;
   }
+`;
+
+const ContentButton4 = styled.button`
+  width: 80%;
+  height: 20%;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: Noto Sans KR;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  /* background-color: #8ce7d9;
+  color: white; */
+  background-color: white;
+  border: 2px solid #4c5175;
+  color: #4c5175;
+  margin: 0 0 20px 0;
+  a {
+    text-decoration: none;
+    color: #4c5175;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  a:focus {
+    text-decoration: none;
+  }
+
+  a:active {
+    text-decoration: none;
+  }
+  /* &:hover {
+    background-color: #4c5175;
+    color: white;
+  } */
 `;
 
 const ContentTitleBox1 = styled.div`

@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-const ProjectAdd = () => {
+const ProjectModifiy = ({ location }) => {
   const [postInfo, setPostInfo] = useState({
     postTitle: "",
     content: "",
@@ -19,6 +19,9 @@ const ProjectAdd = () => {
   const [teckStack, setTeckStack] = useState([]);
   const [techStackList, setTechStackList] = useState();
   const history = useHistory();
+  let userInfo = useSelector((state) => state.userInfo.postId);
+  let { postId } = useParams(); // location으로 데이터에 접근해서 받아온다!
+  console.log(userInfo, "포스트아이디이");
   let user = useSelector((state) => state.userInfo.userInfo);
   let accessToken = user.accessToken;
   // console.log(accessToken, "토큰입니다");
@@ -88,7 +91,7 @@ const ProjectAdd = () => {
     openURL,
     postStack,
   } = postInfo;
-  const createPostHandle = () => {
+  const modifiyPostHandle = () => {
     if (
       postTitle === "" ||
       content === "" ||
@@ -102,8 +105,8 @@ const ProjectAdd = () => {
     } else {
       console.log("*********************", accessToken);
       axios
-        .post(
-          "https://server.codescooperation.com/post-add",
+        .patch(
+          `https://server.codescooperation.com/post-modify/${userInfo}`,
           {
             userId: user.id,
             postTitle: postTitle,
@@ -146,7 +149,7 @@ const ProjectAdd = () => {
     <Wrap>
       <ProjectAddDiv>
         <Header>
-          <Title>프로젝트 작성</Title>
+          <Title>프로젝트 수정</Title>
         </Header>
         <PostDiv>
           <TextDiv>제목</TextDiv>
@@ -225,7 +228,7 @@ const ProjectAdd = () => {
           ></Detail>
         </DetailDiv>
         <BtnDiv>
-          <Btn onClick={createPostHandle}>완료</Btn>
+          <Btn onClick={modifiyPostHandle}>완료</Btn>
         </BtnDiv>
       </ProjectAddDiv>
     </Wrap>
@@ -413,4 +416,4 @@ const CategoryName = [
   "TypeScript",
 ];
 
-export default ProjectAdd;
+export default ProjectModifiy;

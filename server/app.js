@@ -22,12 +22,12 @@ models.sequelize
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // qs라이브러리 사용하지 않음
-app.use(cookieParser(process.env.ACCESS_SECRET)); // 쿠키 암호 나중에 설정
+app.use(cookieParser()); // 쿠키 암호 나중에 설정
 app.use(
   cors({
-    origin: true,
+    origin: [process.env.URL],
     credentials: true,
-    methods: ["GET", "POST", "OPTION", "PUT", "DELETE"],
+    methods: ["GET", "POST", "OPTION", "PUT", "DELETE", "PATCH"],
   })
 );
 

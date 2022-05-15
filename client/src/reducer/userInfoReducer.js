@@ -20,7 +20,13 @@ export const userInfoReducer = createSlice({
       localStorage.removeItem("userInfo");
       localStorage.removeItem("isLogin");
     },
+    POST_ID: (state, action) => {
+      console.log(action.payload, "포스트아이디액션페이로드");
+      state.postId = action.payload;
+
+      localStorage.setItem("userInfo", JSON.stringify(state.postId));
+    },
   },
 });
-export const { LOG_IN, LOG_OUT } = userInfoReducer.actions;
+export const { LOG_IN, LOG_OUT, POST_ID } = userInfoReducer.actions;
 export default userInfoReducer.reducer;

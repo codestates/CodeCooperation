@@ -1,4 +1,5 @@
 module.exports = function(sequelize, DataTypes){
+    require("dotenv").config();
     let user = sequelize.define("user", {
         id: {
             autoIncrement: true,

@@ -1,5 +1,4 @@
 const { user } = require("../../models");
-
 module.exports = (req, res) => {
     const { email, password, nickname } = req.body;
     if( !email || !password || !nickname) {
@@ -10,7 +9,7 @@ module.exports = (req, res) => {
       defaults : {
         email,
         password,
-        nickname,
+        nickname
       }
     })
     .then(([result, created]) => {
