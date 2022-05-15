@@ -28,6 +28,6 @@ router.get("/auth", auth);
 router.get("/posts", posts.getAllPost);
 router.post("/post-add", post_add.sendPost);
 router.delete("/post-delete/:id", post_delete.postdelete);
-router.patch("post-modify/:id", post_modify.postModify);
+router.patch("/post-modify/:id", post_modify.postmodify);
 
 module.exports = router;

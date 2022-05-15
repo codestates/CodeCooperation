@@ -45,6 +45,7 @@ sendPost: async (req, res) => {
             total_member: totalMember,
             current_member: "1",
             project_status: true,
+            url:openURL,
             created_at: new Date(),
             updated_at: new Date()
           })

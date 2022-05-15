@@ -49,6 +49,10 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
+      url: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+      }
     },
     {
         sequelize,
