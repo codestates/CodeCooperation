@@ -1,7 +1,7 @@
 const { post } = require("../../models");
 
 module.exports = {
-  postdelete: async (req, res) => {
+  postModify: async (req, res) => {
     const { id } = req.params;
     console.log(id);
     if (!id) {

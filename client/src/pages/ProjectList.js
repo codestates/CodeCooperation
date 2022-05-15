@@ -21,7 +21,7 @@ const ProjectList = ({ post, handleClick }) => {
           return new Date(b.created_at) - new Date(a.created_at);
         });
         //배포하면 allPost넣기
-        setShowPosts(res.data.data);
+        setShowPosts(allPost);
       } else {
         let result = res.data.data.filter((el) =>
           el.stack.includes(stackClick)

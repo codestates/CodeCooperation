@@ -25,6 +25,7 @@ export const initialState = {
     accessToken: "",
     loginType: "",
   },
+  postId: null,
   postInfo: null,
   isLogin: false,
   //   shareRecord: null,

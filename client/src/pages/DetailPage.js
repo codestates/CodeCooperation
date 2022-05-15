@@ -4,20 +4,36 @@ import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
 import image1 from "../images/4.png";
 import { useDispatch, useSelector } from "react-redux";
+import { POST_ID } from "../reducer/userInfoReducer";
 import axios from "axios";
 
 function DetailPage({ selectedFeed }) {
   const [support, setSupport] = useState(false);
   let user = useSelector((state) => state.userInfo.userInfo);
-
+  const history = useHistory();
   const clickRequest = () => {
     setSupport(!support);
   };
+  const dispatch = useDispatch();
 
   let postId = selectedFeed.id;
-  console.log(postId)
+  dispatch(POST_ID(postId));
+  console.log();
+  // const deletePost = () => {
+  //   return axios.delete(`http:localhost:3000/post-delete`, {
+  //     withCredentials: true,
+  //   });
+  // };
   const deletePost = () => {
-    axios.post(`http:localhost:3000/post-delete:${postId}`);
+    return axios.delete(`http://localhost:3000/post-delete/${postId}`, {
+      withCredentials: true,
+    });
+  };
+
+  const handleLogin = () => {
+    return deletePost().then(() => {
+      history.push("/projectlist");
+    });
   };
 
   return (
@@ -83,11 +99,19 @@ function DetailPage({ selectedFeed }) {
                   <i className="fas fa-solid fa-bookmark"></i> 북마크
                 </ContentButton2>
                 {selectedFeed.user.id == user.id ? (
-                  <ContentButton3 onClick={deletePost}>삭제하기</ContentButton3>
+                  <ContentButton3 onClick={handleLogin}>
+                    삭제하기
+                  </ContentButton3>
                 ) : null}
                 {selectedFeed.user.id == user.id ? (
                   <ContentButton4>
-                    <Link to="/projectmodifiy">수정하기</Link>
+                    <Link
+                      to={{
+                        pathname: `/projectmodifiy/${postId}`,
+                      }}
+                    >
+                      수정하기
+                    </Link>
                   </ContentButton4>
                 ) : null}
               </ContentButtonBox>

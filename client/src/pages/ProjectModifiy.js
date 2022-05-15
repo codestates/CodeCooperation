@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-const ProjectModifiy = () => {
+const ProjectModifiy = ({ location }) => {
   const [postInfo, setPostInfo] = useState({
     postTitle: "",
     content: "",
@@ -19,6 +19,9 @@ const ProjectModifiy = () => {
   const [teckStack, setTeckStack] = useState([]);
   const [techStackList, setTechStackList] = useState();
   const history = useHistory();
+  let userInfo = useSelector((state) => state.userInfo.postId);
+  let { postId } = useParams(); // location으로 데이터에 접근해서 받아온다!
+  console.log(userInfo, "포스트아이디이");
   let user = useSelector((state) => state.userInfo.userInfo);
   let accessToken = user.accessToken;
   // console.log(accessToken, "토큰입니다");
@@ -103,7 +106,7 @@ const ProjectModifiy = () => {
       console.log("*********************", accessToken);
       axios
         .post(
-          "http://localhost:3000/posting",
+          "http://localhost:3000/post-modify/",
           {
             userId: user.id,
             postTitle: postTitle,
