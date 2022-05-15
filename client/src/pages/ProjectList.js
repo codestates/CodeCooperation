@@ -16,9 +16,9 @@ const ProjectList = ({ post, handleClick }) => {
   useEffect(() => {
     axios.get(`http://localhost:3000/posts`).then((res) => {
       console.log(res.data.data);
-      if (stackClick == "전체") {
+      if (stackClick === "전체") {
         let allPost = res.data.data.sort((a, b) => {
-          return new Date(b.created_at) - new Date(a.created_at);
+          return new Date(b.createdAt) - new Date(a.createdAt);
         });
         //배포하면 allPost넣기
         setShowPosts(allPost);
