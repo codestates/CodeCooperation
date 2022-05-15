@@ -4,7 +4,7 @@ const kakao = require("./user/kakao");
 const google = require("./user/google");
 const signup = require("./user/signup");
 const signin = require("./user/signin");
-const signout = require("./user/signout")
+const signout = require("./user/signout");
 const auth = require("./user/auth");
 const posts = require("./post/posts");
 
@@ -23,5 +23,5 @@ router.get("/auth", auth);
 
 // post
 router.get("/posts", posts.getAllPost);
-
+router.post("/posting", posts.sendPost);
 module.exports = router;

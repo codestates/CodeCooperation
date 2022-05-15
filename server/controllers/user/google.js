@@ -38,21 +38,23 @@ module.exports = {
         },
       });
       console.log(userInfo.data, "userInfo입니다.");
-
-      const nickname = userInfo.data.name;
+      let email = userInfo.data.email;
+      let nickname = userInfo.data.name;
       let password = userInfo.data.id + nickname;
 
       const result = await user.findOne({
         where: {
-          id: userInfo.data.id,
+          email,
+          password,
         },
       });
       if (result) {
         const userData = {
-          id: userInfo.data.id,
-          email: userInfo.data.email || nickname,
-          nickname: nickname || userInfo.data.kakao_account.email,
+          id: result.id,
+          email: email,
+          nickname: nickname,
           password: password,
+          accessToken: accessToken,
         };
         // delete result.dataValues.password;
         // const accessToken = generateAccessToken(result.dataValues);
@@ -70,11 +72,22 @@ module.exports = {
           .json({ user: userData });
       } else {
         // 최초 로그인 시 회원가입 진행
-        const usersignupInfo = {
-          id: userInfo.data.id,
-          email: userInfo.data.email || nickname,
-          nickname: nickname || userInfo.data.kakao_account.email,
+        user.create({
+          email: email,
           password: password,
+          nickname: nickname,
+        });
+
+        const findUser = await user.findOne({
+          where: { email, password },
+        });
+
+        const usersignupInfo = {
+          id: findUser.id,
+          email: findUser.email,
+          nickname: findUser.nickname,
+          password: findUser.password,
+          accessToken: accessToken,
         };
         // const data = (await user.create(usersignupInfo)).dataValues;
         // await signUpCaching(data);
