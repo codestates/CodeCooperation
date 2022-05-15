@@ -6,7 +6,7 @@ module.exports = {
     console.log(req.body.code, "클라이언트에서받은 코드");
     const code = req.body.code;
     const client_id = `${process.env.GOOGLE_ID}`;
-    const redirect_uri = `${process.env.BASIC_URL_TEST}/oauth/callback/google`;
+    const redirect_uri = `${process.env.BASIC_URL}/oauth/callback/google`;
     const client_secret = `${process.env.GOOGLE_SECRET_ID}`;
     const grant_type = "authorization_code";
     const URL = `https://www.googleapis.com/oauth2/v4/token`;
