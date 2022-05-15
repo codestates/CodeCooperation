@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LOG_IN } from "../reducer/userInfoReducer";
+import { GET_POST } from "../reducer/postInfoReducer";
 
 function Kakaohandler() {
   const [accessToken, setAccessToken] = useState();
@@ -53,10 +54,11 @@ function Kakaohandler() {
     })
       .then((res) => {
         console.log(res.data, "서버에서 받은 데이터");
-        const { id, email, nickname, password, accessToken } = res.data.user;
-        dispatch(LOG_IN({ id, email, nickname, password, accessToken }));
-        // setUserInfo(res.data);
-        // handleResponseSuccess();
+        const postInfo = res.data.post;
+        const { id, email, nickname, accessToken } = res.data.user;
+        dispatch(LOG_IN({ id, email, nickname, accessToken }));
+        dispatch(GET_POST(postInfo));
+
         history.push("/");
       })
       .catch((error) => {

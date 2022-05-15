@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import SupportRequest from "../components/SupportRequest";
 import styled from "styled-components";
 import image1 from "../images/4.png";
+import { useDispatch, useSelector } from "react-redux";
 
 function DetailPage({ selectedFeed }) {
   const [support, setSupport] = useState(false);
+  let user = useSelector((state) => state.userInfo.userInfo);
 
   const clickRequest = () => {
     setSupport(!support);
@@ -77,6 +79,9 @@ function DetailPage({ selectedFeed }) {
                 <ContentButton2>
                   <i className="fas fa-solid fa-bookmark"></i> 북마크
                 </ContentButton2>
+                {selectedFeed.id == user.id ? (
+                  <ContentButton3>삭제하기</ContentButton3>
+                ) : null}
               </ContentButtonBox>
             </Container0Box3>
           </Container0Box2>
@@ -205,6 +210,26 @@ const ContentButton = styled.button`
   }
 `;
 const ContentButton2 = styled.button`
+  width: 80%;
+  height: 20%;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: Noto Sans KR;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  /* background-color: #8ce7d9;
+  color: white; */
+  background-color: white;
+  border: 2px solid #4c5175;
+  margin: 0 0 20px 0;
+  color: #4c5175;
+  &:hover {
+    background-color: #4c5175;
+    color: white;
+  }
+`;
+const ContentButton3 = styled.button`
   width: 80%;
   height: 20%;
   border: 0;

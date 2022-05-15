@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userInfo from "../reducer/userInfoReducer";
+import postInfo from "../reducer/postInfoReducer";
 
 export const store = configureStore({
   reducer: {
     userInfo,
+    postInfo,
   },
 });
 //configureStore , createStore 와 비슷한 함수
