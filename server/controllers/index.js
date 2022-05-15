@@ -7,6 +7,8 @@ const signin = require("./user/signin");
 const signout = require("./user/signout");
 const auth = require("./user/auth");
 const posts = require("./post/posts");
+const post_add = require("./post/post-add");
+const post_delete = require("./post/post-delete");
 
 // oauth
 router.get("/", kakao.get);
@@ -23,5 +25,7 @@ router.get("/auth", auth);
 
 // post
 router.get("/posts", posts.getAllPost);
-router.post("/post-add", posts.sendPost);
+router.post("/post-add", post_add.sendPost);
+router.delete("/post-delete:id", post_delete.postdelete);
+
 module.exports = router;

@@ -15,7 +15,7 @@ function DetailPage({ selectedFeed }) {
   };
 
   let postId = selectedFeed.id;
-
+  console.log(postId)
   const deletePost = () => {
     axios.post(`http:localhost:3000/post-delete:${postId}`);
   };
