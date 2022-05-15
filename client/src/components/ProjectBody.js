@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-
+import Javascript from "../images/javascript.png";
+import ReactImg from "../images/react.png";
 import { Link } from "react-router-dom";
+import PostStackImg from "./PostStackImg";
 
 const ProjectBody = ({ posts, handleClick }) => {
   return (
@@ -9,17 +11,16 @@ const ProjectBody = ({ posts, handleClick }) => {
       <Top>
         <State>{posts.state}</State>
         <Title>{posts.title}</Title>
-        <ByWho>by. {posts.user.nickname}</ByWho>
+        {/* <ByWho>by. {posts.user.nickname}</ByWho> */}
       </Top>
       <Body>
         <Detail>{posts.content}</Detail>
       </Body>
       <Bottom>
         <ImgDiv>
-          <Img src={posts.img1}></Img>
-          <Img src={posts.img2}></Img>
-          <Img src={posts.img3}></Img>
-          <Img src={posts.img4}></Img>
+          {JSON.parse(posts.stack).map((el, i) => {
+            return <PostStackImg stack={el} key={i} />;
+          })}
         </ImgDiv>
         <BottomBottom>
           <Term>
@@ -54,7 +55,7 @@ const Top = styled.div`
   height: 30%;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  background-color: #56d0a0;
+  background-color: #4c5175;
   z-index: -1;
 `;
 
@@ -64,15 +65,18 @@ const State = styled.div`
 `;
 
 const Title = styled.div`
+  font-family: "Noto Sans KR";
+  font-weight: 900;
   margin: 5px 20px 0 20px;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
   height: 30%;
+  color: white;
 `;
 
 const ByWho = styled.div`
   margin: 5px 20px 0 20px;
   font-size: 13px;
+  color: white;
 `;
 
 const Body = styled.div`
@@ -85,7 +89,7 @@ const Detail = styled.p`
   overflow: hidden;
   display: block;
   width: 308px;
-  height: 38px;
+  height: 45px;
 `;
 
 const Bottom = styled.div`
@@ -99,9 +103,9 @@ const Bottom = styled.div`
 const ImgDiv = styled.div`
   display: flex;
   margin-left: 20px;
-  /* border: 1px solid black; */
-  height: 65px;
-  width: 350px;
+  /* border: 1px solid lightgray; */
+  height: 50%;
+  width: 90%;
 `;
 
 const Img = styled.img`
@@ -111,7 +115,7 @@ const Img = styled.img`
   margin-right: 20px;
   width: 60px;
   height: 60px;
-  border: 0px;
+  border: none;
 `;
 
 const BottomBottom = styled.div`
@@ -129,5 +133,10 @@ const HeadCount = styled.p`
   font-size: 13px;
   margin: 30px 20px 0px 0px;
 `;
-
+const ImgBox = styled.div`
+  display: flex;
+  width: 25%;
+  height: 100%;
+  border: 1px solid lightgray;
+`;
 export default ProjectBody;

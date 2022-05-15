@@ -17,6 +17,10 @@ const ProjectList = ({ post, handleClick }) => {
     axios.get(`http://localhost:3000/posts`).then((res) => {
       console.log(res.data.data);
       if (stackClick == "전체") {
+        let allPost = res.data.data.sort((a, b) => {
+          return new Date(b.created_at) - new Date(a.created_at);
+        });
+        //배포하면 allPost넣기
         setShowPosts(res.data.data);
       } else {
         let result = res.data.data.filter((el) =>
@@ -31,10 +35,6 @@ const ProjectList = ({ post, handleClick }) => {
       <Category handleStack={handleStack} />
       <SearchBar />
       <Wrap>
-        {/* {post.map((el, i) => (
-          <ProjectBody key={i} posts={el} handleClick={handleClick} />
-        ))} */}
-        {""}
         {showPosts &&
           showPosts.map((el, i) => (
             <ProjectBody key={i} posts={el} handleClick={handleClick} />

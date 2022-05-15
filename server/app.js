@@ -35,7 +35,7 @@ app.use(
 app.use("/", indexRouter);
 
 // 서버 실행
-app.set("port", process.env.PORT || 4000);
+app.set("port", process.env.PORT || 3000);
 app.listen(app.get("port"), () => {
   console.log(`🧶서버가 ${app.get("port")} 포트로 열렸습니다!`);
 });

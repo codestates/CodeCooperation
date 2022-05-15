@@ -31,6 +31,7 @@ const CategoryWrap = styled.div`
   margin: auto;
   justify-content: center;
   /* align-items: center; */
+  padding-bottom: 10px;
   border-bottom: 1px solid #f0f0f0;
   box-shadow: 0px -15px 10px -15px #f0f0f0 inset;
   /* overflow-y: hidden; */

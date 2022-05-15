@@ -68,7 +68,7 @@ function DetailPage({ selectedFeed }) {
                 <Content7UserBox>
                   <Content7User>
                     작성자 <br />
-                    {selectedFeed.who}
+                    {selectedFeed.user.nickname}
                   </Content7User>
                 </Content7UserBox>
               </Container0Box4>
