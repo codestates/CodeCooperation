@@ -25,7 +25,7 @@ export default function Signup() {
 
   const axios_Login = (userEmail, userPassword) => {
     return axios.post(
-      `http://localhost:5000/signin`,
+      `http://localhost:3000/signin`,
       {
         email: userEmail,
         password: userPassword,
@@ -37,7 +37,7 @@ export default function Signup() {
   };
 
   const axios_Signup = (userEmail, userNickname, userPassword) => {
-    return axios.post(`http://localhost:5000/signup`, {
+    return axios.post(`http://localhost:3000/signup`, {
       email: userEmail,
       password: userPassword,
       nickname: userNickname,
