@@ -23,5 +23,5 @@ router.get("/auth", auth);
 
 // post
 router.get("/posts", posts.getAllPost);
-router.post("/posting", posts.sendPost);
+router.post("/post-add", posts.sendPost);
 module.exports = router;

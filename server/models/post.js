@@ -22,11 +22,11 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
       start_date: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
       end_date: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
       stack: {
@@ -38,22 +38,22 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
       total_member: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
       current_member: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
       project_status: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(50),
         allowNull: false,
       },
     },
     {
         sequelize,
          tableName: "post",
-         timestamps: false,
+         timestamps: true,
          underscored: true
     }
     )

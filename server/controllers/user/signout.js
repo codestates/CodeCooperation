@@ -1,4 +1,9 @@
 module.exports = (req, res) => {
-    res.status(205).send("Logged out successfully");
+  try {
+    res.status(205).send({ data : null, message : "logout" });
+  }  
+  catch {
+    res.status(500).send({ message : "logout err" })
+  }
   };
   
