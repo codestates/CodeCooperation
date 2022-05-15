@@ -1,5 +1,5 @@
 const { post } = require("../../models");
-const db = require("../../models");
+
 module.exports = {
 sendPost: async (req, res) => {
     const accessTokendata = req.headers["authorization"];
