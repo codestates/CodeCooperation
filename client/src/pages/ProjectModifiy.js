@@ -105,8 +105,8 @@ const ProjectModifiy = ({ location }) => {
     } else {
       console.log("*********************", accessToken);
       axios
-        .post(
-          `http://localhost:3000/post-modify/${postId}`,
+        .patch(
+          `http://localhost:3000/post-modify/${userInfo}`,
           {
             userId: user.id,
             postTitle: postTitle,
