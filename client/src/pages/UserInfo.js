@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import { Link } from "react-router-dom";
 
 const UserInfo = () => {
   const [teckStack, setTeckStack] = useState([]);
@@ -71,12 +72,12 @@ const UserInfo = () => {
           <UserInfoRight>
             <Email>ghoo@naver.com</Email>
             <NicknameDiv>
-              <Nickname>지후</Nickname>
-              <Button>변경</Button>
+              <Nickname type="text" value="지후"></Nickname>
+              {/* <Button>변경</Button> */}
             </NicknameDiv>
             <PasswordDiv>
               <Password></Password>
-              <Button>변경</Button>
+              {/* <Button>변경</Button> */}
             </PasswordDiv>
             <StackDiv>
               <Select
@@ -95,7 +96,7 @@ const UserInfo = () => {
 
       <BottomBtnDiv>
         <AmendBtn>수정</AmendBtn>
-        <CancelBtn>취소</CancelBtn>
+        <CancelBtn to="/mypage">취소</CancelBtn>
       </BottomBtnDiv>
     </Wrap>
   );
@@ -208,11 +209,15 @@ const Email = styled.span`
 const NicknameDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 `;
-const Nickname = styled.span`
+const Nickname = styled.input`
   font-size: 18px;
   font-weight: 300;
+  width: 100%;
+  border: 1px solid rgb(196 196 196);
+
+  box-shadow: rgb(221 221 221) 0px 0px 10px;
 `;
 const Button = styled.button`
   border-radius: 20px;
@@ -269,7 +274,20 @@ const AmendBtn = styled.button`
   cursor: pointer;
 `;
 
-const CancelBtn = styled(AmendBtn)``;
+const CancelBtn = styled(Link)`
+  border-radius: 20px;
+  font-size: 15px;
+  text-align: center;
+  height: 40px;
+  width: 70px;
+  background-color: #56d0a0;
+  border: none;
+  color: white;
+  margin: 20px;
+  text-decoration-line: none;
+  padding-top: 11px;
+  cursor: pointer;
+`;
 
 // const CategoryName = [
 //   "선택하세요.",

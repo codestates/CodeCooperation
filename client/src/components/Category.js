@@ -3,13 +3,15 @@ import styled from "styled-components";
 
 const Category = ({ handleStack }) => {
   return (
-    <CategoryWrap>
-      {CategoryName.map((name, index) => (
-        <CategoryBtn key={index} onClick={() => handleStack(name)}>
-          {name}
-        </CategoryBtn>
-      ))}
-    </CategoryWrap>
+    <Wrap>
+      <CategoryWrap>
+        {CategoryName.map((name, index) => (
+          <CategoryBtn key={index} onClick={() => handleStack(name)}>
+            {name}
+          </CategoryBtn>
+        ))}
+      </CategoryWrap>
+    </Wrap>
   );
 };
 
@@ -23,8 +25,11 @@ const Category = ({ handleStack }) => {
 //   background-color: darkslategrey;
 // `;
 
-const CategoryWrap = styled.div`
+const Wrap = styled.div`
   max-width: 1400px;
+`;
+
+const CategoryWrap = styled.div`
   width: 100%;
   position: relative;
   display: flex;
@@ -35,6 +40,11 @@ const CategoryWrap = styled.div`
   border-bottom: 1px solid #f0f0f0;
   box-shadow: 0px -15px 10px -15px #f0f0f0 inset;
   /* overflow-y: hidden; */
+  /* @media screen and (max-width: 1000px) {
+    overflow-x: scroll;
+    height: 100%;
+    width: 100%;
+  } */
 `;
 
 const CategoryBtn = styled.li`
