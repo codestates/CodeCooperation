@@ -14,7 +14,7 @@ const ProjectList = ({ post, handleClick }) => {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/posts`).then((res) => {
+    axios.get(`https://server.codescooperation.com/posts`).then((res) => {
       console.log(res.data.data);
       if (stackClick === "전체") {
         let allPost = res.data.data.sort((a, b) => {

@@ -25,9 +25,12 @@ function DetailPage({ selectedFeed }) {
   //   });
   // };
   const deletePost = () => {
-    return axios.delete(`http://localhost:3000/post-delete/${postId}`, {
-      withCredentials: true,
-    });
+    return axios.delete(
+      `https://server.codescooperation.com/post-delete/${postId}`,
+      {
+        withCredentials: true,
+      }
+    );
   };
 
   const handleLogin = () => {

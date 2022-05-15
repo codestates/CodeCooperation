@@ -28,7 +28,7 @@ function GoogleHandler() {
   const getUserInfo = async (accessToken) => {
     axios
       .get(
-        `http://localhost:3000/google-login/userinfo?accessToken=${accessToken}`
+        `https://server.codescooperation.com/google-login/userinfo?accessToken=${accessToken}`
       )
       .then((res) => {
         console.log(res.data, "클라이언트에서받은데이터");
@@ -43,7 +43,7 @@ function GoogleHandler() {
   const getAccessToken = async (code) => {
     axios({
       method: "post",
-      url: `http://localhost:3000/google-login/token`,
+      url: `https://server.codescooperation.com/google-login/token`,
       data: {
         code,
       },
