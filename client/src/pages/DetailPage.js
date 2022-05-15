@@ -48,8 +48,8 @@ function DetailPage({ selectedFeed }) {
             </ContentTitle8Box>
             <ContentTitle4>
               <ContentTitle4Stack>
-                {JSON.parse(selectedFeed.stack).map((el) => {
-                  return <span>{el} </span>;
+                {JSON.parse(selectedFeed.stack).map((el, i) => {
+                  return <span key={i}>{el} </span>;
                 })}
               </ContentTitle4Stack>
             </ContentTitle4>
@@ -79,7 +79,7 @@ function DetailPage({ selectedFeed }) {
                 <ContentButton2>
                   <i className="fas fa-solid fa-bookmark"></i> 북마크
                 </ContentButton2>
-                {selectedFeed.id == user.id ? (
+                {selectedFeed.user.id == user.id ? (
                   <ContentButton3>삭제하기</ContentButton3>
                 ) : null}
               </ContentButtonBox>
