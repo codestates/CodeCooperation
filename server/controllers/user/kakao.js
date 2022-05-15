@@ -7,7 +7,7 @@ module.exports = {
     const code = req.body.code;
 
     const client_id = `${process.env.KAKAO_ID}`;
-    const redirect_uri = `${process.env.BASIC_URL_TEST}/oauth/callback/kakao`;
+    const redirect_uri = `${process.env.BASIC_URL}/oauth/callback/kakao`;
     const grant_type = "authorization_code";
 
     axios({
