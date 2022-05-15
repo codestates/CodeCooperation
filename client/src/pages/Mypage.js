@@ -39,7 +39,7 @@ export default function Signup() {
       setErrorMessage("");
     }
     return axios
-      .post("https://localhost:4000/signup", userinfo)
+      .post("https://localhost:3000/signup", userinfo)
       .then((res) => history.push("/"));
   };
   return (
