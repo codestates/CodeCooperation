@@ -22,6 +22,7 @@ import GoogleHandler from "./pages/GoogleHandler";
 import ScrollButton from "./components/ScrollButton";
 import ScrollToTop from "./components/ScrollToTop";
 import UserInfo from "./pages/UserInfo";
+import ProjectModifiy from "./pages/ProjectModifiy";
 
 export default function App() {
   const [post, setPost] = useState(posts.items);
@@ -44,6 +45,9 @@ export default function App() {
         </Route>
         <Route path="/projectadd">
           <ProjectAdd />
+        </Route>
+        <Route path="/projectmodifiy">
+          <ProjectModifiy />
         </Route>
         {/* <Route path="/login">
           <Login

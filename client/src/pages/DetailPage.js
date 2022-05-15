@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import SupportRequest from "../components/SupportRequest";
+import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
 import image1 from "../images/4.png";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 function DetailPage({ selectedFeed }) {
   const [support, setSupport] = useState(false);
@@ -10,6 +12,12 @@ function DetailPage({ selectedFeed }) {
 
   const clickRequest = () => {
     setSupport(!support);
+  };
+
+  let postId = selectedFeed.id;
+
+  const deletePost = () => {
+    axios.post(`http:localhost:3000/post-delete:${postId}`);
   };
 
   return (
@@ -70,15 +78,17 @@ function DetailPage({ selectedFeed }) {
                 </Content7UserBox>
               </Container0Box4>
               <ContentButtonBox>
-                <ContentButton onClick={clickRequest}>지원하기</ContentButton>
+                {/* <ContentButton onClick={clickRequest}>지원하기</ContentButton> */}
                 <ContentButton2>
                   <i className="fas fa-solid fa-bookmark"></i> 북마크
                 </ContentButton2>
                 {selectedFeed.user.id == user.id ? (
-                  <ContentButton3>삭제하기</ContentButton3>
+                  <ContentButton3 onClick={deletePost}>삭제하기</ContentButton3>
                 ) : null}
                 {selectedFeed.user.id == user.id ? (
-                  <ContentButton4>수정하기</ContentButton4>
+                  <ContentButton4>
+                    <Link to="/projectmodifiy">수정하기</Link>
+                  </ContentButton4>
                 ) : null}
               </ContentButtonBox>
             </Container0Box3>
@@ -137,7 +147,7 @@ const Container0Box4 = styled.div`
   width: 100%;
   height: 30%;
   /* border: 1px solid lightgray; */
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const Content7ImgBox = styled.div`
@@ -159,6 +169,7 @@ const Content7Img = styled.img.attrs({
 const Content7UserBox = styled.div`
   width: 100%;
   height: 100%;
+  margin-bottom: 20px;
   /* border: 1px solid lightgray; */
 
   /* height: 100%; */
@@ -167,10 +178,10 @@ const Content7User = styled.div`
   width: 100%;
   /* line-height: 5rem; */
   /* height: 100%; */
-  padding: 10px 0 0 0;
+  padding: 20px 0px 0px 5px;
   font-weight: 500;
   font-family: Noto Sans KR;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #4c5175;
 `;
 
@@ -263,10 +274,27 @@ const ContentButton4 = styled.button`
   border: 2px solid #4c5175;
   color: #4c5175;
   margin: 0 0 20px 0;
-  &:hover {
+  a {
+    text-decoration: none;
+    color: #4c5175;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  a:focus {
+    text-decoration: none;
+  }
+
+  a:active {
+    text-decoration: none;
+  }
+  /* &:hover {
     background-color: #4c5175;
     color: white;
-  }
+  } */
 `;
 
 const ContentTitleBox1 = styled.div`
