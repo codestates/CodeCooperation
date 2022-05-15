@@ -32,11 +32,6 @@ function DetailPage({ selectedFeed }) {
             </ContentTitle9Box>
             <ContentTitle3Box>
               <ContentTitle3Box2>
-                {/* <ContentTitle3ImgBox>
-                  <ContentTitle3Img></ContentTitle3Img>
-                </ContentTitle3ImgBox>
-
-                <ContentTitle3>응애나개발자</ContentTitle3> */}
                 {selectedFeed.start_date} ~ {selectedFeed.end_date}
               </ContentTitle3Box2>
               <ContentTitle3Box3>
@@ -81,6 +76,9 @@ function DetailPage({ selectedFeed }) {
                 </ContentButton2>
                 {selectedFeed.user.id == user.id ? (
                   <ContentButton3>삭제하기</ContentButton3>
+                ) : null}
+                {selectedFeed.user.id == user.id ? (
+                  <ContentButton4>수정하기</ContentButton4>
                 ) : null}
               </ContentButtonBox>
             </Container0Box3>
@@ -127,7 +125,7 @@ const Container0Box3 = styled.div`
 
   flex-direction: column;
   width: 100%;
-  height: 30%;
+  height: 40%;
   margin: 10rem 0 0 0;
   border: 3px solid #e1e8ec;
   border-radius: 1rem;
@@ -237,12 +235,34 @@ const ContentButton3 = styled.button`
   font-weight: 500;
   font-family: Noto Sans KR;
   border-radius: 1.5rem;
+  margin: 0 0 20px 0;
   cursor: pointer;
   /* background-color: #8ce7d9;
   color: white; */
   background-color: white;
   border: 2px solid #4c5175;
   color: #4c5175;
+  &:hover {
+    background-color: #4c5175;
+    color: white;
+  }
+`;
+
+const ContentButton4 = styled.button`
+  width: 80%;
+  height: 20%;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: Noto Sans KR;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  /* background-color: #8ce7d9;
+  color: white; */
+  background-color: white;
+  border: 2px solid #4c5175;
+  color: #4c5175;
+  margin: 0 0 20px 0;
   &:hover {
     background-color: #4c5175;
     color: white;
