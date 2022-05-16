@@ -49,6 +49,9 @@ const Wrap = styled.div`
   flex-wrap: wrap;
   position: relative;
   justify-content: space-between;
+  @media screen and (max-width: 819px) {
+    justify-content: center;
+  }
 `;
 
 const MainDiv = styled.div`

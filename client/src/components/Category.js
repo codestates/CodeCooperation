@@ -24,17 +24,21 @@ const Category = ({ handleStack }) => {
 // `;
 
 const CategoryWrap = styled.div`
-  max-width: 1400px;
-  width: 100%;
+  width: auto;
   position: relative;
   display: flex;
   margin: auto;
-  justify-content: center;
+  justify-content: space-between;
   /* align-items: center; */
   padding-bottom: 10px;
   border-bottom: 1px solid #f0f0f0;
   box-shadow: 0px -15px 10px -15px #f0f0f0 inset;
   /* overflow-y: hidden; */
+  @media screen and (max-width: 1000px) {
+    overflow-x: scroll;
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const CategoryBtn = styled.li`
@@ -44,7 +48,7 @@ const CategoryBtn = styled.li`
   font-size: 19px;
   padding: 8px 10px;
   height: 40px;
-  width: auto;
+  width: 100%;
   color: black;
 
   &:hover {
@@ -55,7 +59,7 @@ const CategoryBtn = styled.li`
 `;
 
 const CategoryName = [
-  "전체",
+  "All",
   "JavaScript",
   "Java",
   "Phython",

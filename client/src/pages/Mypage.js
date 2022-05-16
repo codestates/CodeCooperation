@@ -6,48 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 axios.defaults.withCredentials = true;
 
-export default function Signup() {
-  let user = useSelector((state) => state.userInfo.userInfo);
-
+export default function Mypage() {
   const [isUserPosts, setIsUserPosts] = useState(true);
-  const getInterestPost = () => {
-    setIsUserPosts(false);
-  };
-
-  const [userinfo, setuserinfo] = useState({
-    email: "",
-    password: "",
-    username: "",
-    mobile: "",
-  });
-  const [errorMessage, setErrorMessage] = useState("");
-  const history = useHistory();
-  const handleInputValue = (key) => (e) => {
-    setuserinfo({ ...userinfo, [key]: e.target.value });
-  };
-  const handleSignup = () => {
-    if (
-      !userinfo.email ||
-      !userinfo.password ||
-      !userinfo.username ||
-      !userinfo.mobile
-    ) {
-      setErrorMessage("모든 항목은 필수입니다");
-      console.log(errorMessage);
-      return;
-    } else {
-      setErrorMessage("");
-    }
-    return axios
-      .post("https://localhost:3000/signup", userinfo)
-      .then((res) => history.push("/"));
-  };
   return (
     <Wrap>
       <ProfileDiv>
         <ProfileTop>
           <Picture></Picture>
-          <Nickname>{user.nickname}지후</Nickname>
+          <Nickname>지후</Nickname>
         </ProfileTop>
 
         <Bar></Bar>
@@ -65,9 +31,7 @@ export default function Signup() {
 
       <ProjectDiv>
         <StyledNav>
-          <NavItems toggle={isUserPosts} onClick={getInterestPost}>
-            모집
-          </NavItems>
+          <NavItems>모집</NavItems>
           <NavItems>관심</NavItems>
           <NavItems>진행</NavItems>
           <NavItems>완료</NavItems>
@@ -87,6 +51,8 @@ const Wrap = styled.div`
   display: flex;
   width: 1400px;
   margin: auto;
+  @media screen and (max-width: 1000px) {
+  }
 `;
 
 const ProfileDiv = styled.div`
