@@ -10,7 +10,8 @@
 
 ## 👍어떤 기술들이 사용되었을까요?
 
-<img src="https://cdn.discordapp.com/attachments/965507812446859273/966740992688545882/undefined_1.png"  width="700" height="500">
+![undefined (1)](https://user-images.githubusercontent.com/87293880/168537834-431328d2-29a4-49cf-851c-d3a665a1fe5f.png)
+
 
 ## 자세한 내용은 여기서!
 
