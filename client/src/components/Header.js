@@ -98,6 +98,8 @@ const NavList = styled.div`
   padding-top: 25px;
   justify-content: space-around;
   /* background-color: yellow; */
+  @media screen and (max-width: 800px) {
+  }
 `;
 
 const ProjectList = styled(Link)`
