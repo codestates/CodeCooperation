@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
 function LoginPopup({ handleClose }) {
+  const outSection = useRef();
   return (
     <div>
-      <BackDrop onClick={handleClose}>
+      <BackDrop
+        ref={outSection}
+        onClick={(e) => {
+          if (outSection.current === e.target) {
+            handleClose();
+          }
+        }}
+      >
         <PopUp>
           <H1Box>
             <H1Text>로그인 후 CodeCooperation 이용하세요!</H1Text>

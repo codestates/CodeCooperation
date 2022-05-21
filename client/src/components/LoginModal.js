@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +29,12 @@ function LoginModal({ handleLoginModal, setShowModal }) {
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const outSection = useRef();
+
+  const handleSignUp = () => {
+    handleLoginModal();
+    history.push("/signup");
+  };
 
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
@@ -73,7 +79,14 @@ function LoginModal({ handleLoginModal, setShowModal }) {
   };
   return (
     <div>
-      <BackDrop>
+      <BackDrop
+        ref={outSection}
+        onClick={(e) => {
+          if (outSection.current === e.target) {
+            handleLoginModal();
+          }
+        }}
+      >
         <PopUp>
           <CancelButtonBox>
             <CancelButton onClick={handleLoginModal}>✖</CancelButton>
@@ -108,11 +121,7 @@ function LoginModal({ handleLoginModal, setShowModal }) {
             </LoginButton>
           </LoginButtonBox>
           <SignUpButtonBox>
-            <SignUpButton>
-              <Link to="/signup" onClick={handleLoginModal}>
-                회원가입
-              </Link>
-            </SignUpButton>
+            <SignUpButton onClick={handleSignUp}>회원가입</SignUpButton>
           </SignUpButtonBox>
           <GoogleBox>
             <a href={GOGLE_AUTH_URL}>
@@ -180,9 +189,9 @@ const LoginButtonBox = styled.div`
 const LoginButton = styled.button`
   border: 0;
   outline: 0;
-  width: 50%;
+  width: 45%;
   height: 90%;
-  border-radius: 3rem;
+  border-radius: 0.5rem;
   color: white;
   font-family: "Noto Sans KR";
   font-weight: 800;
@@ -190,10 +199,10 @@ const LoginButton = styled.button`
   background-color: white;
   border: 2px solid #4c5175;
   color: #4c5175;
-  /* &:hover {
+  &:hover {
     background-color: #4c5175;
     color: white;
-  } */
+  }
 `;
 
 const SignUpButtonBox = styled.div`
@@ -211,30 +220,17 @@ const SignUpButton = styled.button`
   outline: 0;
   font-family: "Noto Sans KR";
   font-weight: 800;
-  width: 50%;
+  width: 45%;
   height: 90%;
-  border-radius: 3rem;
+  border-radius: 0.5rem;
   color: white;
   cursor: pointer;
   background-color: white;
   border: 2px solid #4c5175;
   color: #4c5175;
-  a {
-    text-decoration: none;
-    color: #4c5175;
-  }
-  a:visited {
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  a:focus {
-    text-decoration: none;
-  }
-
-  a:active {
-    text-decoration: none;
+  &:hover {
+    background-color: #4c5175;
+    color: white;
   }
 `;
 
