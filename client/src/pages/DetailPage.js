@@ -134,6 +134,7 @@ const Container0 = styled.div`
   align-items: center;
   width: 100%;
   height: 60rem;
+  padding: 100px 0 0 0;
   /* border: 1px solid lightgray; */
 `;
 

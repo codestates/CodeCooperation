@@ -25,7 +25,7 @@ function Main() {
     setIsLogin2(false);
   };
   return (
-    <div>
+    <Ground>
       {isLogin2 ? (
         <LoginPopup handleClose={handleClose} setIsLogin2={setIsLogin2} />
       ) : null}
@@ -219,22 +219,26 @@ function Main() {
           </Content_6_button_box>
         </Content_6_box>
       </Container_6>
-    </div>
+    </Ground>
   );
 }
 
 export default Main;
 
 /*************Container_0 부분************/
+const Ground = styled.div`
+  padding: 45px 0 0 0;
+  /* border: 1px solid red; */
+`;
+
 const Container_0 = styled.div`
   display: flex;
-  margin: 0;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+
   /* border: 1px solid lightgray; */
   width: 100%;
   height: 30rem;
-  margin: 0;
 `;
 
 const Container_0_box = styled.div`
@@ -249,7 +253,7 @@ const Background_img_box = styled.div`
   object-fit: cover;
   overflow: hidden;
 
-  z-index: -1;
+  z-index: -2;
 `;
 
 const Background_img = styled.img.attrs({})`
@@ -258,18 +262,22 @@ const Background_img = styled.img.attrs({})`
   height: 100%;
   object-fit: cover;
   overflow: hidden;
+  padding: 50px 0 0 0;
   transform: translateZ(0);
   backface-visibility: hidden;
-  z-index: -1;
+  z-index: -2;
 `;
 
 const Content_0_img_0 = styled.img.attrs({
   src: `${image_1}`,
 })`
+  position: sticky;
   width: 100%;
   height: 100%;
   transform: translateZ(0);
   backface-visibility: hidden;
+  position: sticky;
+  z-index: -1;
   @media screen and (max-width: 1000px) {
     display: none;
   }
@@ -401,6 +409,8 @@ const Content_2_img_box = styled.div`
 const Cotent_2_img = styled.img.attrs({
   src: `${image_2}`,
 })`
+  position: sticky;
+  z-index: -1;
   transform: translateZ(0);
   backface-visibility: hidden;
   width: 100%;
@@ -519,6 +529,8 @@ const Content_4_img_box = styled.div`
 const Cotent_4_img = styled.img.attrs({
   src: `${image_3}`,
 })`
+  position: sticky;
+  z-index: -1;
   transform: translateZ(0);
   backface-visibility: hidden;
   width: 100%;
@@ -667,6 +679,8 @@ const Content_5_review_title_image_box_2 = styled.div`
 const Content_5_review_title_image = styled.img.attrs({
   src: `${image_4}`,
 })`
+  position: sticky;
+  z-index: -1;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -771,6 +785,8 @@ const Content_6_img_box = styled.div`
 const Content_6_img = styled.img.attrs({
   src: `${image_5}`,
 })`
+  position: sticky;
+  z-index: -1;
   width: 100%;
   height: 100%;
   position: relative;

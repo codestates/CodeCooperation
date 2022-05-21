@@ -17,7 +17,7 @@ import kotlinImg from "../images/kotlin.png";
 import typescriptImg from "../images/typescript.png";
 const PostStackImg = ({ stack }) => {
   const [stacks, setStacks] = React.useState(0);
-  const [Stack, setStack] = React.useState([
+  const [Stacklist, setStackList] = React.useState([
     {
       id: "React",
       img: reactImg,
@@ -91,7 +91,7 @@ const PostStackImg = ({ stack }) => {
   ]);
 
   React.useEffect(() => {
-    Stack.map((item) => {
+    Stacklist.map((item) => {
       if (item.id === stack) {
         setStacks(item.img);
       }

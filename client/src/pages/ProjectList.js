@@ -60,7 +60,9 @@ const MainDiv = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
+  padding: 100px 0 0 0;
   margin: auto;
+  /* border: 1px solid red; */
 `;
 
 export default ProjectList;

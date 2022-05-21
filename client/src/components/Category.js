@@ -27,7 +27,7 @@ const CategoryWrap = styled.div`
   width: auto;
   position: relative;
   display: flex;
-  margin: auto;
+  margin-top: 10px;
   justify-content: space-between;
   /* align-items: center; */
   padding-bottom: 10px;
@@ -59,7 +59,7 @@ const CategoryBtn = styled.li`
 `;
 
 const CategoryName = [
-  "All",
+  "전체",
   "JavaScript",
   "Java",
   "Phython",
