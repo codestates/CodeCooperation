@@ -85,6 +85,7 @@ const Wrap = styled.div`
     background-color: lightblue;
   } */
   border-bottom: 1px solid lightgray;
+  /* box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3); */
   /* border: 1px solid lightgray; */
   z-index: 1;
 `;

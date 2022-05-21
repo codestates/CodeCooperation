@@ -158,6 +158,7 @@ display: flex;
 align-items: center;
 flex-direction: column;
 height: 100%;
+padding: 100px 0 0 0;
 /* border: 1px solid lightgray; */
 `;
 const Styledh2 = Styled.div`

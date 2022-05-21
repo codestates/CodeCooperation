@@ -93,10 +93,11 @@ const PostStackImg = ({ stack }) => {
   React.useEffect(() => {
     Stacklist.map((item) => {
       if (item.id === stack) {
+        // console.log(stack);
         setStacks(item.img);
       }
     });
-  }, []);
+  });
 
   return (
     <>

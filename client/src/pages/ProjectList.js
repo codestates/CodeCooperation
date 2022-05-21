@@ -26,6 +26,7 @@ const ProjectList = ({ post, handleClick }) => {
         let result = res.data.data.filter((el) =>
           el.stack.includes(stackClick)
         );
+        // console.log(result, "리절트입니다.");
         setShowPosts(result);
       }
     });
