@@ -15,18 +15,24 @@ const ProjectList = ({ post, handleClick }) => {
 
   useEffect(() => {
     axios.get(`https://server.codescooperation.com/posts`).then((res) => {
-      console.log(res.data.data);
+      // console.log(res.data.data);
+      let allPost = res.data.data.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
       if (stackClick === "전체") {
-        let allPost = res.data.data.sort((a, b) => {
-          return new Date(b.createdAt) - new Date(a.createdAt);
-        });
         //배포하면 allPost넣기
         setShowPosts(allPost);
       } else {
-        let result = res.data.data.filter((el) =>
-          el.stack.includes(stackClick)
-        );
-        // console.log(result, "리절트입니다.");
+        let result = allPost.filter((el) => {
+          let items = JSON.parse(el.stack);
+
+          for (let i = 0; i < el.stack.length; i++) {
+            if (items[i] === stackClick) {
+              return true;
+            }
+          }
+        });
+        console.log(result, "리절트입니다.");
         setShowPosts(result);
       }
     });
