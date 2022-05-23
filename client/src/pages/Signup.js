@@ -60,8 +60,8 @@ export default function Signup() {
       axios_Login(userinfo.email, userinfo.password)
         .then((res) => {
           console.log("받은데이터유저", res);
-          const { id, nickname, loginType } = res.data.user;
-          const accessToken = res.data.accessToken;
+          const { id, nickname, accessToken, loginType } = res.data.user;
+          console.log(accessToken)
           dispatch(
             LOG_IN({
               id,

@@ -46,12 +46,12 @@ module.exports = {
           password,
         },
       });
-      // const postInfo = await post.findAll({
-      //   where: {
-      //     user_id: result.id,
-      //   },
-      // });
-      // console.log(postInfo, "유저의포스팅정보");
+      const postInfo = await post.findAll({
+        where: {
+          user_id: result.id,
+        },
+      });
+      console.log(postInfo, "유저의포스팅정보");
       if (result) {
         const userData = {
           id: result.id,
@@ -73,11 +73,11 @@ module.exports = {
           //   ovewrite: true,
           // })
           .status(200)
-          .json({ user: userData });
+          .json({ user: userData, post: postInfo });
       } else {
         // 최초 로그인 시 회원가입 진행
 
-        await user.create({
+        user.create({
           email: userInfo.data.kakao_account.email,
           password: password,
           nickname: nickname,

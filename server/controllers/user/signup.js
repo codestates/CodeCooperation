@@ -1,14 +1,20 @@
 const { user } = require("../../models");
-module.exports = (req, res) => {
+const bcrypt = require("bcrypt");
+
+module.exports = async (req, res) => {
     const { email, password, nickname } = req.body;
     if( !email || !password || !nickname) {
       res.status(422).send("insufficient parameters supplied")
     }
-    user.findOrCreate({
+    const salt = 12;
+    const hashed = await bcrypt.hash(password, salt);
+    // console.log(hashed);
+
+    await user.findOrCreate({
       where : { email },
       defaults : {
         email,
-        password,
+        password : hashed,
         nickname
       }
     })
@@ -19,4 +25,6 @@ module.exports = (req, res) => {
         res.status(409).send({ message : "email exist" })
       }
     })
+
+
   }
