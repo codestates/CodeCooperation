@@ -106,7 +106,7 @@ const ProjectModifiy = ({ location }) => {
       console.log("*********************", accessToken);
       axios
         .patch(
-          `http://localhost:3001/post-modify/${userInfo}`,
+          `http://localhost:3000/post-modify/${userInfo}`,
           {
             userId: user.id,
             postTitle: postTitle,

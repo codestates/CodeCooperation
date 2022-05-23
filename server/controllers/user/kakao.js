@@ -77,7 +77,7 @@ module.exports = {
       } else {
         // 최초 로그인 시 회원가입 진행
 
-        user.create({
+        await user.create({
           email: userInfo.data.kakao_account.email,
           password: password,
           nickname: nickname,
