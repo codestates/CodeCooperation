@@ -9,7 +9,7 @@ const indexRouter = require("./controllers/index");
 // 시퀄라이즈 모델 테스트
 const models = require("./models/index");
 models.sequelize
-  .sync()
+  .sync({ alter:true }) 
   .then(() => {
     console.log("DB연결");
   })
@@ -21,11 +21,11 @@ models.sequelize
 // 미들웨어
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false })); // qs라이브러리 사용하지 않음
-app.use(cookieParser()); // 쿠키 암호 나중에 설정
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser()); 
 app.use(
   cors({
-    origin: true,
+    origin: ["http://localhost:3001"],
     credentials: true,
     methods: ["GET", "POST", "OPTION", "PUT", "DELETE", "PATCH"],
   })
