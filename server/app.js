@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false })); // qs라이브러리 사용하
 app.use(cookieParser()); // 쿠키 암호 나중에 설정
 app.use(
   cors({
-    origin: [process.env.URL],
+    origin: true,
     credentials: true,
     methods: ["GET", "POST", "OPTION", "PUT", "DELETE", "PATCH"],
   })

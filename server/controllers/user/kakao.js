@@ -46,12 +46,12 @@ module.exports = {
           password,
         },
       });
-      const postInfo = await post.findAll({
-        where: {
-          user_id: result.id,
-        },
-      });
-      console.log(postInfo, "유저의포스팅정보");
+      // const postInfo = await post.findAll({
+      //   where: {
+      //     user_id: result.id,
+      //   },
+      // });
+      // console.log(postInfo, "유저의포스팅정보");
       if (result) {
         const userData = {
           id: result.id,
@@ -73,7 +73,7 @@ module.exports = {
           //   ovewrite: true,
           // })
           .status(200)
-          .json({ user: userData, post: postInfo });
+          .json({ user: userData });
       } else {
         // 최초 로그인 시 회원가입 진행
 
