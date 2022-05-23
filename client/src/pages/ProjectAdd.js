@@ -103,7 +103,7 @@ const ProjectAdd = () => {
       console.log("*********************", accessToken);
       axios
         .post(
-          "https://server.codescooperation.com/post-add",
+          "http://localhost:3001/posting",
           {
             userId: user.id,
             postTitle: postTitle,

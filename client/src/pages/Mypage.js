@@ -8,12 +8,14 @@ axios.defaults.withCredentials = true;
 
 export default function Mypage() {
   const [isUserPosts, setIsUserPosts] = useState(true);
+
+  let user = useSelector((state) => state.userInfo.userInfo);
   return (
     <Wrap>
       <ProfileDiv>
         <ProfileTop>
           <Picture></Picture>
-          <Nickname>지후</Nickname>
+          <Nickname>{user.nickname}</Nickname>
         </ProfileTop>
 
         <Bar></Bar>
