@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOG_OUT } from "../reducer/userInfoReducer";
 import LoginModal from "./LoginModal";
 import LoginPopup from "./LoginPopup";
+import profil from "../images/4.png";
 
 const Header = ({ handleResponseSuccess }) => {
   const [showModal, setShowModal] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [showDrop, setShowDrop] = useState(false);
 
   const handleLoginModal = () => {
     setShowModal(!showModal);
@@ -20,11 +22,13 @@ const Header = ({ handleResponseSuccess }) => {
 
   /*Login*/
   let isLogin = useSelector((state) => state.userInfo.isLogin);
+  let user = useSelector((state) => state.userInfo.userInfo.nickname);
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    setShowDrop(!showDrop);
     history.push("/");
     dispatch(LOG_OUT());
   };
@@ -38,6 +42,13 @@ const Header = ({ handleResponseSuccess }) => {
   };
   const handleClose = () => {
     setShowPopup(false);
+  };
+  const handleDropBox = () => {
+    setShowDrop(!showDrop);
+  };
+  const handleMyPage = () => {
+    setShowDrop(!showDrop);
+    history.push("/mypage");
   };
 
   return (
@@ -58,14 +69,20 @@ const Header = ({ handleResponseSuccess }) => {
           <ProjectAdd onClick={handleAdd}>프로젝트 추가</ProjectAdd>
         </NavList>
         <LoginList>
-          {isLogin ? <Login onClick={handleLogout}>로그아웃</Login> : null}
-          {isLogin ? (
-            <Link to="/mypage">
-              <Login>마이페이지</Login>
-            </Link>
-          ) : (
-            <Login onClick={handleLoginModal}>로그인</Login>
+          {isLogin && <LoginText>안녕하세요 </LoginText>}
+          {isLogin && <NameText>{" " + user + " 님"}</NameText>}
+          {isLogin && (
+            <LoginImgBox onClick={handleDropBox}>
+              <LoginImg src={profil} />
+            </LoginImgBox>
           )}
+          {showDrop && (
+            <DropBox>
+              <Li onClick={handleMyPage}>마이페이지</Li>
+              <Li2 onClick={handleLogout}>로그아웃</Li2>
+            </DropBox>
+          )}
+          {isLogin ? null : <Login onClick={handleLoginModal}>로그인</Login>}
         </LoginList>
       </ContainerBox>
     </Wrap>
@@ -156,7 +173,33 @@ const LoginList = styled.div`
   position: relative;
   /* border: 1px solid lightgray; */
   justify-content: flex-end;
-  /* align-items: center; */
+  align-items: center;
+`;
+
+const LoginText = styled.div`
+  padding-top: 5px;
+  font-family: Noto Sans KR;
+  font-weight: 500;
+`;
+const NameText = styled.div`
+  font-family: Noto Sans KR;
+  font-weight: 600;
+  font-size: large;
+  padding-left: 3px;
+`;
+
+const LoginImgBox = styled.div`
+  width: 50px;
+  height: 100%;
+  cursor: pointer;
+`;
+
+const LoginImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 `;
 
 const Login = styled.button`
@@ -180,4 +223,40 @@ const Login = styled.button`
 `;
 /*Modal - styled-components*/
 
+const DropBox = styled.div`
+  background: #ffffff;
+  color: #333333;
+  border-radius: 8px;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 100px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+`;
+const Li = styled.div`
+  font-family: Noto Sans KR;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  &:hover {
+    color: #56d0a0;
+  }
+`;
+const Li2 = styled.div`
+  font-family: Noto Sans KR;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  &:hover {
+    color: #56d0a0;
+  }
+`;
 export default Header;

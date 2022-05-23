@@ -48,7 +48,7 @@ export default function Mypage() {
 
 const Wrap = styled.div`
   justify-content: center;
-  padding: 10px;
+  padding: 110px 0 0 0;
   height: auto;
   display: flex;
   width: 1400px;

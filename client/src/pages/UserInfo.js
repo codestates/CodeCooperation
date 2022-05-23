@@ -125,7 +125,7 @@ const Wrap = styled.div`
   flex-direction: column;
   align-items: center;
   height: 800px;
-  padding: 50px;
+  padding: 125px 0 0 0;
 `;
 
 const Header = styled.div`

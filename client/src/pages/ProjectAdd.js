@@ -197,7 +197,6 @@ const ProjectAdd = () => {
             isMulti
             placeholder="기술 스택을 선택해주세요"
             styles={styles}
-            components={animatedComponents}
             value={teckStack}
             options={stackSelect}
             onChange={handleChange}
