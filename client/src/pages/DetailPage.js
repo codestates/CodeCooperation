@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import socketIOClient from "socket.io-client";
 import SupportRequest from "../components/SupportRequest";
 import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -6,17 +7,45 @@ import image1 from "../images/4.png";
 import { useDispatch, useSelector } from "react-redux";
 import { POST_ID } from "../reducer/userInfoReducer";
 import axios from "axios";
+import ChatInput from "../components/ChatInput/ChatInput";
+import ChatLog from "../components/ChatLog/ChatLog";
 
 function DetailPage({ selectedFeed }) {
-  const [support, setSupport] = useState(false);
   let user = useSelector((state) => state.userInfo.userInfo);
+  let postId = selectedFeed.id;
+  const [support, setSupport] = useState(false);
+  const [currentSocket, setCurrentSocket] = useState();
+  const [userName, setUserName] = useState(user.nickname);
+  const [roomName, setroomName] = useState(selectedFeed.id);
+
+  useEffect(() => {
+    if (!userName) {
+      setUserName("게스트");
+    } else {
+      setUserName(user.nickname);
+    }
+  }, []);
+
+  const myInfo = {
+    roomName,
+    userName,
+  };
+
+  useEffect(() => {
+    setCurrentSocket(socketIOClient("localhost:3000"));
+  }, []); //소켓연결
+
+  if (currentSocket) {
+    currentSocket.on("connect", () => {
+      currentSocket.emit("join", myInfo);
+    });
+  }
   const history = useHistory();
   const clickRequest = () => {
     setSupport(!support);
   };
   const dispatch = useDispatch();
 
-  let postId = selectedFeed.id;
   dispatch(POST_ID(postId));
   console.log();
   // const deletePost = () => {
@@ -25,7 +54,7 @@ function DetailPage({ selectedFeed }) {
   //   });
   // };
   const deletePost = () => {
-    return axios.delete(`http://localhost:3000/post-delete/${postId}`, {
+    return axios.delete(`https://localhost:3000/post-delete/${postId}`, {
       withCredentials: true,
     });
   };
@@ -104,14 +133,33 @@ function DetailPage({ selectedFeed }) {
                   </ContentButton3>
                 ) : null}
                 {selectedFeed.user.id == user.id ? (
-                  <ContentButton4
-                    onClick={() => history.push(`/projectmodifiy/${postId}`)}
-                  >
-                    수정하기
+                  <ContentButton4>
+                    <Link
+                      to={{
+                        pathname: `/projectmodifiy/${postId}`,
+                      }}
+                    >
+                      수정하기
+                    </Link>
                   </ContentButton4>
                 ) : null}
               </ContentButtonBox>
             </Container0Box3>
+            <ChantBox0>
+              {currentSocket && (
+                <>
+                  <ChatLogBox>
+                    <ChatLog socket={currentSocket} postId={postId}></ChatLog>
+                  </ChatLogBox>
+                  <ChatInputBox>
+                    <ChatInput
+                      userName={userName}
+                      socket={currentSocket}
+                    ></ChatInput>
+                  </ChatInputBox>
+                </>
+              )}
+            </ChantBox0>
           </Container0Box2>
         </Container0BigBox>
       </Container0>
@@ -153,11 +201,10 @@ const Container0Box2 = styled.div`
 
 const Container0Box3 = styled.div`
   display: flex;
-
   flex-direction: column;
   width: 100%;
-  height: 40%;
-  margin: 10rem 0 0 0;
+  height: 30%;
+  margin: 1rem 0 0 0;
   border: 3px solid #e1e8ec;
   border-radius: 1rem;
 `;
@@ -295,11 +342,27 @@ const ContentButton4 = styled.button`
   border: 2px solid #4c5175;
   color: #4c5175;
   margin: 0 0 20px 0;
+  a {
+    text-decoration: none;
+    color: #4c5175;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  a:focus {
+    text-decoration: none;
+  }
 
-  &:hover {
+  a:active {
+    text-decoration: none;
+  }
+  /* &:hover {
     background-color: #4c5175;
     color: white;
-  }
+  } */
 `;
 
 const ContentTitleBox1 = styled.div`
@@ -449,4 +512,27 @@ const ContentTitle9 = styled.div`
   font-size: 1.2rem;
   font-weight: 800;
   font-family: "Noto Sans KR";
+`;
+const ChantBox0 = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+  margin: 2rem 0 0 0;
+  border: 3px solid #e1e8ec;
+  border-radius: 1rem;
+`;
+
+const ChatLogBox = styled.div`
+  width: 100%;
+  height: 85%;
+  overflow: auto;
+  /* border: 1px solid lightgray; */
+`;
+
+const ChatInputBox = styled.div`
+  width: 100%;
+  height: 15%;
+  border-top: 2px solid #e1e8ec;
+  /* border: 1px solid lightgray; */
 `;

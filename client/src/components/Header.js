@@ -10,6 +10,7 @@ import { LOG_OUT } from "../reducer/userInfoReducer";
 import LoginModal from "./LoginModal";
 import LoginPopup from "./LoginPopup";
 import profil from "../images/4.png";
+import { useEffect } from "react/cjs/react.production.min";
 
 const Header = ({ handleResponseSuccess }) => {
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +25,14 @@ const Header = ({ handleResponseSuccess }) => {
   let isLogin = useSelector((state) => state.userInfo.isLogin);
   let user = useSelector((state) => state.userInfo.userInfo.nickname);
 
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+  // console.log(userInfo);
+  //let user2 = userInfo.nickname;
+  // isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
+  if (userInfo !== null) {
+    user = userInfo.nickname;
+    isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
+  }
   const history = useHistory();
   const dispatch = useDispatch();
 

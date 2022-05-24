@@ -10,7 +10,7 @@ const posts = require("./post/posts");
 const post_add = require("./post/post-add");
 const post_delete = require("./post/post-delete");
 const post_modify = require("./post/post-modify");
-
+const chat = require("./chat/chat");
 // oauth
 router.get("/", kakao.get);
 router.post("/kakao-login/token", kakao.getToken);
@@ -30,4 +30,5 @@ router.post("/post-add", post_add.sendPost);
 router.delete("/post-delete/:id", post_delete.postdelete);
 router.patch("/post-modify/:id", post_modify.postmodify);
 
+router.get("/chat", chat.chatAll);
 module.exports = router;
