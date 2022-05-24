@@ -69,8 +69,8 @@ const Header = ({ handleResponseSuccess }) => {
           <ProjectAdd onClick={handleAdd}>프로젝트 추가</ProjectAdd>
         </NavList>
         <LoginList>
-          {isLogin && <LoginText>안녕하세요 </LoginText>}
-          {isLogin && <NameText>{" " + user + " 님"}</NameText>}
+          {/* {isLogin && <LoginText>안녕하세요 </LoginText>} */}
+          {isLogin && <NameText>{user + " 님"}</NameText>}
           {isLogin && (
             <LoginImgBox onClick={handleDropBox}>
               <LoginImg src={profil} />
@@ -182,8 +182,9 @@ const LoginText = styled.div`
   font-weight: 500;
 `;
 const NameText = styled.div`
-  font-family: Noto Sans KR;
-  font-weight: 600;
+  font-family: Jua;
+  /* font-weight: 600; */
+  color: #383c58;
   font-size: large;
   padding-left: 3px;
 `;

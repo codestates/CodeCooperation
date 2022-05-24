@@ -25,12 +25,9 @@ function DetailPage({ selectedFeed }) {
   //   });
   // };
   const deletePost = () => {
-    return axios.delete(
-      `https://server.codescooperation.com/post-delete/${postId}`,
-      {
-        withCredentials: true,
-      }
-    );
+    return axios.delete(`http://localhost:3000/post-delete/${postId}`, {
+      withCredentials: true,
+    });
   };
 
   const handleLogin = () => {
@@ -107,14 +104,10 @@ function DetailPage({ selectedFeed }) {
                   </ContentButton3>
                 ) : null}
                 {selectedFeed.user.id == user.id ? (
-                  <ContentButton4>
-                    <Link
-                      to={{
-                        pathname: `/projectmodifiy/${postId}`,
-                      }}
-                    >
-                      수정하기
-                    </Link>
+                  <ContentButton4
+                    onClick={() => history.push(`/projectmodifiy/${postId}`)}
+                  >
+                    수정하기
                   </ContentButton4>
                 ) : null}
               </ContentButtonBox>
@@ -302,27 +295,11 @@ const ContentButton4 = styled.button`
   border: 2px solid #4c5175;
   color: #4c5175;
   margin: 0 0 20px 0;
-  a {
-    text-decoration: none;
-    color: #4c5175;
-  }
-  a:visited {
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  a:focus {
-    text-decoration: none;
-  }
 
-  a:active {
-    text-decoration: none;
-  }
-  /* &:hover {
+  &:hover {
     background-color: #4c5175;
     color: white;
-  } */
+  }
 `;
 
 const ContentTitleBox1 = styled.div`

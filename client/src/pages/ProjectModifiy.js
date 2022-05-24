@@ -125,7 +125,7 @@ const ProjectModifiy = ({ location }) => {
           }
         )
         .then((res) => {
-          history.push("/");
+          history.push("/projectlist");
         })
         .catch((error) => {
           window.alert(error);
