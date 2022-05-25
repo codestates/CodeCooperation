@@ -12,6 +12,7 @@ module.exports = function (sequelize, DataTypes) {
       user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        onDelete : "cascade",
         references: {
           model: "user",
           key: "id"
@@ -20,6 +21,7 @@ module.exports = function (sequelize, DataTypes) {
       post_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        onDelete : "cascade",
         references: {
           model: "post",
           key: "id"
