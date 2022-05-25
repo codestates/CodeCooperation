@@ -6,8 +6,10 @@ const ChatLog = ({ socket, postId }) => {
   const [msgList, setMsgList] = useState([]);
 
   let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
-  let user = userInfo.nickname;
-  console.log(userInfo, "유저닉네임");
+  let user;
+  if (userInfo !== null) {
+    user = userInfo.nickname;
+  }
 
   useEffect(() => {
     //스프레드문법으로 합쳐줌,
@@ -26,12 +28,10 @@ const ChatLog = ({ socket, postId }) => {
   }, [socket]);
 
   useEffect(() => {
-    console.log(postId, "포스트아이디");
     axios
       .get("http://localhost:3000/chat", { params: { postId } })
       .then((result) => {
         let Chatdata = result.data.filterd;
-        console.log(Chatdata, "필터된데이터");
         let ChatMsg = [];
         let newObj = new Object();
         for (let i = 0; i < Chatdata.length; i++) {
@@ -40,7 +40,6 @@ const ChatLog = ({ socket, postId }) => {
           ChatMsg.push(newObj);
           newObj = new Object();
         }
-        console.log(ChatMsg, "매핑된값");
         setMsgList([...ChatMsg]);
       });
   }, []);

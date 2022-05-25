@@ -26,9 +26,7 @@ const Header = ({ handleResponseSuccess }) => {
   let user = useSelector((state) => state.userInfo.userInfo.nickname);
 
   let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
-  // console.log(userInfo);
-  //let user2 = userInfo.nickname;
-  // isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
+
   if (userInfo !== null) {
     user = userInfo.nickname;
     isLogin = JSON.parse(window.localStorage.getItem("isLogin"));

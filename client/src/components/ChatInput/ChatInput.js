@@ -10,11 +10,21 @@ const ChatInput = ({ userName, socket }) => {
 
   let isLogin = useSelector((state) => state.userInfo.isLogin);
   let user = useSelector((state) => state.userInfo.userInfo.id);
-  console.log(user, "유저정보");
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+
+  if (userInfo !== null) {
+    userName = userInfo.nickname;
+    user = userInfo.id;
+    isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
+  }
   const handleSubmit = (e) => {
+    if (!isLogin) {
+      setLoginState(true);
+      return e.preventDefault();
+    }
     e.preventDefault();
     socket.emit("onSend", {
-      userName: userName ? userName : localStorage.getItem("userName"),
+      userName: userName,
       msg: chatMessage,
       timeStamp: new Date().toLocaleTimeString(),
       user,

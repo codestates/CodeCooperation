@@ -18,6 +18,12 @@ function DetailPage({ selectedFeed }) {
   const [userName, setUserName] = useState(user.nickname);
   const [roomName, setroomName] = useState(selectedFeed.id);
 
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+
+  if (userInfo !== null) {
+    user = userInfo;
+  }
+
   useEffect(() => {
     if (!userName) {
       setUserName("게스트");
@@ -47,14 +53,9 @@ function DetailPage({ selectedFeed }) {
   const dispatch = useDispatch();
 
   dispatch(POST_ID(postId));
-  console.log();
-  // const deletePost = () => {
-  //   return axios.delete(`http:localhost:3000/post-delete`, {
-  //     withCredentials: true,
-  //   });
-  // };
+
   const deletePost = () => {
-    return axios.delete(`https://localhost:3000/post-delete/${postId}`, {
+    return axios.delete(`http://localhost:3000/post-delete/${postId}`, {
       withCredentials: true,
     });
   };
@@ -133,14 +134,10 @@ function DetailPage({ selectedFeed }) {
                   </ContentButton3>
                 ) : null}
                 {selectedFeed.user.id == user.id ? (
-                  <ContentButton4>
-                    <Link
-                      to={{
-                        pathname: `/projectmodifiy/${postId}`,
-                      }}
-                    >
-                      수정하기
-                    </Link>
+                  <ContentButton4
+                    onClick={() => history.push(`/projectmodifiy/${postId}`)}
+                  >
+                    수정하기
                   </ContentButton4>
                 ) : null}
               </ContentButtonBox>
@@ -203,7 +200,7 @@ const Container0Box3 = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 30%;
+  height: 40%;
   margin: 1rem 0 0 0;
   border: 3px solid #e1e8ec;
   border-radius: 1rem;
@@ -219,8 +216,8 @@ const Container0Box4 = styled.div`
 `;
 
 const Content7ImgBox = styled.div`
-  width: 30%;
-  height: 100%;
+  width: 25%;
+  height: 90%;
   /* border: 1px solid lightgray; */
 `;
 
@@ -342,27 +339,11 @@ const ContentButton4 = styled.button`
   border: 2px solid #4c5175;
   color: #4c5175;
   margin: 0 0 20px 0;
-  a {
-    text-decoration: none;
-    color: #4c5175;
-  }
-  a:visited {
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  a:focus {
-    text-decoration: none;
-  }
 
-  a:active {
-    text-decoration: none;
-  }
-  /* &:hover {
+  &:hover {
     background-color: #4c5175;
     color: white;
-  } */
+  }
 `;
 
 const ContentTitleBox1 = styled.div`

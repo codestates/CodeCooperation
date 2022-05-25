@@ -19,15 +19,24 @@ const ProjectModifiy = ({ location }) => {
   const [teckStack, setTeckStack] = useState([]);
   const [techStackList, setTechStackList] = useState();
   const history = useHistory();
-  let userInfo = useSelector((state) => state.userInfo.postId);
-  let { postId } = useParams(); // location으로 데이터에 접근해서 받아온다!
-  console.log(userInfo, "포스트아이디이");
+
+  let postId = useSelector((state) => state.userInfo.postId);
   let user = useSelector((state) => state.userInfo.userInfo);
   let accessToken = user.accessToken;
+
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+  let getPostId = JSON.parse(window.localStorage.getItem("postId"));
+
+  if (userInfo !== null) {
+    postId = getPostId;
+    user = userInfo;
+    accessToken = userInfo.accessToken;
+  }
+  console.log(postId, "포스트아이디이");
   // console.log(accessToken, "토큰입니다");
   // console.log(techStackList, "포스트스택");
   // console.log(teckStack, "스택상태");
-  console.log(postInfo, "포스트정보");
+  // console.log(postInfo, "포스트정보");
 
   const animatedComponents = makeAnimated();
   const stackSelect = [
@@ -106,7 +115,7 @@ const ProjectModifiy = ({ location }) => {
       console.log("*********************", accessToken);
       axios
         .patch(
-          `http://localhost:3000/post-modify/${userInfo}`,
+          `http://localhost:3000/post-modify/${postId}`,
           {
             userId: user.id,
             postTitle: postTitle,
