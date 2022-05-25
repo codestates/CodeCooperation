@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import socketIOClient from "socket.io-client";
 import SupportRequest from "../components/SupportRequest";
 import { useHistory, Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import ChatInput from "../components/ChatInput/ChatInput";
 import ChatLog from "../components/ChatLog/ChatLog";
 
 function DetailPage({ selectedFeed }) {
+  const chatRef = useRef();
   let user = useSelector((state) => state.userInfo.userInfo);
   let postId = selectedFeed.id;
   const [support, setSupport] = useState(false);
@@ -65,6 +66,11 @@ function DetailPage({ selectedFeed }) {
       history.push("/projectlist");
     });
   };
+
+  // useEffect(() => {
+  //   const scroll = chatRef.current.scrollHeight;
+  //   chatRef.current.scrollTo(0, scroll);
+  // }, [msgList]);
 
   return (
     <div>
@@ -145,9 +151,8 @@ function DetailPage({ selectedFeed }) {
             <ChantBox0>
               {currentSocket && (
                 <>
-                  <ChatLogBox>
-                    <ChatLog socket={currentSocket} postId={postId}></ChatLog>
-                  </ChatLogBox>
+                  <ChatLog socket={currentSocket} postId={postId}></ChatLog>
+
                   <ChatInputBox>
                     <ChatInput
                       userName={userName}
@@ -502,13 +507,6 @@ const ChantBox0 = styled.div`
   margin: 2rem 0 0 0;
   border: 3px solid #e1e8ec;
   border-radius: 1rem;
-`;
-
-const ChatLogBox = styled.div`
-  width: 100%;
-  height: 85%;
-  overflow: auto;
-  /* border: 1px solid lightgray; */
 `;
 
 const ChatInputBox = styled.div`

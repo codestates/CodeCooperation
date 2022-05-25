@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
 const ChatLog = ({ socket, postId }) => {
+  const chatRef = useRef();
   const [msgList, setMsgList] = useState([]);
 
   let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
@@ -10,6 +11,11 @@ const ChatLog = ({ socket, postId }) => {
   if (userInfo !== null) {
     user = userInfo.nickname;
   }
+
+  useEffect(() => {
+    const scroll = chatRef.current.scrollHeight;
+    chatRef.current.scrollTo(0, scroll);
+  }, [msgList]);
 
   useEffect(() => {
     //스프레드문법으로 합쳐줌,
@@ -45,7 +51,7 @@ const ChatLog = ({ socket, postId }) => {
   }, []);
 
   return (
-    <Container0>
+    <Container0 ref={chatRef}>
       {msgList.map((msg, idx) => (
         <Container1 key={idx}>
           {user === msg.userName ? (
@@ -68,8 +74,13 @@ export default ChatLog;
 }
 const Container0 = styled.div`
   width: 100%;
+  height: 85%;
+  overflow: auto;
+  border: 1px solid lightgray;
+
+  /* width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 10px; */
   /* border: 1px solid lightgray; */
 `;
 
