@@ -41,7 +41,7 @@ const UserInfo = () => {
     } else {
       axios
         .patch(
-          `http://localhost:3000/user-modify/${userId}`,
+          `http://localhost:3000/user-modify`,
           {
             userId,
             userNickname,

@@ -24,7 +24,7 @@ router.get("/google-login/userInfo?", google.getUserInfo);
 router.post("/signup", signup);
 router.post("/signin", signin);
 router.post("/signout", signout);
-router.patch("/user-modify/:id", user_modify);
+router.patch("/user-modify", user_modify);
 // router.get("/auth", auth);
 
 // post
