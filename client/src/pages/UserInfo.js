@@ -1,54 +1,72 @@
 import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { LOG_IN } from "../reducer/userInfoReducer";
+import axios from "axios";
 
 const UserInfo = () => {
-  const [teckStack, setTeckStack] = useState([]);
-  const [techStackList, setTechStackList] = useState();
-  console.log(techStackList, "포스트스택");
-  console.log(teckStack, "스택상태");
+  const [userModify, setUserModify] = useState({
+    userNickname: "",
+    password: "",
+    repassword: "",
+  });
+  const history = useHistory();
+  const dispatch = useDispatch();
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+  let user = useSelector((state) => state.userInfo.userInfo);
+  let accessToken = user.accessToken;
+  let userId = user.id;
 
-  const handleStackValue = () => {
-    setTeckStack();
+  if (userInfo !== null) {
+    user = userInfo;
+    userId = userInfo.id;
+    accessToken = userInfo.accessToken;
+  }
+
+  const handleInputValue = (key) => (e) => {
+    setUserModify({
+      ...userModify,
+      [key]: e.target.value,
+    });
   };
-  const animatedComponents = makeAnimated();
-  const stackSelect = [
-    { value: "React", label: "React" },
-    { value: "Java", label: "Java" },
-    { value: "JavaScript", label: "JavaScript" },
-    { value: "Python", label: "Python" },
-    { value: "Node", label: "Node" },
-    { value: "Flask", label: "Flask" },
-    { value: "C++", label: "C++" },
-    { value: "Django", label: "Django" },
-    { value: "php", label: "php" },
-    { value: "Vue", label: "Vue" },
-    { value: "Spring", label: "Spring" },
-    { value: "Swift", label: "Swift" },
-    { value: "Kotlin", label: "Kotlin" },
-    { value: "TypeScript", label: "TypeScript" },
-  ];
-  const handleChange = useCallback(
-    (inputValue, { action, removedValue }) => {
-      console.log(inputValue);
-      if (teckStack.length < 4) {
-        setTeckStack(inputValue);
-      } else {
-        if (removedValue !== undefined) {
-          let temp = teckStack.filter(
-            (item) => item["value"] !== removedValue["value"]
+  const { userNickname, password, repassword } = userModify;
+  const modifiyusertHandle = () => {
+    if (!userNickname || !password) {
+      window.alert("항목을 모두 입력해주세요!🙏");
+    }
+    if (password !== repassword) {
+      window.alert("비밀 번호가 다릅니다!");
+    } else {
+      axios
+        .patch(
+          `http://localhost:3000/user-modify/${userId}`,
+          {
+            userId,
+            userNickname,
+            password,
+          },
+          {
+            headers: {
+              authorization: accessToken,
+            },
+            "Content-Type": "application/json",
+          }
+        )
+        .then((res) => {
+          const { id, nickname, accessToken } = res.data.user;
+          dispatch(
+            LOG_IN({
+              id,
+              nickname,
+              accessToken,
+            })
           );
-          setTeckStack(temp);
-        } else {
-          window.alert("최대 4가지만 선택 가능합니다.");
-        }
-      }
-    },
-    [stackSelect]
-  );
-
+          history.push("/main");
+        });
+    }
+  };
   return (
     <Wrap>
       <Header>
@@ -64,22 +82,34 @@ const UserInfo = () => {
         <UserInfoDiv>
           <UserInfoLeft>
             <Title>이메일</Title>
-            <Title>닉네임</Title>
-            <Title>비밀번호</Title>
-            <Title>사용 스택</Title>
+            <Title>닉네임 변경</Title>
+            <Title>비밀번호 변경</Title>
+            <Title>비밀번호 확인</Title>
+            {/* <Title>사용 스택</Title> */}
           </UserInfoLeft>
 
           <UserInfoRight>
-            <Email>ghoo@naver.com</Email>
+            <Email>{user.email}</Email>
             <NicknameDiv>
-              <Nickname type="text" value="지후"></Nickname>
-              {/* <Button>변경</Button> */}
+              <Nickname
+                type="text"
+                onChange={handleInputValue("userNickname")}
+              ></Nickname>
             </NicknameDiv>
             <PasswordDiv>
-              <Password></Password>
-              {/* <Button>변경</Button> */}
+              <Password
+                type="password"
+                onChange={handleInputValue("password")}
+              ></Password>
             </PasswordDiv>
-            <StackDiv>
+            <PasswordDiv>
+              <Password
+                type="password"
+                onChange={handleInputValue("repassword")}
+              ></Password>
+            </PasswordDiv>
+
+            {/* <StackDiv>
               <Select
                 isMulti
                 placeholder="기술 스택을 선택해주세요"
@@ -89,13 +119,13 @@ const UserInfo = () => {
                 options={stackSelect}
                 onChange={handleChange}
               />
-            </StackDiv>
+            </StackDiv> */}
           </UserInfoRight>
         </UserInfoDiv>
       </UpdateBox>
 
       <BottomBtnDiv>
-        <AmendBtn>수정</AmendBtn>
+        <AmendBtn onClick={modifiyusertHandle}>수정</AmendBtn>
         <CancelBtn to="/mypage">취소</CancelBtn>
       </BottomBtnDiv>
     </Wrap>
@@ -181,7 +211,7 @@ const UserInfoDiv = styled.div`
 const UserInfoLeft = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 125px;
 `;
 
 // 유저정보 제목
@@ -209,7 +239,7 @@ const Email = styled.span`
 const NicknameDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 `;
 const Nickname = styled.input`
   font-size: 18px;
@@ -234,7 +264,7 @@ const Button = styled.button`
 
 // 비밀번호
 const PasswordDiv = styled(NicknameDiv)`
-  margin-bottom: 35px;
+  margin-bottom: 55px;
 `;
 const Password = styled(Nickname)``;
 
