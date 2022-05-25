@@ -13,6 +13,11 @@ import image_5 from "../images/5.jpg";
 function Main() {
   const [isLogin2, setIsLogin2] = useState(false);
   let isLogin = useSelector((state) => state.userInfo.isLogin);
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+
+  if (userInfo !== null) {
+    isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
+  }
   const history = useHistory();
   const startButton = () => {
     if (isLogin == true) {

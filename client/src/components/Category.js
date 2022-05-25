@@ -62,7 +62,7 @@ const CategoryName = [
   "전체",
   "JavaScript",
   "Java",
-  "Phython",
+  "Python",
   "Node.js",
   "React",
   "C++",

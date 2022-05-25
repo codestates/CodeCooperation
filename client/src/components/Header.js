@@ -10,6 +10,7 @@ import { LOG_OUT } from "../reducer/userInfoReducer";
 import LoginModal from "./LoginModal";
 import LoginPopup from "./LoginPopup";
 import profil from "../images/4.png";
+import { useEffect } from "react/cjs/react.production.min";
 
 const Header = ({ handleResponseSuccess }) => {
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +25,12 @@ const Header = ({ handleResponseSuccess }) => {
   let isLogin = useSelector((state) => state.userInfo.isLogin);
   let user = useSelector((state) => state.userInfo.userInfo.nickname);
 
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+
+  if (userInfo !== null) {
+    user = userInfo.nickname;
+    isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
+  }
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -69,8 +76,8 @@ const Header = ({ handleResponseSuccess }) => {
           <ProjectAdd onClick={handleAdd}>프로젝트 추가</ProjectAdd>
         </NavList>
         <LoginList>
-          {isLogin && <LoginText>안녕하세요 </LoginText>}
-          {isLogin && <NameText>{" " + user + " 님"}</NameText>}
+          {/* {isLogin && <LoginText>안녕하세요 </LoginText>} */}
+          {isLogin && <NameText>{user + " 님"}</NameText>}
           {isLogin && (
             <LoginImgBox onClick={handleDropBox}>
               <LoginImg src={profil} />
@@ -182,8 +189,9 @@ const LoginText = styled.div`
   font-weight: 500;
 `;
 const NameText = styled.div`
-  font-family: Noto Sans KR;
-  font-weight: 600;
+  font-family: Jua;
+  /* font-weight: 600; */
+  color: #383c58;
   font-size: large;
   padding-left: 3px;
 `;

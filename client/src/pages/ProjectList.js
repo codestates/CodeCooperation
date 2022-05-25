@@ -15,7 +15,7 @@ const ProjectList = ({ post, handleClick }) => {
 
   useEffect(() => {
     axios.get(`http://localhost:3000/posts`).then((res) => {
-      // console.log(res.data.data);
+      console.log(res.data.data);
       let allPost = res.data.data.sort((a, b) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });

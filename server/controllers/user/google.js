@@ -53,7 +53,6 @@ module.exports = {
           id: result.id,
           email: email,
           nickname: nickname,
-          password: password,
           accessToken: accessToken,
         };
         // delete result.dataValues.password;
@@ -72,7 +71,7 @@ module.exports = {
           .json({ user: userData });
       } else {
         // 최초 로그인 시 회원가입 진행
-        user.create({
+        await user.create({
           email: email,
           password: password,
           nickname: nickname,
@@ -86,7 +85,6 @@ module.exports = {
           id: findUser.id,
           email: findUser.email,
           nickname: findUser.nickname,
-          password: findUser.password,
           accessToken: accessToken,
         };
         // const data = (await user.create(usersignupInfo)).dataValues;

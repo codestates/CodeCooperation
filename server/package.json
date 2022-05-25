@@ -24,7 +24,8 @@
     "nodemon": "^2.0.15",
     "npm": "^8.8.0",
     "require": "^2.4.20",
-    "sequelize": "^6.19.0"
+    "sequelize": "^6.19.0",
+    "socket.io": "^4.5.1"
   },
   "devDependencies": {
     "sequelize-cli": "^6.4.1"

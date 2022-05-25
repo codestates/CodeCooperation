@@ -21,6 +21,13 @@ const ProjectAdd = () => {
   const history = useHistory();
   let user = useSelector((state) => state.userInfo.userInfo);
   let accessToken = user.accessToken;
+
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+
+  if (userInfo !== null) {
+    user = userInfo;
+    accessToken = userInfo.accessToken;
+  }
   // console.log(accessToken, "토큰입니다");
   // console.log(techStackList, "포스트스택");
   // console.log(teckStack, "스택상태");
@@ -122,7 +129,7 @@ const ProjectAdd = () => {
           }
         )
         .then((res) => {
-          history.push("/");
+          history.push("/projectlist");
         })
         .catch((error) => {
           window.alert(error);
