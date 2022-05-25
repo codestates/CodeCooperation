@@ -3,13 +3,40 @@ import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-
+import ProjectBody from "../components/ProjectBody";
 axios.defaults.withCredentials = true;
 
 export default function Mypage() {
   const [isUserPosts, setIsUserPosts] = useState(true);
+  const [isUserPosts1, setIsUserPosts1] = useState(false);
+  const [isUserPosts2, setIsUserPosts2] = useState(false);
+  const [isUserPosts3, setIsUserPosts3] = useState(false);
 
+  const selectMenuHandler = () => {
+    setIsUserPosts(true);
+    setIsUserPosts1(false);
+    setIsUserPosts2(false);
+    setIsUserPosts3(false);
+  };
+  const selectMenuHandler1 = () => {
+    setIsUserPosts(false);
+    setIsUserPosts1(true);
+    setIsUserPosts2(false);
+    setIsUserPosts3(false);
+  };
   let user = useSelector((state) => state.userInfo.userInfo);
+
+  /* 내 게시글 상태 */
+  const [showMylist, setShowMylist] = useState();
+  /* 내 게시글 서버로 부터 가져오는 함수 */
+  const callMylist = axios.get("http://localhost:3000/mylist").then((res) => {
+    console.log(res.data.data);
+    let allMylist = res.data.data.sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+    setShowMylist(allMylist);
+  });
+
   return (
     <Wrap>
       <ProfileDiv>
@@ -34,12 +61,17 @@ export default function Mypage() {
       <ProjectDiv>
         <StyledNav>
           <NavItems>모집</NavItems>
-          <NavItems>관심</NavItems>
+          <NavItems onClick={selectMenuHandler1}>관심</NavItems>
           <NavItems>진행</NavItems>
           <NavItems>완료</NavItems>
         </StyledNav>
         <BarDiv>
-          <Bar2></Bar2>
+          {/* <Bar2>{isUserPosts1 ? <div>구현중</div> : null}</Bar2> */}
+
+          {/* {showMylist &&
+            showMylist.map((el, i) => (
+              // <ProjectBody key={i} posts={el} handleClick={handleClick} />
+            ))} */}
         </BarDiv>
       </ProjectDiv>
     </Wrap>
