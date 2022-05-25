@@ -5,12 +5,14 @@ const google = require("./user/google");
 const signup = require("./user/signup");
 const signin = require("./user/signin");
 const signout = require("./user/signout");
-const auth = require("./user/auth");
+// const auth = require("./user/auth");
 const posts = require("./post/posts");
 const post_add = require("./post/post-add");
 const post_delete = require("./post/post-delete");
 const post_modify = require("./post/post-modify");
 const chat = require("./chat/chat");
+const user_modify = require("./user/user-modify");
+
 // oauth
 router.get("/", kakao.get);
 router.post("/kakao-login/token", kakao.getToken);
@@ -22,7 +24,8 @@ router.get("/google-login/userInfo?", google.getUserInfo);
 router.post("/signup", signup);
 router.post("/signin", signin);
 router.post("/signout", signout);
-router.get("/auth", auth);
+router.patch("/user-modify/:id", user_modify);
+// router.get("/auth", auth);
 
 // post
 router.get("/posts", posts.getAllPost);

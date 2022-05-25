@@ -12,11 +12,13 @@ module.exports = async (req, res) => {
     } else {
       const DBpassword = userInfo.dataValues.password;
       const rightUser = await bcrypt.compare(password, DBpassword);
+
       if(!rightUser) {
         res.status(400).send({ message : "비밀번호가 틀립니다." })
       } else {
         delete userInfo._previousDataValues.password;
         delete userInfo.dataValues.password;
+
         const accessToken = generateAccessToken(userInfo.dataValues);
         if(accessToken) {
           return res.status(200).send({ 
@@ -25,5 +27,5 @@ module.exports = async (req, res) => {
             message: "토큰발급" })
         } 
       }
-      }
+    }
   }

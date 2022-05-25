@@ -10,11 +10,15 @@ module.exports = {
     },
 
     isAuthorized : (req) => {
-        const cookie = req.cookies;
-        if(!cookie.jwt) {
-            return '';
-        } else {
-            return verify(cookie.jwt, process.env.ACCESS_SECRET);
-        }
+    const authorization = req.headers["authorization"];
+    if (!authorization) {
+      return null;
     }
+    const token = authorization.split(" ")[1];
+    try {
+      return verify(token, process.env.ACCESS_SECRET);
+    } catch (err) {
+      return null;
+    }
+  },
 }

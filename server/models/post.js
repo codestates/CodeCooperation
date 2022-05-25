@@ -12,6 +12,7 @@ module.exports = function (sequelize, DataTypes) {
       user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        onDelete : "cascade",
         references: {
           model: "user",
           key: "id"
@@ -63,9 +64,9 @@ module.exports = function (sequelize, DataTypes) {
     )
     post.associate = function (models) {
         post.belongsTo(models.user, { foreignKey: "user_id"})
-        post.hasMany(models.team, {as:"team", targetKey:"id", foreignKey : "post_id"});
-        post.hasMany(models.applicant, {as:"applicant", targetKey:"id", foreignKey : "post_id"});
-        post.hasMany(models.bookmark, {as:"bookmark", targetKey:"id", foreignKey : "post_id"});
+        post.hasMany(models.team, {as:"team", targetKey:"id", foreignKey : "post_id" });
+        post.hasMany(models.applicant, {as:"applicant", targetKey:"id", foreignKey : "post_id" });
+        post.hasMany(models.bookmark, {as:"bookmark", targetKey:"id", foreignKey : "post_id" });
     }
     return post
 }
