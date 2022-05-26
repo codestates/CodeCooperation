@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProjectBody from "../components/ProjectBody";
 axios.defaults.withCredentials = true;
 
-export default function Mypage() {
+export default function Mypage({ handleClick }) {
   const [isUserPosts, setIsUserPosts] = useState(true);
   const [isUserPosts1, setIsUserPosts1] = useState(false);
   const [isUserPosts2, setIsUserPosts2] = useState(false);
@@ -26,16 +26,24 @@ export default function Mypage() {
   };
   let user = useSelector((state) => state.userInfo.userInfo);
 
+  let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
+
+  if (userInfo !== null) {
+    user = userInfo;
+  }
+
+  let params = user.id;
   /* 내 게시글 상태 */
   const [showMylist, setShowMylist] = useState();
   /* 내 게시글 서버로 부터 가져오는 함수 */
-  const callMylist = axios.get("http://localhost:3000/mylist").then((res) => {
-    console.log(res.data.data);
-    let allMylist = res.data.data.sort((a, b) => {
-      return new Date(b.createdAt) - new Date(a.createdAt);
+  const callMylist = () =>
+    axios.get(`http://localhost:3000/mylist/${params}`).then((res) => {
+      console.log(res.data.data);
+      let allMylist = res.data.data.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      });
+      setShowMylist(allMylist);
     });
-    setShowMylist(allMylist);
-  });
 
   return (
     <Wrap>
@@ -61,22 +69,41 @@ export default function Mypage() {
       <ProjectDiv>
         <StyledNav>
           <NavItems>모집</NavItems>
-          <NavItems onClick={selectMenuHandler1}>관심</NavItems>
+          <NavItems
+            onClick={() => {
+              selectMenuHandler1();
+              callMylist();
+            }}
+          >
+            관심
+          </NavItems>
           <NavItems>진행</NavItems>
           <NavItems>완료</NavItems>
         </StyledNav>
         <BarDiv>
-          {/* <Bar2>{isUserPosts1 ? <div>구현중</div> : null}</Bar2> */}
-
-          {/* {showMylist &&
-            showMylist.map((el, i) => (
-              // <ProjectBody key={i} posts={el} handleClick={handleClick} />
-            ))} */}
+          {isUserPosts1 ? (
+            <WrapOfList>
+              {showMylist &&
+                showMylist.map((el, i) => (
+                  <ProjectBody key={i} posts={el} handleClick={handleClick} />
+                ))}
+            </WrapOfList>
+          ) : null}
         </BarDiv>
       </ProjectDiv>
     </Wrap>
   );
 }
+const WrapOfList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  /* overflow: auto; */
+  position: relative;
+  justify-content: space-between;
+  @media screen and (max-width: 819px) {
+    justify-content: center;
+  }
+`;
 
 const Wrap = styled.div`
   justify-content: center;
@@ -219,9 +246,9 @@ const NavItems = styled.div`
 `;
 
 const BarDiv = styled.div`
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  height: 85%;
+  overflow: auto;
 `;
 
 const Bar2 = styled.div`

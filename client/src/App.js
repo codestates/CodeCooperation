@@ -62,7 +62,7 @@ export default function App() {
           <Signup />
         </Route>
         <Route exact path="/mypage">
-          <Mypage />
+          <Mypage handleClick={select} />
         </Route>
         {/* <Route path="/" exact>
           {isLogin ? <Redirect to="/mypage" /> : <Redirect to="/login" />}

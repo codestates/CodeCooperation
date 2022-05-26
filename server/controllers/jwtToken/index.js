@@ -12,12 +12,12 @@ module.exports = {
   },
 
   isAuthorized: (req) => {
-    console.log(req);
     const authorization = req.headers["authorization"];
 
     if (!authorization) {
       return null;
     }
+
     const token = authorization.split(" ")[1];
 
     try {
