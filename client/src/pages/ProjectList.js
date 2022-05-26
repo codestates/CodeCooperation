@@ -40,7 +40,7 @@ const ProjectList = ({ post, handleClick }) => {
   return (
     <MainDiv>
       <Category handleStack={handleStack} />
-      <SearchBar />
+      {/* <SearchBar /> */}
       <Wrap>
         {showPosts &&
           showPosts.map((el, i) => (

@@ -27,7 +27,7 @@ const CategoryWrap = styled.div`
   width: auto;
   position: relative;
   display: flex;
-  margin-top: 10px;
+  margin: 20px 30px 30px 30px;
   justify-content: space-between;
   /* align-items: center; */
   padding-bottom: 10px;

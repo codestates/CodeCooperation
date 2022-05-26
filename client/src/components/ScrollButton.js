@@ -30,7 +30,7 @@ const Container = styled.div`
 const TopButton = styled.button`
   cursor: pointer;
   position: fixed;
-  z-index: 1;
+
   bottom: 4rem;
   right: 3rem;
   color: #4c5175;

@@ -216,13 +216,13 @@ const ProjectAdd = () => {
             ))}
           </StackSelect> */}
         </StackDiv>
-        <ChatDiv>
+        {/* <ChatDiv>
           <TextDiv>오픈채팅 URL</TextDiv>
           <ChatAddress
             placeholder="오픈채팅방 URL을 입력해주세요."
             onChange={handleInputValue("openURL")}
           ></ChatAddress>
-        </ChatDiv>
+        </ChatDiv> */}
         <DetailDiv>
           <TextDiv>프로젝트 소개</TextDiv>
           <Detail
@@ -293,6 +293,7 @@ const PostDiv = styled.div`
 const TextDiv = styled.span`
   color: rgb(78, 68, 45);
   font-size: 20px;
+  margin-bottom: 10px;
 `;
 
 const TitleDetail = styled.input`
