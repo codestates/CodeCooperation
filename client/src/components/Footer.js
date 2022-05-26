@@ -12,7 +12,7 @@ const Footer = () => {
         <ContactDiv>
           <Title>REFERENCE</Title>
           <Reference href="https://www.freepik.com/" target="_blank">
-            Designed by Freepik
+            DESIGNED BY FREEPIK
           </Reference>
         </ContactDiv>
         <AboutUsDiv>
@@ -22,21 +22,22 @@ const Footer = () => {
               href="https://github.com/codestates/CodeCooperation"
               target="_blank"
             >
-              Repository
+              <i class="fa-brands fa-github"></i> Github
             </Repository>
           </ListDiv>
           <ListDiv>
             <Wiki
-              href="https://github.com/codestates/CodeCooperation/wiki"
+              href="https://codestates.notion.site/11-CC-CodeCooperation-360611bacce041d384d7d8bf13cb1b6e"
               target="_blank"
             >
-              Wiki
+              <Notionimg src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566778642/noticon/kjaaizycfgz017qxvlnu.png"></Notionimg>{" "}
+              Notion
             </Wiki>
           </ListDiv>
         </AboutUsDiv>
         <TeamMemberDiv>
           <Title>TEAM MEMBER</Title>
-          <ListDiv>✔️Front</ListDiv>
+          <ListDiv>Front</ListDiv>
           <ListDiv>
             <Name href="https://github.com/ghooman" target="_blank">
               박지후
@@ -45,7 +46,7 @@ const Footer = () => {
               이재신
             </Name>
           </ListDiv>
-          <ListDiv>✔️Back</ListDiv>
+          <ListDiv>Back</ListDiv>
           <ListDiv>
             <Name href="https://github.com/nicesiu" target="_blank">
               황시우
@@ -79,10 +80,10 @@ const LogoDiv = styled.div`
 `;
 
 const Logo = styled.div`
-  color: black;
+  font-family: Noto Sans KR;
   font-size: 20px;
-  font-weight: 600;
-  font-style: italic;
+  font-weight: 700;
+  color: #383c58;
   text-align: center;
   text-decoration-line: none;
 `;
@@ -108,25 +109,31 @@ const AboutUsDiv = styled(ContactDiv)``;
 const TeamMemberDiv = styled(ContactDiv)``;
 
 const Title = styled.p`
-  font-weight: 500;
+  font-family: Noto Sans KR;
   font-size: 20px;
+  font-weight: 500;
+  color: rgb(68 68 68);
+
+  text-decoration-line: none;
 `;
 
 const Reference = styled.a`
+  font-family: Noto Sans KR;
   text-decoration-line: none;
-  color: black;
-  font-size: 18px;
-  font-weight: 300;
+  color: rgb(119 119 119);
+  font-size: 15px;
+  font-weight: 500;
   &:hover {
     font-weight: 500;
     transition: 0s ease;
+    color: black;
   }
   cursor: pointer;
 `;
 
 const ListDiv = styled.div`
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 500;
   margin-bottom: 10px;
 `;
 
@@ -146,12 +153,16 @@ const Name = styled.a`
   margin-right: 10px;
   text-decoration-line: none;
   color: black;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 300;
   &:hover {
     font-weight: 500;
     transition: 0s ease;
   }
+`;
+const Notionimg = styled.img`
+  width: 15px;
+  height: 15px;
 `;
 
 export default Footer;
