@@ -121,7 +121,7 @@ function DetailPage({ selectedFeed }) {
             <Container0Box3>
               <Container0Box4>
                 <Content7ImgBox>
-                  <Content7Img></Content7Img>
+                  <Content7Img />
                 </Content7ImgBox>
                 <Content7UserBox>
                   <Content7User>
@@ -132,9 +132,9 @@ function DetailPage({ selectedFeed }) {
               </Container0Box4>
               <ContentButtonBox>
                 {/* <ContentButton onClick={clickRequest}>지원하기</ContentButton> */}
-                <ContentButton2>
+                {/* <ContentButton2>
                   <i className="fas fa-solid fa-bookmark"></i> 북마크
-                </ContentButton2>
+                </ContentButton2> */}
                 {selectedFeed.user.id == user.id ? (
                   <ContentButton3 onClick={handleLogin}>
                     삭제하기
@@ -206,7 +206,7 @@ const Container0Box3 = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 40%;
+  height: auto;
   margin: 1rem 0 0 0;
   border: 3px solid #e1e8ec;
   border-radius: 1rem;
@@ -214,7 +214,6 @@ const Container0Box3 = styled.div`
 
 const Container0Box4 = styled.div`
   display: flex;
-
   width: 100%;
   height: 30%;
   /* border: 1px solid lightgray; */
@@ -224,6 +223,7 @@ const Container0Box4 = styled.div`
 const Content7ImgBox = styled.div`
   width: 25%;
   height: 90%;
+  padding: 20px 0px 0px 0px;
   /* border: 1px solid lightgray; */
 `;
 
@@ -311,7 +311,7 @@ const ContentButton2 = styled.button`
 `;
 const ContentButton3 = styled.button`
   width: 80%;
-  height: 20%;
+  height: 50px;
   border: 0;
   font-size: 1rem;
   font-weight: 500;
@@ -332,7 +332,7 @@ const ContentButton3 = styled.button`
 
 const ContentButton4 = styled.button`
   width: 80%;
-  height: 20%;
+  height: 50px;
   border: 0;
   font-size: 1rem;
   font-weight: 500;

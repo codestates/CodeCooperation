@@ -58,6 +58,7 @@ module.exports = {
           email: email,
           nickname: nickname,
           accessToken: accessToken,
+          loginType: "Social",
         };
         // delete result.dataValues.password;
         // const accessToken = generateAccessToken(result.dataValues);
@@ -91,6 +92,7 @@ module.exports = {
           email: findUser.email,
           nickname: findUser.nickname,
           accessToken: accessToken,
+          loginType: "Social",
         };
         // const data = (await user.create(usersignupInfo)).dataValues;
         // await signUpCaching(data);

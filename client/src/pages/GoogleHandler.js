@@ -32,8 +32,11 @@ function GoogleHandler() {
       )
       .then((res) => {
         console.log(res.data, "클라이언트에서받은데이터");
-        const { id, email, nickname, password, accessToken } = res.data.user;
-        dispatch(LOG_IN({ id, email, nickname, password, accessToken }));
+        const { id, email, nickname, password, accessToken, loginType } =
+          res.data.user;
+        dispatch(
+          LOG_IN({ id, email, nickname, password, accessToken, loginType })
+        );
         // setUserInfo(res.data);
         // handleResponseSuccess();
         history.push("/");

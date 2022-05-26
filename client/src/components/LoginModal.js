@@ -60,13 +60,13 @@ function LoginModal({ handleLoginModal, setShowModal }) {
     return axios_Login(loginInfo.email, loginInfo.password)
       .then((res) => {
         console.log("받은데이터유저", res);
-        const { id, nickname, accessToken, loginType } = res.data.user;
+        const { id, email, nickname, accessToken } = res.data.user;
         dispatch(
           LOG_IN({
             id,
+            email,
             nickname,
             accessToken,
-            loginType,
           })
         );
         setShowModal(false);
@@ -75,6 +75,15 @@ function LoginModal({ handleLoginModal, setShowModal }) {
       .catch(() => {
         setErrorMessage("아이디 또는 비밀번호가 맞지않습니다");
       });
+  };
+
+  const googleLoginHandler = (e) => {
+    e.preventDefault();
+    window.location.assign(GOGLE_AUTH_URL);
+  };
+  const kakaoLoginHandler = (e) => {
+    e.preventDefault();
+    window.location.assign(KAKAO_AUTH_URL);
   };
   return (
     <div>
@@ -123,14 +132,16 @@ function LoginModal({ handleLoginModal, setShowModal }) {
             <SignUpButton onClick={handleSignUp}>회원가입</SignUpButton>
           </SignUpButtonBox>
           <GoogleBox>
-            <a href={GOGLE_AUTH_URL}>
-              <Google />
-            </a>
+            <GoogleButton onClick={googleLoginHandler}>
+              <GoogleImags src="https://3gamestates.com/img/googlelogo.png" />
+              <GoogleText>구글 로그인</GoogleText>
+            </GoogleButton>
           </GoogleBox>
           <KakaoBox>
-            <a href={KAKAO_AUTH_URL}>
-              <Kakao />
-            </a>
+            <KakaoButton onClick={kakaoLoginHandler}>
+              <KakaoImags src="https://3gamestates.com/img/kakaologo.png" />
+              <KakaoText>카카오 로그인</KakaoText>
+            </KakaoButton>
           </KakaoBox>
         </PopUp>
       </BackDrop>
@@ -152,7 +163,7 @@ const BackDrop = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 3;
 `;
 
 const PopUp = styled.div`
@@ -165,7 +176,7 @@ const PopUp = styled.div`
   flex-direction: column;
   background-color: white;
   box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, 0.3);
-  z-index: 3;
+  z-index: 4;
   text-align: center;
 `;
 
@@ -191,13 +202,12 @@ const LoginButton = styled.button`
   width: 45%;
   height: 90%;
   border-radius: 0.5rem;
-  color: white;
   font-family: "Noto Sans KR";
   font-weight: 800;
   cursor: pointer;
   background-color: white;
-  border: 2px solid #4c5175;
   color: #4c5175;
+  border: 2px solid #4c5175;
   &:hover {
     background-color: #4c5175;
     color: white;
@@ -222,11 +232,10 @@ const SignUpButton = styled.button`
   width: 45%;
   height: 90%;
   border-radius: 0.5rem;
-  color: white;
   cursor: pointer;
   background-color: white;
-  border: 2px solid #4c5175;
   color: #4c5175;
+  border: 2px solid #4c5175;
   &:hover {
     background-color: #4c5175;
     color: white;
@@ -266,7 +275,7 @@ const InputBox = styled.div`
   width: 100%;
   height: 9%;
   /* padding: 0 0 0 15px;
-  border: 1px solid lightgray; */
+  /* border: 1px solid lightgray; */
 
   /* margin-right: auto; */
 `;
@@ -343,4 +352,70 @@ const Kakao = styled.img.attrs({
 })`
   width: 180px;
   height: 45px;
+`;
+const GoogleButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  outline: 0;
+  font-family: "Noto Sans KR";
+  font-weight: 800;
+  width: 45%;
+  height: 90%;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 1px solid lightgray;
+  background-color: white;
+
+  /* &:hover {
+    background-color: #4c5175;
+    color: white;
+  } */
+`;
+
+const GoogleText = styled.div`
+  padding-top: 15px;
+  width: 100%;
+  height: 100%;
+  font-family: Noto Sans KR;
+  font-size: 13px;
+  font-weight: 400;
+`;
+const GoogleImags = styled.img`
+  width: 28px;
+  height: 28px;
+`;
+const KakaoButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  outline: 0;
+  font-family: "Noto Sans KR";
+  font-weight: 800;
+  width: 45%;
+  height: 90%;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  background-color: #fee500;
+
+  /* &:hover {
+    background-color: #4c5175;
+    color: white;
+  } */
+`;
+const KakaoText = styled.div`
+  padding-top: 15px;
+  width: 100%;
+  height: 100%;
+  font-family: Noto Sans KR;
+  font-size: 13px;
+  font-weight: 400;
+`;
+const KakaoImags = styled.img`
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
 `;

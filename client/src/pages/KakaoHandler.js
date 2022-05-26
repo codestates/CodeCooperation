@@ -55,8 +55,8 @@ function Kakaohandler() {
       .then((res) => {
         console.log(res.data, "서버에서 받은 데이터");
         const postInfo = res.data.post;
-        const { id, email, nickname, accessToken } = res.data.user;
-        dispatch(LOG_IN({ id, email, nickname, accessToken }));
+        const { id, email, nickname, accessToken, loginType } = res.data.user;
+        dispatch(LOG_IN({ id, email, nickname, accessToken, loginType }));
         dispatch(GET_POST(postInfo));
 
         history.push("/");

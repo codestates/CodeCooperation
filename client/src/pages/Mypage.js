@@ -24,8 +24,8 @@ export default function Mypage({ handleClick }) {
     setIsUserPosts2(false);
     setIsUserPosts3(false);
   };
+  const history = useHistory();
   let user = useSelector((state) => state.userInfo.userInfo);
-
   let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
 
   if (userInfo !== null) {
@@ -45,6 +45,18 @@ export default function Mypage({ handleClick }) {
       setShowMylist(allMylist);
     });
 
+  const deleteUser = () => {
+    return axios.delete(`http://localhost:3000/user-delete/${params}`, {
+      withCredentials: true,
+    });
+  };
+
+  const handleDelete = () => {
+    return deleteUser().then(() => {
+      history.push("/");
+    });
+  };
+
   return (
     <Wrap>
       <ProfileDiv>
@@ -55,14 +67,21 @@ export default function Mypage({ handleClick }) {
 
         <Bar></Bar>
 
-        <ProfileMiddle>
+        {/* <ProfileMiddle>
           <StackTitle>TechStack</StackTitle>
           <Stack>JavaScript</Stack>
           <Stack>React</Stack>
-        </ProfileMiddle>
+        </ProfileMiddle> */}
 
         <ProfileBottom>
-          <AcountInfoBtn to="/userinfo">회원정보 수정</AcountInfoBtn>
+          {userInfo.loginType !== "Social" ? (
+            <AcountInfoBtn onClick={() => history.push("/userinfo")}>
+              회원수정
+            </AcountInfoBtn>
+          ) : null}
+        </ProfileBottom>
+        <ProfileBottom>
+          <SecessionBtn onClick={handleDelete}>회원탈퇴</SecessionBtn>
         </ProfileBottom>
       </ProfileDiv>
 
@@ -195,16 +214,32 @@ const ProfileBottom = styled.div`
   margin-top: 10px;
 `;
 
-const AcountInfoBtn = styled(Link)`
+const AcountInfoBtn = styled.button`
   border-radius: 20px;
   width: 150px;
   height: 60px;
+  font-family: "Noto Sans KR";
   font-size: 20px;
+  font-weight: 500;
   text-align: center;
   background-color: #56d0a0;
   border: none;
   color: white;
-  padding-top: 20px;
+  text-decoration-line: none;
+  cursor: pointer;
+`;
+
+const SecessionBtn = styled.button`
+  border-radius: 20px;
+  width: 150px;
+  height: 60px;
+  font-family: "Noto Sans KR";
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  background-color: #ff6b6b;
+  border: none;
+  color: white;
   text-decoration-line: none;
   cursor: pointer;
 `;

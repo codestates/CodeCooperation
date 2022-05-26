@@ -95,7 +95,7 @@ const PostStackImg = ({ stack }) => {
         setStacks(item.img);
       }
     });
-  }, []);
+  });
   return (
     <>
       {stacks && (

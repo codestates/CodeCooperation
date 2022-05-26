@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { LOG_IN } from "../reducer/userInfoReducer";
+import { LOG_IN, LOG_OUT } from "../reducer/userInfoReducer";
 import axios from "axios";
 
 const UserInfo = () => {
@@ -54,16 +54,10 @@ const UserInfo = () => {
             "Content-Type": "application/json",
           }
         )
-        .then((res) => {
-          const { id, nickname, accessToken } = res.data.user;
-          dispatch(
-            LOG_IN({
-              id,
-              nickname,
-              accessToken,
-            })
-          );
-          history.push("/main");
+        .then(() => {
+          window.alert("회원정보가 수정되었습니다. 다시 로그인 해주세요");
+          dispatch(LOG_OUT());
+          history.push("/");
         });
     }
   };
