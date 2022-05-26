@@ -76,12 +76,6 @@ const Container0 = styled.div`
   width: 100%;
   height: 85%;
   overflow: auto;
-  border: 1px solid lightgray;
-
-  /* width: 100%;
-  height: 100%;
-  padding: 10px; */
-  /* border: 1px solid lightgray; */
 `;
 
 const Container1 = styled.div`

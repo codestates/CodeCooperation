@@ -25,7 +25,7 @@ export const userInfoReducer = createSlice({
       console.log(action.payload, "포스트아이디액션페이로드");
       state.postId = action.payload;
 
-      // localStorage.setItem("postId", JSON.stringify(state.postId));
+      localStorage.setItem("postId", JSON.stringify(state.postId));
     },
   },
 });

@@ -5,26 +5,25 @@ const bcrypt = require("bcrypt");
 module.exports = async (req, res) => {
   const rightUser = isAuthorized(req);
 
+  const { userId, userNickname, password } = req.body;
   if (!rightUser) {
     res.status(401).send({ data: null, message: "토큰이 존재하지 않습니다." });
   } else {
-    // const { id } = req.params;
-    const { userId, userNickname, password } = req.body;
-    console.log(userId, userNickname, password, "oajnaonasonoasnoas");
-    if (!userId || !userNickname || !password) {
+    if (!userId) {
       res.status(400).send({ message: "전부 입력해주세요." });
-    }
-    if (userNickname) {
-      //   const salt = 12;
-      //   const hashed = await bcrypt.hash(password, salt);
+    } else {
+      const salt = 12;
+      const hashed = await bcrypt.hash(password, salt);
+      console.log(hashed, "해쉬드@@");
+      let id = Number(userId);
+      console.log(userNickname, "유저닉네임");
       await user
         .update(
           {
-            // email: userId,
             nickname: userNickname,
-            // password: hashed,
+            password: hashed,
           },
-          { where: { user_id: userId } }
+          { where: { id } }
         )
         .then(([result]) => {
           if (!result) {
