@@ -3,7 +3,7 @@ const { user } = require("../../models");
 const { post } = require("../../models");
 module.exports = {
   getToken: (req, res) => {
-    console.log(req.body.code, "서버쪽에서받은 코드");
+    console.log(req.body.code, "서버쪽에서받은 코드@@@@@@@@@@@@@@@@@@@@");
     const code = req.body.code;
 
     const client_id = `${process.env.KAKAO_ID}`;
@@ -18,10 +18,12 @@ module.exports = {
       },
     })
       .then((response) => {
+        console.log(response.data,"@#@#!@#!#@!#!@#!@")
         res.send(response.data);
+
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   },
   getUserInfo: async (req, res) => {

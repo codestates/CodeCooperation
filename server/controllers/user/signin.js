@@ -21,10 +21,8 @@ module.exports = async (req, res) => {
 
         const accessToken = generateAccessToken(userInfo.dataValues);
         if(accessToken) {
-          return res.status(200).send({ 
-            user : { id: userInfo.dataValues.id, 
-            nickname: userInfo.dataValues.nickname, accessToken }, 
-            message: "토큰발급" })
+          return res.status(200).send({ user : userInfo.dataValues, accessToken, 
+          message: "토큰발급" })
         } 
       }
     }
