@@ -52,7 +52,7 @@ function LoginModal({ handleLoginModal, setShowModal }) {
     );
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
     if (!loginInfo.email || !loginInfo.password) {
       setErrorMessage("아이디와 비밀번호를 모두 입력 해주세요");
       return;
@@ -77,6 +77,13 @@ function LoginModal({ handleLoginModal, setShowModal }) {
       });
   };
 
+  const loginEnter = (e) => {
+    e.preventDefault();
+    if ((e.code = "Enter")) {
+      handleLogin();
+    }
+  };
+
   const googleLoginHandler = (e) => {
     e.preventDefault();
     window.location.assign(GOGLE_AUTH_URL);
@@ -99,50 +106,52 @@ function LoginModal({ handleLoginModal, setShowModal }) {
           <CancelButtonBox>
             <CancelButton onClick={handleLoginModal}>✖</CancelButton>
           </CancelButtonBox>
-          <H1Box>
-            <H1Text>로그인</H1Text>
-          </H1Box>
-          <IdBox>아이디</IdBox>
-          <InputBox>
-            <Input
-              type="text"
-              onChange={handleInputValue("email")}
-              placeholder="아이디를 입력해 주세요."
-            ></Input>
-          </InputBox>
-          <IdBox>비밀번호</IdBox>
-          <InputBox>
-            <Input
-              type="password"
-              placeholder="패스워드를 입력해 주세요."
-              onChange={handleInputValue("password")}
-            ></Input>
-          </InputBox>
-          <ErrorBox>{errorMessage ? <div>{errorMessage}</div> : null}</ErrorBox>
-          <LoginButtonBox>
-            <LoginButton
-              className="btn btn-login"
-              type="submit"
-              onClick={handleLogin}
-            >
-              로그인
-            </LoginButton>
-          </LoginButtonBox>
-          <SignUpButtonBox>
-            <SignUpButton onClick={handleSignUp}>회원가입</SignUpButton>
-          </SignUpButtonBox>
-          <GoogleBox>
-            <GoogleButton onClick={googleLoginHandler}>
-              <GoogleImags src="https://3gamestates.com/img/googlelogo.png" />
-              <GoogleText>구글 로그인</GoogleText>
-            </GoogleButton>
-          </GoogleBox>
-          <KakaoBox>
-            <KakaoButton onClick={kakaoLoginHandler}>
-              <KakaoImags src="https://3gamestates.com/img/kakaologo.png" />
-              <KakaoText>카카오 로그인</KakaoText>
-            </KakaoButton>
-          </KakaoBox>
+          <Form onSubmit={(e) => e.preventDefault()}>
+            <H1Box>
+              <H1Text>로그인</H1Text>
+            </H1Box>
+            <IdBox>아이디</IdBox>
+
+            <InputBox>
+              <Input
+                type="text"
+                onChange={handleInputValue("email")}
+                placeholder="아이디를 입력해 주세요."
+              ></Input>
+            </InputBox>
+            <IdBox>비밀번호</IdBox>
+            <InputBox>
+              <Input
+                type="password"
+                placeholder="패스워드를 입력해 주세요."
+                onChange={handleInputValue("password")}
+              ></Input>
+            </InputBox>
+
+            <ErrorBox>
+              {errorMessage ? <div>{errorMessage}</div> : null}
+            </ErrorBox>
+            <LoginButtonBox>
+              <LoginButton type="submit" onClick={handleLogin}>
+                로그인
+              </LoginButton>
+            </LoginButtonBox>
+            <SignUpButtonBox>
+              <SignUpButton onClick={handleSignUp}>회원가입</SignUpButton>
+            </SignUpButtonBox>
+            <GoogleBox>
+              <GoogleButton onClick={googleLoginHandler}>
+                <GoogleImags src="https://3gamestates.com/img/googlelogo.png" />
+                <GoogleText>구글 로그인</GoogleText>
+              </GoogleButton>
+            </GoogleBox>
+            <KakaoBox>
+              <KakaoButton onClick={kakaoLoginHandler}>
+                <KakaoImags src="https://3gamestates.com/img/kakaologo.png" />
+                <KakaoText>카카오 로그인</KakaoText>
+              </KakaoButton>
+            </KakaoBox>
+          </Form>
         </PopUp>
       </BackDrop>
     </div>
@@ -418,4 +427,8 @@ const KakaoImags = styled.img`
   margin-left: 5px;
   width: 25px;
   height: 25px;
+`;
+const Form = styled.form`
+  width: auto;
+  height: 100%;
 `;
