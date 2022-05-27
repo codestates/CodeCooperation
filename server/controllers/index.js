@@ -13,6 +13,7 @@ const post_modify = require("./post/post-modify");
 const chat = require("./chat/chat");
 const user_modify = require("./user/user-modify");
 const user_posts = require("./user/user-posts");
+const user_delete = require("./user/user-delete");
 
 // oauth
 router.get("/", kakao.get);
@@ -27,6 +28,7 @@ router.post("/signin", signin);
 router.post("/signout", signout);
 router.patch("/user-modify", user_modify);
 router.get("/mylist/:id", user_posts.getUserPosts);
+router.delete("/user-delete/:id", user_delete.userDelete);
 // router.get("/auth", auth);
 
 // post
