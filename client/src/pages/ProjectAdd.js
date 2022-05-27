@@ -109,7 +109,6 @@ const ProjectAdd = () => {
             startDate: startDate,
             endDate: endDate, //url
             totalMember: totalMember, //url
-            openURL: openURL,
             postStack: JSON.stringify(postStack), //배열이니까 JSON?
           },
           {
