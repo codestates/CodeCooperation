@@ -14,9 +14,9 @@ module.exports = async (req, res) => {
     } else {
       const salt = 12;
       const hashed = await bcrypt.hash(password, salt);
-      console.log(hashed, "해쉬드@@");
+      
       let id = Number(userId);
-      console.log(userNickname, "유저닉네임");
+      
       await user
         .update(
           {
