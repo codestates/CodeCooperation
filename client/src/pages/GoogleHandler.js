@@ -62,7 +62,7 @@ function GoogleHandler() {
         console.log(error);
       });
   };
-  return <div>asdf</div>;
+  return <div></div>;
 }
 export default GoogleHandler;
 
