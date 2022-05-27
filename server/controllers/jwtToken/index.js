@@ -4,11 +4,7 @@ const { sign, verify } = require("jsonwebtoken");
 module.exports = {
   generateAccessToken: (data) => {
     // console.log(data)
-    const accessToken = sign({ data }, process.env.ACCESS_SECRET, {
-      algorithm: process.env.ALGORITHM,
-      expiresIn: process.env.EXPIRESIN,
-    });
-    return accessToken;
+    return sign({ data }, process.env.ACCESS_SECRET, {expiresIn : "1d"})
   },
 
   isAuthorized: (req) => {
@@ -17,9 +13,6 @@ module.exports = {
     if (!authorization) {
       return null;
     }
-
-    const token = authorization.split(" ")[1];
-
     try {
       return verify(authorization, process.env.ACCESS_SECRET);
     } catch (err) {
