@@ -85,8 +85,14 @@ const ProjectAdd = () => {
     },
     [stackSelect]
   );
-  const { postTitle, content, startDate, endDate, totalMember, postStack } =
-    postInfo;
+  const {
+    postTitle,
+    content,
+    startDate,
+    endDate,
+    totalMember,
+    postStack,
+  } = postInfo;
   const createPostHandle = () => {
     if (
       postTitle === "" ||
