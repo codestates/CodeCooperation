@@ -13,7 +13,6 @@ const ProjectAdd = () => {
     startDate: "",
     endDate: "",
     totalMember: "",
-    openURL: "",
     postStack: [],
   });
   const [teckStack, setTeckStack] = useState([]);
@@ -92,7 +91,6 @@ const ProjectAdd = () => {
     startDate,
     endDate,
     totalMember,
-    openURL,
     postStack,
   } = postInfo;
   const createPostHandle = () => {
@@ -102,7 +100,6 @@ const ProjectAdd = () => {
       startDate === "" ||
       endDate === null ||
       totalMember === null ||
-      openURL === "" ||
       postStack.length === 0
     ) {
       window.alert("항목을 모두 입력해주세요!🙏");
@@ -118,7 +115,6 @@ const ProjectAdd = () => {
             startDate: startDate,
             endDate: endDate, //url
             totalMember: totalMember, //url
-            openURL: openURL,
             postStack: JSON.stringify(postStack), //배열이니까 JSON?
           },
           {
