@@ -49,10 +49,6 @@ module.exports = function (sequelize, DataTypes) {
       project_status: {
         type: DataTypes.STRING(50),
         allowNull: false,
-      },
-      url: {
-        type: DataTypes.STRING(50),
-        allowNull: false,
       }
     },
     {

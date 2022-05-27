@@ -11,7 +11,6 @@ sendPost: async (req, res) => {
       startDate,
       endDate,
       totalMember,
-      openURL,
       postStack,
     } = req.body;
 
@@ -22,7 +21,6 @@ sendPost: async (req, res) => {
       startDate,
       endDate,
       totalMember,
-      openURL,
       postStack,
       "포스트데이터들"
     );
@@ -45,7 +43,6 @@ sendPost: async (req, res) => {
             total_member: totalMember,
             current_member: "1",
             project_status: true,
-            url:openURL,
             created_at: new Date(),
             updated_at: new Date()
           })
