@@ -34,10 +34,10 @@ const UserInfo = () => {
   const { userNickname, password, repassword } = userModify;
   const modifiyusertHandle = () => {
     if (!userNickname || !password) {
-      window.alert("항목을 모두 입력해주세요!🙏");
+      return window.alert("항목을 모두 입력해주세요!🙏");
     }
     if (password !== repassword) {
-      window.alert("비밀 번호가 다릅니다!");
+      return window.alert("비밀 번호가 다릅니다!");
     } else {
       axios
         .patch(

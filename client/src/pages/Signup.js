@@ -12,12 +12,16 @@ export default function Signup() {
     email: "",
     nickname: "",
     password: "",
+    repassword: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const emailTest =
+    /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+  const passwordTest = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/;
 
   const handleInputValue = (key) => (e) => {
     setuserinfo({ ...userinfo, [key]: e.target.value });
@@ -47,11 +51,20 @@ export default function Signup() {
   const handleSignup = () => {
     if (!userinfo.email || !userinfo.password || !userinfo.nickname) {
       setErrorMessage("모든 항목은 필수입니다");
-      console.log(errorMessage);
       return;
     } else {
-      setErrorMessage("");
+      if (emailTest.test(userinfo.email) == false) {
+        return setErrorMessage("이메일 형식이 아닙니다.");
+      }
     }
+    if (userinfo.password !== userinfo.repassword) {
+      return setErrorMessage("비밀번호가 같지 않습니다");
+    } else {
+      if (passwordTest.test(userinfo.password) == false) {
+        return setErrorMessage("영문 숫자 조합으로 8자리 이상 입력해주세요");
+      }
+    }
+
     return axios_Signup(
       userinfo.email,
       userinfo.nickname,
@@ -61,7 +74,7 @@ export default function Signup() {
         .then((res) => {
           console.log("받은데이터유저", res);
           const { id, nickname, accessToken, loginType } = res.data.user;
-          console.log(accessToken)
+          console.log(accessToken);
           dispatch(
             LOG_IN({
               id,
@@ -81,19 +94,19 @@ export default function Signup() {
   return (
     <div>
       <Styledcenter>
-        <Styledform onSubmit={(e) => e.preventDefault()}>
-          <SignupBox>
+        <Styledform>
+          <SignupBox onSubmit={(e) => e.preventDefault()}>
             <Styledh2>회원가입</Styledh2>
 
             <Styledbar></Styledbar>
 
             <Styleddiv>
-              <Styledspan>아이디</Styledspan>
-              <Styledinfo>4글자 이상의 아이디를 입력해주세요.</Styledinfo>
+              <Styledspan>이메일</Styledspan>
+              <Styledinfo>이메일을 입력해주세요.</Styledinfo>
               <Input
                 type="text"
                 onChange={handleInputValue("email")}
-                placeholder="아이디"
+                placeholder="이메일"
               />
             </Styleddiv>
 
@@ -116,7 +129,7 @@ export default function Signup() {
               </Styledinfo>
               <Input
                 type="password"
-                onChange={handleInputValue("password")}
+                onChange={handleInputValue("repassword")}
                 placeholder="비밀번호 확인"
               />
             </Styleddiv>
@@ -145,7 +158,7 @@ export default function Signup() {
   );
 }
 
-const Styledform = Styled.form`
+const Styledform = Styled.div`
 padding-top: 5%;
 /* padding-left: 200px; */
 width: 19%;
@@ -204,7 +217,7 @@ border-radius: 5px;
 font-size: 10pt;
 `;
 const Styledbutton = Styled.div`
-background-color: skyblue;
+background-color: #56d0a0;
 color: white;
 height: 40px;
 width: 100%;
@@ -222,8 +235,8 @@ font-weight: bold;
 font-size: 13pt;
 `;
 
-const SignupBox = Styled.div`
+const SignupBox = Styled.form`
   width: 100%;
-  /* border: 1px solid lightgray; */
+  /* border: 1px solid red; */
   
 `;
