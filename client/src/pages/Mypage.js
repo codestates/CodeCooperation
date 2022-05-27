@@ -4,6 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import ProjectBody from "../components/ProjectBody";
+import { LOG_OUT } from "../reducer/userInfoReducer";
 axios.defaults.withCredentials = true;
 
 export default function Mypage({ handleClick }) {
@@ -24,6 +25,7 @@ export default function Mypage({ handleClick }) {
     setIsUserPosts2(false);
     setIsUserPosts3(false);
   };
+  const dispatch = useDispatch();
   const history = useHistory();
   let user = useSelector((state) => state.userInfo.userInfo);
   let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
@@ -52,9 +54,11 @@ export default function Mypage({ handleClick }) {
   };
 
   const handleDelete = () => {
-    return deleteUser().then(() => {
-      history.push("/");
+    deleteUser().then(() => {
+      window.alert("회원탈퇴 되었습니다.");
+      dispatch(LOG_OUT());
     });
+    return history.push("/");
   };
 
   return (
