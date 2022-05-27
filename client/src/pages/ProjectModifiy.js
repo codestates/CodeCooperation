@@ -13,7 +13,6 @@ const ProjectModifiy = ({ location }) => {
     startDate: "",
     endDate: "",
     totalMember: "",
-    openURL: "",
     postStack: [],
   });
   const [teckStack, setTeckStack] = useState([]);
@@ -91,15 +90,8 @@ const ProjectModifiy = ({ location }) => {
     },
     [stackSelect]
   );
-  const {
-    postTitle,
-    content,
-    startDate,
-    endDate,
-    totalMember,
-    openURL,
-    postStack,
-  } = postInfo;
+  const { postTitle, content, startDate, endDate, totalMember, postStack } =
+    postInfo;
   const modifiyPostHandle = () => {
     if (
       postTitle === "" ||
@@ -107,7 +99,6 @@ const ProjectModifiy = ({ location }) => {
       startDate === "" ||
       endDate === null ||
       totalMember === null ||
-      openURL === "" ||
       postStack.length === 0
     ) {
       window.alert("항목을 모두 입력해주세요!🙏");
@@ -115,7 +106,7 @@ const ProjectModifiy = ({ location }) => {
       console.log("*********************", accessToken);
       axios
         .patch(
-          `http://localhost:3000/post-modify/${postId}`,
+          `${process.env.REACT_APP_SERVER_URL}/post-modify/${postId}`,
           {
             userId: user.id,
             postTitle: postTitle,
@@ -123,7 +114,6 @@ const ProjectModifiy = ({ location }) => {
             startDate: startDate,
             endDate: endDate, //url
             totalMember: totalMember, //url
-            openURL: openURL,
             postStack: JSON.stringify(postStack), //배열이니까 JSON?
           },
           {

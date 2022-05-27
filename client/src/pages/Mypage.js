@@ -5,11 +5,12 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import ProjectBody from "../components/ProjectBody";
 import { LOG_OUT } from "../reducer/userInfoReducer";
+import { useEffect } from "react/cjs/react.production.min";
 axios.defaults.withCredentials = true;
 
 export default function Mypage({ handleClick }) {
-  const [isUserPosts, setIsUserPosts] = useState(true);
-  const [isUserPosts1, setIsUserPosts1] = useState(false);
+  const [isUserPosts, setIsUserPosts] = useState(false);
+  const [isUserPosts1, setIsUserPosts1] = useState(true);
   const [isUserPosts2, setIsUserPosts2] = useState(false);
   const [isUserPosts3, setIsUserPosts3] = useState(false);
 
@@ -39,18 +40,23 @@ export default function Mypage({ handleClick }) {
   const [showMylist, setShowMylist] = useState();
   /* 내 게시글 서버로 부터 가져오는 함수 */
   const callMylist = () =>
-    axios.get(`http://localhost:3000/mylist/${params}`).then((res) => {
-      console.log(res.data.data);
-      let allMylist = res.data.data.sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/mylist/${params}`)
+      .then((res) => {
+        console.log(res.data.data);
+        let allMylist = res.data.data.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        setShowMylist(allMylist);
       });
-      setShowMylist(allMylist);
-    });
 
   const deleteUser = () => {
-    return axios.delete(`http://localhost:3000/user-delete/${params}`, {
-      withCredentials: true,
-    });
+    return axios.delete(
+      `${process.env.REACT_APP_SERVER_URL}/user-delete/${params}`,
+      {
+        withCredentials: true,
+      }
+    );
   };
 
   const handleDelete = () => {
@@ -91,17 +97,17 @@ export default function Mypage({ handleClick }) {
 
       <ProjectDiv>
         <StyledNav>
-          <NavItems>모집</NavItems>
+          {/* <NavItems>모집</NavItems> */}
           <NavItems
             onClick={() => {
               selectMenuHandler1();
               callMylist();
             }}
           >
-            관심
+            작성한 글
           </NavItems>
-          <NavItems>진행</NavItems>
-          <NavItems>완료</NavItems>
+          {/* <NavItems>진행</NavItems>
+          <NavItems>완료</NavItems> */}
         </StyledNav>
         <BarDiv>
           {isUserPosts1 ? (
@@ -231,6 +237,10 @@ const AcountInfoBtn = styled.button`
   color: white;
   text-decoration-line: none;
   cursor: pointer;
+  &:hover {
+    background-color: #20c997;
+    color: white;
+  }
 `;
 
 const SecessionBtn = styled.button`
@@ -246,6 +256,10 @@ const SecessionBtn = styled.button`
   color: white;
   text-decoration-line: none;
   cursor: pointer;
+  &:hover {
+    background-color: #fa5252;
+    color: white;
+  }
 `;
 
 const ProjectDiv = styled.div`

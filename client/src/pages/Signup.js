@@ -29,7 +29,7 @@ export default function Signup() {
 
   const axios_Login = (userEmail, userPassword) => {
     return axios.post(
-      `http://localhost:3000/signin`,
+      `${process.env.REACT_APP_SERVER_URL}/signin`,
       {
         email: userEmail,
         password: userPassword,
@@ -41,7 +41,7 @@ export default function Signup() {
   };
 
   const axios_Signup = (userEmail, userNickname, userPassword) => {
-    return axios.post(`http://localhost:3000/signup`, {
+    return axios.post(`${process.env.REACT_APP_SERVER_URL}/signup`, {
       email: userEmail,
       password: userPassword,
       nickname: userNickname,
@@ -73,14 +73,14 @@ export default function Signup() {
       axios_Login(userinfo.email, userinfo.password)
         .then((res) => {
           console.log("받은데이터유저", res);
-          const { id, nickname, accessToken, loginType } = res.data.user;
+          const { id, email, nickname, accessToken } = res.data.user;
           console.log(accessToken);
           dispatch(
             LOG_IN({
               id,
+              email,
               nickname,
               accessToken,
-              loginType,
             })
           );
           history.push("/");
@@ -228,6 +228,10 @@ text-align: center;
 padding-top: 5px;
 font-weight: bold;
 cursor: pointer;
+  &:hover {
+    background-color: #20c997;
+    color: white;
+  }
 `;
 
 const StyledLink = Styled.div`

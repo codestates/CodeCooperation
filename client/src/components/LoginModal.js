@@ -4,17 +4,13 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { LOG_IN } from "../reducer/userInfoReducer";
 import { useHistory, Link } from "react-router-dom";
-import { FaUserAlt, FaLock } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { RiKakaoTalkFill } from "react-icons/ri";
 import GoogleImg from "../images/Googleimg.png";
 import KakaoImg from "../images/Kakaoimg.png";
-const KAKAO_ID = "64fe86c46742a2a3e00351691147e584";
-const REDIRECT_URI = "http://localhost:3001/oauth/callback/kakao";
+const KAKAO_ID = process.env.REACT_APP_KAKAO_ID_URL;
+const REDIRECT_URI = `${process.env.REACT_APP_CLIENT_URL}/oauth/callback/kakao`;
 //배포하면 `https://codescooperation.com/oauth/callback/kakao`;
-const GOGLE_ID = `83742645542-43rk66t5ppss8jc6q2divjadr9uo6otf.apps.googleusercontent.com`;
-const GOGLE_URL = `http://localhost:3001/oauth/callback/google`;
-//배보 하면 `https://codescooperation.com/oauth/callback/google`;
+const GOGLE_ID = process.env.REACT_APP_GOGLE_ID_URL;
+const GOGLE_URL = `${process.env.REACT_APP_CLIENT_URL}/oauth/callback/google`;
 
 export const GOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/auth?client_id=${GOGLE_ID}&access_type=offline&redirect_uri=${GOGLE_URL}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`;
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
@@ -41,7 +37,7 @@ function LoginModal({ handleLoginModal, setShowModal }) {
   };
   const axios_Login = (userEmail, userPassword) => {
     return axios.post(
-      `http://localhost:3000/signin`,
+      `${process.env.REACT_APP_SERVER_URL}/signin`,
       {
         email: userEmail,
         password: userPassword,

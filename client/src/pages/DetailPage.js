@@ -19,6 +19,7 @@ function DetailPage({ selectedFeed }) {
   const [currentSocket, setCurrentSocket] = useState();
   const [userName, setUserName] = useState(user.nickname);
   const [roomName, setroomName] = useState(selectedFeed.id);
+  const [showDrop, setShowDrop] = useState(false);
 
   let userInfo = JSON.parse(window.localStorage.getItem("userInfo"));
 
@@ -40,7 +41,7 @@ function DetailPage({ selectedFeed }) {
   };
 
   useEffect(() => {
-    setCurrentSocket(socketIOClient("localhost:3000"));
+    setCurrentSocket(socketIOClient(`${process.env.REACT_APP_SERVER_URL}`));
   }, []); //소켓연결
 
   if (currentSocket) {
@@ -57,9 +58,12 @@ function DetailPage({ selectedFeed }) {
   dispatch(POST_ID(postId));
 
   const deletePost = () => {
-    return axios.delete(`http://localhost:3000/post-delete/${postId}`, {
-      withCredentials: true,
-    });
+    return axios.delete(
+      `${process.env.REACT_APP_SERVER_URL}/post-delete/${postId}`,
+      {
+        withCredentials: true,
+      }
+    );
   };
 
   const handleLogin = () => {
@@ -67,11 +71,37 @@ function DetailPage({ selectedFeed }) {
       history.push("/projectlist");
     });
   };
-
-  // useEffect(() => {
-  //   const scroll = chatRef.current.scrollHeight;
-  //   chatRef.current.scrollTo(0, scroll);
-  // }, [msgList]);
+  const handleDropBox = () => {
+    if (selectedFeed.user.id == user.id) {
+      setShowDrop(!showDrop);
+    }
+  };
+  const statefalse = () => {
+    return axios
+      .patch(
+        `${process.env.REACT_APP_SERVER_URL}/post-statusmodify/${postId}`,
+        { status: false },
+        {
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        history.push("/projectlist");
+      });
+  };
+  const statetrue = () => {
+    return axios
+      .patch(
+        `${process.env.REACT_APP_SERVER_URL}/post-statusmodify/${postId}`,
+        { status: true },
+        {
+          withCredentials: true,
+        }
+      )
+      .then(() => {
+        history.push("/projectlist");
+      });
+  };
 
   return (
     <div>
@@ -80,9 +110,15 @@ function DetailPage({ selectedFeed }) {
         <Container0BigBox>
           <Container0Box1>
             <ContentTitleBox1>
-              <ContentTitle1>
-                {selectedFeed.state ? "모집중" : "진행중"}
+              <ContentTitle1 onClick={handleDropBox}>
+                {selectedFeed.project_status == true ? "완 료" : "모집중"}
               </ContentTitle1>
+              {showDrop && (
+                <DropBox>
+                  <Li onClick={statefalse}>모집중</Li>
+                  <Li2 onClick={statetrue}>완 료</Li2>
+                </DropBox>
+              )}
             </ContentTitleBox1>
 
             <ContentTitle2Box>
@@ -105,7 +141,7 @@ function DetailPage({ selectedFeed }) {
             <ContentTitle4>
               <ContentTitle4Stack>
                 {JSON.parse(selectedFeed.stack).map((el, i) => {
-                  return <span key={i}>{el} </span>;
+                  return <Stacktext key={i}>{el} </Stacktext>;
                 })}
               </ContentTitle4Stack>
             </ContentTitle4>
@@ -365,6 +401,7 @@ const ContentTitle1 = styled.button`
   color: white;
   border: 1px solid #66c02e;
   border-radius: 0.5rem;
+  cursor: pointer;
 `;
 const ContentTitle2Box = styled.div`
   width: 100%;
@@ -461,6 +498,7 @@ const ContentTitle5P = styled.div`
 const ContentTitle6Box = styled.div`
   width: 100%;
   height: 5%;
+  margin-top: 10px;
   /* border: 1px solid lightgray; */
 `;
 
@@ -515,4 +553,53 @@ const ChatInputBox = styled.div`
   height: 15%;
   border-top: 2px solid #e1e8ec;
   /* border: 1px solid lightgray; */
+`;
+
+const DropBox = styled.div`
+  background: #ffffff;
+  color: #333333;
+  border-radius: 8px;
+  position: absolute;
+  top: 150px;
+  right: 1415px;
+  width: 100px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+`;
+const Li = styled.div`
+  font-family: Noto Sans KR;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  &:hover {
+    color: #56d0a0;
+  }
+`;
+const Li2 = styled.div`
+  font-family: Noto Sans KR;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  &:hover {
+    color: #56d0a0;
+  }
+`;
+const Stacktext = styled.button`
+  font-family: "Noto Sans KR";
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 10px 5px 10px;
+  background-color: #e7f5ff;
+  color: #333;
+  border: 0px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin: 0 10px 10px 0px;
 `;

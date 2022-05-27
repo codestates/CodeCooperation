@@ -85,14 +85,8 @@ const ProjectAdd = () => {
     },
     [stackSelect]
   );
-  const {
-    postTitle,
-    content,
-    startDate,
-    endDate,
-    totalMember,
-    postStack,
-  } = postInfo;
+  const { postTitle, content, startDate, endDate, totalMember, postStack } =
+    postInfo;
   const createPostHandle = () => {
     if (
       postTitle === "" ||
@@ -107,7 +101,7 @@ const ProjectAdd = () => {
       console.log("*********************", accessToken);
       axios
         .post(
-          "http://localhost:3000/post-add",
+          `${process.env.REACT_APP_SERVER_URL}/post-add`,
           {
             userId: user.id,
             postTitle: postTitle,

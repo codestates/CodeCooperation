@@ -3,7 +3,7 @@ const db = require("../../models");
 
 module.exports = {
   chatAll: async (req, res) => {
-    console.log(req.query.postId, "채팅포스트아이디");
+    // console.log(req.query.postId, "채팅포스트아이디");
     let postId = req.query.postId;
     const result = await chat.findAll({
       include: [{ model: db["user"] }],
@@ -16,7 +16,7 @@ module.exports = {
     });
     const filterd = data.filter((el) => Number(el.post_id) === Number(postId));
 
-    console.log(filterd, "필터링된값");
+    // console.log(filterd, "필터링된값");
     res.status(200).json({ filterd, message: "ok" });
   },
 };

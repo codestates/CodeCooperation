@@ -10,6 +10,7 @@ const posts = require("./post/posts");
 const post_add = require("./post/post-add");
 const post_delete = require("./post/post-delete");
 const post_modify = require("./post/post-modify");
+const post_statusmodify = require("./post/post-statusModify");
 const chat = require("./chat/chat");
 const user_modify = require("./user/user-modify");
 const user_posts = require("./user/user-posts");
@@ -36,6 +37,6 @@ router.get("/posts", posts.getAllPost);
 router.post("/post-add", post_add.sendPost);
 router.delete("/post-delete/:id", post_delete.postdelete);
 router.patch("/post-modify/:id", post_modify.postmodify);
-
+router.patch("/post-statusmodify/:id", post_statusmodify.statysModify);
 router.get("/chat", chat.chatAll);
 module.exports = router;
