@@ -9,6 +9,7 @@ import image_2 from "../images/2.jpg";
 import image_3 from "../images/3.jpg";
 import image_4 from "../images/4.png";
 import image_5 from "../images/5.jpg";
+import BackImg from "../images/BackImg.jpg";
 
 function Main() {
   const [isLogin2, setIsLogin2] = useState(false);
@@ -36,7 +37,7 @@ function Main() {
       ) : null}
       <Container_0>
         <Background_img_box>
-          <Background_img src="https://user-images.githubusercontent.com/87626152/165377408-e7a13c11-2a21-4ad1-b98d-aa66149814a8.jpg" />
+          <Background_img src={BackImg} />
         </Background_img_box>
         <Container_0_box></Container_0_box>
         <Container_0_box>
@@ -135,7 +136,7 @@ function Main() {
                   </Content_5_review_title_image_box>
                   <Content_5_review_title_p_box>
                     <Content_5_review_title_p>
-                      Elon Musk <br /> ⭐️⭐️⭐️⭐️⭐️
+                      eoy** <br /> ⭐️⭐️⭐️⭐️⭐️
                     </Content_5_review_title_p>
                   </Content_5_review_title_p_box>
                 </Content_5_review_title_box>
@@ -158,14 +159,16 @@ function Main() {
                   </Content_5_review_title_image_box>
                   <Content_5_review_title_p_box>
                     <Content_5_review_title_p>
-                      Elon Musk <br /> ⭐️⭐️⭐️⭐️⭐️
+                      Naru**
+                      <br /> ⭐️⭐️⭐️⭐️⭐️
                     </Content_5_review_title_p>
                   </Content_5_review_title_p_box>
                 </Content_5_review_title_box>
                 <Content_5_review_p_box>
                   <Content_5_review_p>
-                    Code Cooperation을 이용하여 제가 원하는 스택을 골라서 팀에
-                    들어가서 개발을 진행할 수 있어서 좋았습니다.
+                    여러 사람들과 도움을 받으며 프로젝트 진행을 하고싶었는데
+                    막막해질 찰나에 Code Cooperation을 통해 인원을구해 같이
+                    진행해서 좋았어요 감사합니다.
                   </Content_5_review_p>
                 </Content_5_review_p_box>
               </Content_5_review_box_2>
@@ -181,14 +184,14 @@ function Main() {
                   </Content_5_review_title_image_box>
                   <Content_5_review_title_p_box>
                     <Content_5_review_title_p>
-                      Elon Musk <br /> ⭐️⭐️⭐️⭐️⭐️
+                      Kura** <br /> ⭐️⭐️⭐️⭐️⭐️
                     </Content_5_review_title_p>
                   </Content_5_review_title_p_box>
                 </Content_5_review_title_box>
                 <Content_5_review_p_box>
                   <Content_5_review_p>
-                    Code Cooperation을 이용하여 제가 원하는 스택을 골라서 팀에
-                    들어가서 개발을 진행할 수 있어서 좋았습니다.
+                    빠르게 팀원을 구하는데 용이하구 채팅을 통해 빠르게
+                    연락을해서 좋았어요!
                   </Content_5_review_p>
                 </Content_5_review_p_box>
               </Content_5_review_box_2>
@@ -335,6 +338,10 @@ const Content_0_button_0 = styled.div`
   text-align: center;
   line-height: 3rem;
   cursor: pointer;
+  &:hover {
+    background-color: #20c997;
+    color: white;
+  }
 `;
 /*********************************************/
 
@@ -469,6 +476,10 @@ const Content_2_button = styled.button`
   height: 3rem;
   text-align: center;
   line-height: 3rem;
+  &:hover {
+    background-color: #20c997;
+    color: white;
+  }
   cursor: pointer;
   @media screen and (max-width: 800px) {
     width: 110px;
@@ -585,6 +596,10 @@ const Content_4_button = styled.button`
   cursor: pointer;
   @media screen and (max-width: 800px) {
     width: 110px;
+  }
+  &:hover {
+    background-color: #20c997;
+    color: white;
   }
 `;
 
@@ -815,4 +830,8 @@ const Content_6_button = styled.button`
   height: 3rem;
   text-align: center;
   line-height: 3rem;
+  &:hover {
+    background-color: #20c997;
+    color: white;
+  }
 `;

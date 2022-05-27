@@ -222,9 +222,8 @@ const Login = styled.button`
   background-color: #56d0a0;
   color: white;
   &:hover {
-    background-color: #56d0a0;
+    background-color: #20c997;
     color: white;
-    transition: 0.3s ease-out;
   }
   cursor: pointer;
   /* border: 1px solid lightgray; */

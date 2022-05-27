@@ -41,7 +41,7 @@ const UserInfo = () => {
     } else {
       axios
         .patch(
-          `http://localhost:3000/user-modify`,
+          `${process.env.REACT_APP_SERVER_URL}/user-modify`,
           {
             userId,
             userNickname,
@@ -296,6 +296,10 @@ const AmendBtn = styled.button`
   color: white;
   margin: 20px;
   cursor: pointer;
+  &:hover {
+    background-color: #20c997;
+    color: white;
+  }
 `;
 
 const CancelBtn = styled(Link)`
@@ -311,6 +315,10 @@ const CancelBtn = styled(Link)`
   text-decoration-line: none;
   padding-top: 11px;
   cursor: pointer;
+  &:hover {
+    background-color: #20c997;
+    color: white;
+  }
 `;
 
 // const CategoryName = [

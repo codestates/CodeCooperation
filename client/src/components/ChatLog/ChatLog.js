@@ -35,7 +35,7 @@ const ChatLog = ({ socket, postId }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/chat", { params: { postId } })
+      .get(`${process.env.REACT_APP_SERVER_URL}/chat`, { params: { postId } })
       .then((result) => {
         let Chatdata = result.data.filterd;
         let ChatMsg = [];
@@ -75,7 +75,8 @@ export default ChatLog;
 const Container0 = styled.div`
   width: 100%;
   height: 85%;
-  overflow: auto;
+  padding: 10px 0 0px 10px;
+  overflow-y: auto;
 `;
 
 const Container1 = styled.div`
