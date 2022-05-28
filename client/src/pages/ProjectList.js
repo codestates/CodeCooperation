@@ -9,13 +9,13 @@ const ProjectList = ({ post, handleClick }) => {
   const [showPosts, setShowPosts] = useState();
   const [stackClick, setStackClick] = useState("전체");
   const handleStack = (el) => {
-    console.log("클릭한스택", el);
+    // console.log("클릭한스택", el);
     setStackClick(el);
   };
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_SERVER_URL}/posts`).then((res) => {
-      console.log(res.data.data);
+      // console.log(res.data.data);
       let allPost = res.data.data.sort((a, b) => {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
@@ -32,7 +32,7 @@ const ProjectList = ({ post, handleClick }) => {
             }
           }
         });
-        console.log(result, "리절트입니다.");
+        // console.log(result, "리절트입니다.");
         setShowPosts(result);
       }
     });

@@ -31,7 +31,7 @@ const ProjectModifiy = ({ location }) => {
     user = userInfo;
     accessToken = userInfo.accessToken;
   }
-  console.log(postId, "포스트아이디이");
+  // console.log(postId, "포스트아이디이");
   // console.log(accessToken, "토큰입니다");
   // console.log(techStackList, "포스트스택");
   // console.log(teckStack, "스택상태");
@@ -103,7 +103,7 @@ const ProjectModifiy = ({ location }) => {
     ) {
       window.alert("항목을 모두 입력해주세요!🙏");
     } else {
-      console.log("*********************", accessToken);
+      // console.log("*********************", accessToken);
       axios
         .patch(
           `${process.env.REACT_APP_SERVER_URL}/post-modify/${postId}`,

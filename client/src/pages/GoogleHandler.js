@@ -13,7 +13,7 @@ function GoogleHandler() {
 
   useEffect(() => {
     let code = new URL(window.location.href).searchParams.get("code");
-    console.log(code, "code 입니다");
+    // console.log(code, "code 입니다");
     if (code) {
       getAccessToken(code);
     }
@@ -31,7 +31,7 @@ function GoogleHandler() {
         `${process.env.REACT_APP_SERVER_URL}/google-login/userinfo?accessToken=${accessToken}`
       )
       .then((res) => {
-        console.log(res.data, "클라이언트에서받은데이터");
+        // console.log(res.data, "클라이언트에서받은데이터");
         const { id, email, nickname, password, accessToken, loginType } =
           res.data.user;
         dispatch(
@@ -52,14 +52,14 @@ function GoogleHandler() {
       },
     })
       .then((res) => {
-        console.log(res.data.access_token, "토큰입니다.");
+        // console.log(res.data.access_token, "토큰입니다.");
         if (!refreshToken) {
           setRefreshToken(res.data.refresh_token);
         }
         setAccessToken(res.data.access_token);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
   return <div></div>;

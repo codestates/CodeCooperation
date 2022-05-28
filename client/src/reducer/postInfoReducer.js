@@ -6,7 +6,7 @@ export const postInfoReducer = createSlice({
   initialState,
   reducers: {
     GET_POST: (state, action) => {
-      console.log(action.payload, "포스트인포액션페이로드");
+      // console.log(action.payload, "포스트인포액션페이로드");
       state.postInfo = action.payload;
 
       //localStorage에도 저장

@@ -30,7 +30,7 @@ const ProjectAdd = () => {
   // console.log(accessToken, "토큰입니다");
   // console.log(techStackList, "포스트스택");
   // console.log(teckStack, "스택상태");
-  console.log(postInfo, "포스트정보");
+  // console.log(postInfo, "포스트정보");
 
   const animatedComponents = makeAnimated();
   const stackSelect = [
@@ -98,7 +98,7 @@ const ProjectAdd = () => {
     ) {
       window.alert("항목을 모두 입력해주세요!🙏");
     } else {
-      console.log("*********************", accessToken);
+      // console.log("*********************", accessToken);
       axios
         .post(
           `${process.env.REACT_APP_SERVER_URL}/post-add`,

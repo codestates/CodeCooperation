@@ -15,7 +15,7 @@ function Kakaohandler() {
 
   useEffect(() => {
     let code = new URL(window.location.href).searchParams.get("code");
-    console.log(code, "code 입니다");
+    // console.log(code, "code 입니다");
     if (code) {
       getAccessToken(code);
     }
@@ -31,14 +31,14 @@ function Kakaohandler() {
       },
     })
       .then((res) => {
-        console.log(res.data, "토큰입니다.");
+        // console.log(res.data, "토큰입니다.");
         if (!refreshToken) {
           setRefreshToken(res.data.refresh_token);
         }
         setAccessToken(res.data.access_token);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
@@ -53,7 +53,7 @@ function Kakaohandler() {
       url: `${process.env.REACT_APP_SERVER_URL}/kakao-login/userinfo?accessToken=${accessToken}`,
     })
       .then((res) => {
-        console.log(res.data, "서버에서 받은 데이터");
+        // console.log(res.data, "서버에서 받은 데이터");
         const postInfo = res.data.post;
         const { id, email, nickname, accessToken, loginType } = res.data.user;
         dispatch(LOG_IN({ id, email, nickname, accessToken, loginType }));

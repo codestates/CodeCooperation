@@ -53,7 +53,7 @@ export default function Mypage({ handleClick }) {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/mylist/${params}`)
       .then((res) => {
-        console.log(res.data.data, "받은데이터");
+        // console.log(res.data.data, "받은데이터");
         let allMylist = res.data.data.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
