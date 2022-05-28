@@ -40,7 +40,7 @@ const ProjectDiv = styled(Link)`
   text-decoration-line: none;
   height: 330px;
   width: 350px;
-  margin: 20px 30px;
+  margin: 30px 30px;
   display: flex;
   flex-direction: column;
   border-radius: 30px;

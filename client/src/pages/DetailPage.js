@@ -110,9 +110,16 @@ function DetailPage({ selectedFeed }) {
         <Container0BigBox>
           <Container0Box1>
             <ContentTitleBox1>
-              <ContentTitle1 onClick={handleDropBox}>
-                {selectedFeed.project_status == true ? "완 료" : "모집중"}
-              </ContentTitle1>
+              {selectedFeed.user.id == user.id ? (
+                <ContentTitle1 onClick={handleDropBox}>
+                  {selectedFeed.project_status == true ? "완 료" : "모집중"}
+                </ContentTitle1>
+              ) : (
+                <ContentStatue>
+                  {selectedFeed.project_status == true ? "완 료" : "모집중"}
+                </ContentStatue>
+              )}
+
               {showDrop && (
                 <DropBox>
                   <Li onClick={statefalse}>모집중</Li>
@@ -402,6 +409,15 @@ const ContentTitle1 = styled.button`
   border: 1px solid #66c02e;
   border-radius: 0.5rem;
   cursor: pointer;
+`;
+const ContentStatue = styled.button`
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-family: "Noto Sans KR";
+  background-color: #66c02e;
+  color: white;
+  border: 1px solid #66c02e;
+  border-radius: 0.5rem;
 `;
 const ContentTitle2Box = styled.div`
   width: 100%;

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import ProjectBody from "../components/ProjectBody";
 import { LOG_OUT } from "../reducer/userInfoReducer";
-import { useEffect } from "react/cjs/react.production.min";
+
 axios.defaults.withCredentials = true;
 
 export default function Mypage({ handleClick }) {
@@ -39,16 +39,27 @@ export default function Mypage({ handleClick }) {
   /* 내 게시글 상태 */
   const [showMylist, setShowMylist] = useState();
   /* 내 게시글 서버로 부터 가져오는 함수 */
-  const callMylist = () =>
+  // const callMylist = () =>
+  //   axios
+  //     .get(`${process.env.REACT_APP_SERVER_URL}/mylist/${params}`)
+  //     .then((res) => {
+  //       console.log(res.data.data);
+  //       let allMylist = res.data.data.sort((a, b) => {
+  //         return new Date(b.createdAt) - new Date(a.createdAt);
+  //       });
+  //       setShowMylist(allMylist);
+  //     });
+  useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/mylist/${params}`)
       .then((res) => {
-        console.log(res.data.data);
+        console.log(res.data.data, "받은데이터");
         let allMylist = res.data.data.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
         setShowMylist(allMylist);
       });
+  }, []);
 
   const deleteUser = () => {
     return axios.delete(
@@ -98,14 +109,7 @@ export default function Mypage({ handleClick }) {
       <ProjectDiv>
         <StyledNav>
           {/* <NavItems>모집</NavItems> */}
-          <NavItems
-            onClick={() => {
-              selectMenuHandler1();
-              callMylist();
-            }}
-          >
-            작성한 글
-          </NavItems>
+          <NavItems>작성 목록</NavItems>
           {/* <NavItems>진행</NavItems>
           <NavItems>완료</NavItems> */}
         </StyledNav>
@@ -285,17 +289,18 @@ const NavItems = styled.div`
   width: 100px;
   height: 40px;
   line-height: 44px;
-  font-weight: 300;
+  font-family: Noto Sans KR;
+  font-weight: 500;
   font-size: 20px;
-  color: black;
-  cursor: pointer;
+  color: #4c5175;
+  /* cursor: pointer;
   &:hover {
     font-weight: 500;
     transition: 0s ease;
   }
   &:visited {
     border-bottom: 5px solid black;
-  }
+  } */
 `;
 
 const BarDiv = styled.div`
