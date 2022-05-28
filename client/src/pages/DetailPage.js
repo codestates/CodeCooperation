@@ -406,7 +406,7 @@ const ContentTitle1 = styled.button`
   font-family: "Noto Sans KR";
   background-color: #66c02e;
   color: white;
-  border: 1px solid #66c02e;
+  border: 0px;
   border-radius: 0.5rem;
   cursor: pointer;
 `;
@@ -416,7 +416,7 @@ const ContentStatue = styled.button`
   font-family: "Noto Sans KR";
   background-color: #66c02e;
   color: white;
-  border: 1px solid #66c02e;
+  border: 0px;
   border-radius: 0.5rem;
 `;
 const ContentTitle2Box = styled.div`
@@ -577,7 +577,7 @@ const DropBox = styled.div`
   border-radius: 8px;
   position: absolute;
   top: 150px;
-  right: 1415px;
+  right: 74%;
   width: 100px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
@@ -616,6 +616,5 @@ const Stacktext = styled.button`
   color: #333;
   border: 0px;
   border-radius: 0.5rem;
-  cursor: pointer;
   margin: 0 10px 10px 0px;
 `;
