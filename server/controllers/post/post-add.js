@@ -3,7 +3,7 @@ const { post } = require("../../models");
 module.exports = {
 sendPost: async (req, res) => {
     const accessTokendata = req.headers["authorization"];
-    console.log(accessTokendata, "토큰데이터입니다.");
+    // console.log(accessTokendata, "토큰데이터입니다.");
     const {
       userId,
       postTitle,
@@ -14,16 +14,6 @@ sendPost: async (req, res) => {
       postStack,
     } = req.body;
 
-    console.log(
-      userId,
-      postTitle,
-      content,
-      startDate,
-      endDate,
-      totalMember,
-      postStack,
-      "포스트데이터들"
-    );
     if (!accessTokendata) {
       res.status(401).send("invalid");
     } else {
@@ -47,7 +37,7 @@ sendPost: async (req, res) => {
             updated_at: new Date()
           })
           .then((data) => {
-            console.log("data:", data);
+            // console.log("data:", data);
             res.status(201).json({
               message: "ok",
             });
