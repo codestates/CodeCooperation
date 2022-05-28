@@ -55,7 +55,7 @@ function LoginModal({ handleLoginModal, setShowModal }) {
     }
     return axios_Login(loginInfo.email, loginInfo.password)
       .then((res) => {
-        console.log("받은데이터유저", res);
+        // console.log("받은데이터유저", res);
         const { id, email, nickname, accessToken } = res.data.user;
         dispatch(
           LOG_IN({

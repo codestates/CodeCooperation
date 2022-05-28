@@ -6,7 +6,7 @@ export const userInfoReducer = createSlice({
   initialState,
   reducers: {
     LOG_IN: (state, action) => {
-      console.log(action.payload, "리듀서액션페이로드");
+      // console.log(action.payload, "리듀서액션페이로드");
       state.userInfo = action.payload;
       state.isLogin = true;
       //localStorage에도 저장
@@ -22,7 +22,7 @@ export const userInfoReducer = createSlice({
       localStorage.removeItem("postId");
     },
     POST_ID: (state, action) => {
-      console.log(action.payload, "포스트아이디액션페이로드");
+      // console.log(action.payload, "포스트아이디액션페이로드");
       state.postId = action.payload;
 
       localStorage.setItem("postId", JSON.stringify(state.postId));

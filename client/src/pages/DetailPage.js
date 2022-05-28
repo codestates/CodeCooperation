@@ -13,7 +13,7 @@ import ChatLog from "../components/ChatLog/ChatLog";
 function DetailPage({ selectedFeed }) {
   const chatRef = useRef();
   let user = useSelector((state) => state.userInfo.userInfo);
-  console.log(user);
+  // console.log(user);
   let postId = selectedFeed.id;
   const [support, setSupport] = useState(false);
   const [currentSocket, setCurrentSocket] = useState();
