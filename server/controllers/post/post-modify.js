@@ -13,7 +13,7 @@ module.exports = {
             openURL,
             postStack,
           } = req.body;
-        console.log(id, postTitle);
+        // console.log(id, postTitle);
         if(!id) {
             return res.status(400).send({ message : "해당하는 id값이 없음" })
         } else {

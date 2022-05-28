@@ -51,8 +51,8 @@ io.on("connection", (socket) => {
 
     // 전송버튼 보낸걸 다시 ChatLog로 보내줌
     socket.on("onSend", async (messageItem) => {
-      console.log(room, "룸번호");
-      console.log(messageItem, "메시지아이템");
+      // console.log(room, "룸번호");
+      // console.log(messageItem, "메시지아이템");
       const createdChat = await chat.create({
         user_id: messageItem.user,
         post_id: room,

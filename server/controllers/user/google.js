@@ -3,7 +3,7 @@ const { user } = require("../../models");
 
 module.exports = {
   getToken: async (req, res) => {
-    console.log(req.body.code, "클라이언트에서받은 코드");
+    // console.log(req.body.code, "클라이언트에서받은 코드");
     const code = req.body.code;
     const client_id = `${process.env.GOOGLE_ID}`;
     const redirect_uri = `${process.env.BASIC_URL}/oauth/callback/google`;
@@ -29,7 +29,7 @@ module.exports = {
   },
   getUserInfo: async (req, res) => {
     try {
-      console.log(req.query.accessToken, "클라이언트에서 받은 토큰");
+      // console.log(req.query.accessToken, "클라이언트에서 받은 토큰");
       const googleInfoURL = `https://www.googleapis.com/oauth2/v2/userinfo`;
       const accessToken = req.query.accessToken;
       const userInfo = await axios.get(googleInfoURL, {
@@ -37,7 +37,7 @@ module.exports = {
           authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(userInfo.data, "userInfo입니다.");
+      // console.log(userInfo.data, "userInfo입니다.");
       let email = userInfo.data.email;
       let nickname = userInfo.data.name;
       let password = userInfo.data.id + nickname;
