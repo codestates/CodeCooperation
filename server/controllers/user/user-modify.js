@@ -7,12 +7,7 @@ module.exports = async (req, res) => {
   const rightUser = isAuthorized(req);
   
   const { userId, userNickname, password } = req.body;
-  console.log(userId)
-  // if (!rightUser) {
-  //   res.status(401).send({ data: null, message: "토큰이 존재하지 않습니다." });
-  // } else {
-    
-  // }
+
   if (!userId) {
     res.status(400).send({ message: "전부 입력해주세요." });
   } else {
