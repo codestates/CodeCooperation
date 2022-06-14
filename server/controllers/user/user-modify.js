@@ -3,7 +3,6 @@ const { isAuthorized } = require("../jwtToken/index");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res) => {
-  console.log(req.headers["authorization"])
   const rightUser = isAuthorized(req);
   
   const { userId, userNickname, password } = req.body;
